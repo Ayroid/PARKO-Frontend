@@ -27,7 +27,7 @@ const Parkings = () => {
 </div>
       </div>
 
-      <div className='max-h-60 overflow-y-auto '>
+      <div className='max-h-60 overflow-y-auto pr-4 '>
         <ul>
           {parkingData.map((parking, index) => (
             <li key={index} className='pb-3'>
