@@ -16,7 +16,8 @@ function App() {
       <Map/>
       <Parkings/> */}
 
-      <Register/>      
+      {/* <Register/>       */}
+      <Login/>
        
     </>
   )

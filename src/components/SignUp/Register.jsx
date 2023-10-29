@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../../assets/parko_logo.png';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const Register = () => {
 
   return (
     <div className='font-Nunito'>
-      <div className='flex flex-col items-center gap-5 pt-10'>
+      <div className='flex flex-col items-center gap-5 pt-5'>
         <h3 className='text-3xl '>Sign Up</h3>
         <img src={logo} className='w-2/3'></img>
         <h2 className='text-4xl '>Welcome To Parko</h2>
@@ -58,7 +59,10 @@ const Register = () => {
             />
 
             <div className='p-5'>
-              <button type='submit' className='w-full py-3 text-gray-700 border rounded-md bg-yellow-400 focus:bg-yellow-500'>Sign Up</button>
+              <button type='submit' className='w-full py-2 text-gray-700 border rounded-md bg-yellow-400 focus:bg-yellow-500'>Sign Up</button>
+            </div>
+            <div className='text-center'>
+                Already have an account? <Link to='/login' className='text-yellow-300'>Log In</Link>
             </div>
           </form>
         </div>
