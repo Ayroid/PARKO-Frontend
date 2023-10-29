@@ -52,6 +52,7 @@ const Login = () => {
               name='email'
               value={formData.email}
               onChange={handleChange}
+              disabled={!otpFieldDisabled}
             />
 
 
