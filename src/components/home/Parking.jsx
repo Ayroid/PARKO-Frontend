@@ -18,7 +18,7 @@ const Parkings = () => {
   ];
 
   return (
-    <div className='pt-5 pr-5 pl-5 font-Nunito'>
+    <div className='pt-3 pr-5 pl-5 font-Nunito'>
       
       <div className='flex justify-between pb-5 items-center  '>
         <h2 className='text-lg font-bold'>Parking Spots</h2>
