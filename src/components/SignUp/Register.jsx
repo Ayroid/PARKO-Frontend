@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from '../../assets/parko_logo.png';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,9 @@ const Register = () => {
     email: '',
     sapid: '',
   });
+
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -75,7 +79,7 @@ const Register = () => {
               <button type='submit' className='w-full py-2 text-gray-700 border rounded-md bg-yellow-400 focus:bg-yellow-500'>Sign Up</button>
             </div>
             <div className='text-center'>
-                Already have an account? <Link to='/login' className='text-yellow-300'>Log In</Link>
+                Already have an account? <button onClick={()=>{navigate('/')}} className='text-yellow-300'>Log In</button>
             </div>
           </form>
         </div>

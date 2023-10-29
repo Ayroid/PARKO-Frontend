@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import logo from '../../assets/parko_logo.png';
-import { Link } from 'react-router-dom';
 import { useTimer } from 'react-timer-hook';
 import axios from 'axios';
+
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     otpValue: '',
   });
+
+  const navigate = useNavigate();
+
 
   const [otpFieldDisabled, setOtpFieldDisabled] = useState(true);
 
@@ -33,6 +40,7 @@ const Login = () => {
       
       if (response.status === 200) {
         console.log('Login successful:', response.data);
+        navigate('/home');
       } else {
         console.error('Login failed:', response.status);
       }
@@ -114,7 +122,7 @@ const Login = () => {
             </div>
 
             <div className='text-center pb-10'>
-              Don't have an account? <Link to='/register' className='text-yellow-300'>Sign Up</Link>
+              Don't have an account? <button onClick={()=>{navigate('/register')}} className='text-yellow-300'>Sign Up</button>
             </div>
           </form>
         </div>

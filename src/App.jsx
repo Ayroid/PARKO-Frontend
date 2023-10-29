@@ -7,17 +7,20 @@ import Parkings from './components/home/Parking';
 import Login from './components/SignUp/Login';
 import Register from './components/SignUp/Register';
 
+import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
+
 function App() {
 
   return (
     <>
-     {/* <Header/>
-      <Navigation/>
-      <Map/>
-      <Parkings/> */}
-
-      {/* <Register/>       */}
-      <Login/>
+     
+    <Router>
+      <Routes>
+        <Route path='/home' element={<div><Header/><Navigation/><Map/><Parkings/></div>}/>
+        <Route path='/' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
+      </Routes>
+    </Router>
        
     </>
   )
