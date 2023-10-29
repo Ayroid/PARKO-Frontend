@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import logo from '../../assets/parko_logo.png';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
     username: '',
     phone: '',
     email: '',
-    sapId: '',
+    sapid: '',
   });
 
   const handleChange = (e) => {
@@ -15,10 +16,22 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can handle form submission here, for example, by sending the data to an API.
-    console.log('Form data submitted:', formData);
+
+    try {
+      const response = await axios.post('http://localhost:3000/user/register', formData);
+      
+      if (response.status === 201) {
+        // Registration was successful, you can handle the response here
+        console.log('Registration successful:', response.data);
+      } else {
+        // Registration failed, handle the error
+        console.error('Registration failed:', response.status);
+      }
+    } catch (error) {
+      console.error('Error sending registration request:', error);
+    }
   };
 
   return (
@@ -53,8 +66,8 @@ const Register = () => {
             />
             <FloatingLabelInput
               label='SAP ID'
-              name='sapId'
-              value={formData.sapId}
+              name='sapid'
+              value={formData.sapid}
               onChange={handleChange}
             />
 
