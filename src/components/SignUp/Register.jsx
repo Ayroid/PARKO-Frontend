@@ -25,7 +25,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/user/register', formData);
+      const response = await axios.post('https://parko.studio/user/register', formData);
       
       if (response.status === 201) {
         // Registration was successful, you can handle the response here

@@ -39,7 +39,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/user/verify/mail', formData);
+      const response = await axios.post('https://parko.studio/user/verify/mail', formData);
       
       if (response.status === 200) {
         console.log('Login successful:', response.data);
@@ -57,7 +57,7 @@ const Login = () => {
   const sendUsernameToBackend = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/user/login/mail', formData);
+      const response = await axios.post('https://parko.studio/user/login/mail', formData);
       
       if (response.status === 200) {
         console.log('OTP request successful:', response.data);
