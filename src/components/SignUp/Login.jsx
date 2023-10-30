@@ -5,6 +5,9 @@ import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -40,9 +43,11 @@ const Login = () => {
       
       if (response.status === 200) {
         console.log('Login successful:', response.data);
+        toast.success('Login successful');
         navigate('/home');
       } else {
         console.error('Login failed:', response.status);
+        toast.error('Login failed');
       }
     } catch (error) {
       console.error('Error sending Login request:', error);
@@ -56,9 +61,11 @@ const Login = () => {
       
       if (response.status === 200) {
         console.log('OTP request successful:', response.data);
+        toast.success('OTP SENT')
       }
     } catch (error) {
       console.error('Error sending OTP request:', error);
+      toast.error('Error sending OTP request');
     }
 
     setOtpFieldDisabled(false);
@@ -72,6 +79,7 @@ const Login = () => {
   });
   
   return (
+    <div>
     <div className='font-Nunito'>
       <div className='flex flex-col items-center gap-5 pt-10 pb-7'>
         <h3 className='text-3xl'>Log In</h3>
@@ -127,6 +135,8 @@ const Login = () => {
           </form>
         </div>
       </div>
+    </div>
+    <ToastContainer  position='top-center'/>
     </div>
   );
 };

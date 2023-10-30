@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import logo from '../../assets/parko_logo.png';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -28,9 +29,12 @@ const Register = () => {
       
       if (response.status === 201) {
         // Registration was successful, you can handle the response here
+        toast.success('Registration successful');
         console.log('Registration successful:', response.data);
       } else {
         // Registration failed, handle the error
+        toast.error('Registration failed');
+
         console.error('Registration failed:', response.status);
       }
     } catch (error) {
@@ -38,7 +42,10 @@ const Register = () => {
     }
   };
 
+ 
+
   return (
+    <>
     <div className='font-Nunito'>
       <div className='flex flex-col items-center gap-5 pt-5'>
         <h3 className='text-3xl '>Sign Up</h3>
@@ -74,9 +81,10 @@ const Register = () => {
               value={formData.sapid}
               onChange={handleChange}
             />
+            
 
             <div className='p-5'>
-              <button type='submit' className='w-full py-2 text-gray-700 border rounded-md bg-yellow-400 focus:bg-yellow-500'>Sign Up</button>
+              <button type='submit'  className='w-full py-2 text-gray-700 border rounded-md bg-yellow-400 focus:bg-yellow-500'>Sign Up</button>
             </div>
             <div className='text-center'>
                 Already have an account? <button onClick={()=>{navigate('/')}} className='text-yellow-300'>Log In</button>
@@ -85,6 +93,11 @@ const Register = () => {
         </div>
       </div>
     </div>
+
+    <ToastContainer  position='top-center'/>
+    </>
+
+
   );
 };
 
