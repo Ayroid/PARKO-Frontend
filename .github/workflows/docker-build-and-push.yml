@@ -1,0 +1,24 @@
+name: Docker Build and Push
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and Push Docker Image
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/minor-api-server:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/minor-api-server:latest
