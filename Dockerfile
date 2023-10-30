@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Expose a port, typically 80, that your React app will run on
-EXPOSE 80
+EXPOSE 5173
 
 # Define the command to start your React app
 CMD ["npm", "start"]
