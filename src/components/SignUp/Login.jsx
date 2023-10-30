@@ -35,7 +35,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://parko.studio:3000/user/verify/mail",
+        "https://parko.studio/api/user/verify/mail",
         formData
       );
 
@@ -56,7 +56,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://parko.studio:3000/user/login/mail",
+        "https://parko.studio/api/user/login/mail",
         formData
       );
 

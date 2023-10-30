@@ -25,7 +25,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://parko.studio:3000/user/register",
+        "https://parko.studio/api/user/register",
         formData
       );
 
