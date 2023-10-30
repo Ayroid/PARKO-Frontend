@@ -38,11 +38,9 @@ const Register = () => {
         toast.error("Registration failed");
 
         console.error("Registration failed:", response.status);
-        console.log("Registration failed:", response.status);
       }
     } catch (error) {
       console.error("Error sending registration request:", error);
-      console.log("Error sending registration request:", error);
     }
   };
 
