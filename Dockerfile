@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+# Install npm 10.2.1
+RUN npm install -g npm@10.2.1
+
 # Install project dependencies
 RUN npm install
 
