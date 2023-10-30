@@ -20,5 +20,5 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/minor-api-server:latest .
-        docker push ${{ secrets.DOCKER_USERNAME }}/minor-api-server:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/minor-react-app:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/minor-react-app:latest
