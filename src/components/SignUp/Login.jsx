@@ -35,7 +35,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://parko.studio:3000/user/verify/mail",
+        "http://localhost:3000/user/verify/mail",
         formData
       );
 
@@ -56,7 +56,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://parko.studio:3000/user/login/mail",
+        "http://localhost:3000/user/login/mail",
         formData
       );
 
