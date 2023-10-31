@@ -4,7 +4,7 @@ import Navigation from "./components/Navigation";
 import Header from "./components/Header";
 import Map from "./components/home/Map";
 import Parkings from "./components/home/Parking";
-import Login from "./components/SignUp/Login";
+import Login from "./components/SignUp/Login/Login";
 import Register from "./components/SignUp/Register";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

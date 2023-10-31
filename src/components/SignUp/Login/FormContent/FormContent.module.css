@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+body {
+  font-family: "Rubik", sans-serif;
+  color: #fff;
+}
+
+.outerDiv {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginDiv {
+  font-size: 1.1rem;
+  font-weight: 600;
+  position: absolute;
+  top: 2rem;
+}
+
+.logoImg {
+  max-height: 20rem;
+  border-radius: 50%;
+}
+
+.welcomeDiv {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: -5rem;
+}
+
+.welcomeText {
+  font-size: 1rem;
+  font-weight: 600;
+}

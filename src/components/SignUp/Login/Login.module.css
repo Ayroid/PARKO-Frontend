@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+body {
+  font-family: "Rubik", sans-serif;
+  background: linear-gradient(to top, #000, #292929);
+}
+
+.loginPageMainDiv {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formContentDiv {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 1rem;
+}
+
+.loginFormDiv {
+  height: 100%;
+  background-color: #fff;
+  padding: 3rem 0rem;
+  border-radius: 15px 15px 0px 0px;
+}
