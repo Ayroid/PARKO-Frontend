@@ -7,7 +7,7 @@ const FormContent = () => {
   const logoDiv = [styles.logoDiv].join("");
   const logoImg = [styles.logoImg].join("");
   const welcomeDiv = [styles.welcomeDiv].join("");
-  const welcomeText = [styles.welcomeText].join("");
+//   const welcomeText = [styles.welcomeText].join("");
 
   return (
     <div className={outerDiv}>
