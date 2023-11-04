@@ -153,7 +153,7 @@ const LoginForm = () => {
           <button className={button}>SEND OTP</button>
           <div className={forgotPassword}>
             Don't have an account?{" "}
-            <span style={{ color: "blue" }}>Sign Up</span>
+            <span style={{ color: "#7dabff" }}>Sign Up</span>
           </div>
         </form>
       ) : (
@@ -198,7 +198,7 @@ const LoginForm = () => {
           <button className={button}>LOGIN</button>
           <div className={forgotPassword}>
             Don't have an account?{" "}
-            <span style={{ color: "blue" }}>Sign Up</span>
+            <span style={{ color: "#7dabff" }}>Sign Up</span>
           </div>
         </form>
       )}
