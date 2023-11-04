@@ -151,6 +151,10 @@ const LoginForm = () => {
             )}
           </div>
           <button className={button}>SEND OTP</button>
+          <div className={forgotPassword}>
+            Don't have an account?{" "}
+            <span style={{ color: "blue" }}>Sign Up</span>
+          </div>
         </form>
       ) : (
         <form className={form} onSubmit={handleFormSubmit}>
@@ -192,7 +196,10 @@ const LoginForm = () => {
           </div> */}
 
           <button className={button}>LOGIN</button>
-          <div className={forgotPassword}>Don't have an account? Sign Up</div>
+          <div className={forgotPassword}>
+            Don't have an account?{" "}
+            <span style={{ color: "blue" }}>Sign Up</span>
+          </div>
         </form>
       )}
       <ToastContainer position="top-center" />
