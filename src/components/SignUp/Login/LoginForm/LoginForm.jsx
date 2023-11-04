@@ -3,6 +3,7 @@ import styles from "./LoginForm.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import { useTimer } from "react-timer-hook";
 
 const serverURL = "http://localhost:3000";
 // const serverURL = "https://parko.studio";
@@ -55,6 +56,15 @@ const LoginForm = () => {
       return false;
     }
   };
+
+  // TIMER HOOK FOR OTP
+  // const { seconds } = useTimer({
+  //   expiryTimestamp: otpSent ? Date.now() + 60 * 1000 : 0,
+  //   onExpire: () => {
+  //     console.warn("Expire timer expired");
+  //     // Handle what you want to do when the timer expires
+  //   },
+  // });
 
   // ---------------------------- FORM SUBMITTION ----------------------------
 
@@ -169,11 +179,19 @@ const LoginForm = () => {
             {!otpValidated && <span className={errorMessage}>Invalid OTP</span>}
           </div>
 
-          {otpSent ? (
-            <button className={button}>SEND OTP</button>
-          ) : (
-            <button className={button}>LOGIN</button>
-          )}
+          {/* <div className="flex justify-between">
+            <h4 className="text-sm text-yellow-400 text-left">
+              Re-Send OTP in <span>{seconds} seconds</span>
+            </h4>
+            <button
+              className="text-black border-none text-sm focus:text-black"
+              onClick={handleOTPRequest}
+            >
+              Send OTP
+            </button>
+          </div> */}
+
+          <button className={button}>LOGIN</button>
           <div className={forgotPassword}>Don't have an account? Sign Up</div>
         </form>
       )}
