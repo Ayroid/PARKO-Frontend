@@ -11,7 +11,7 @@ const FormContent = () => {
 
   return (
     <div className={outerDiv}>
-      <div className={loginDiv}>Log In</div>
+      <div className={loginDiv}>Register</div>
       <div className={logoDiv}>
         <img className={logoImg} src={logo} alt="logo" />
       </div>

@@ -3,16 +3,20 @@ import styles from "./LoginForm.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 // import { useTimer } from "react-timer-hook";
 
-const serverURL = "http://localhost:3000";
-// const serverURL = "https://parko.studio";
+// const serverURL = "http://localhost:3000";
+const serverURL = "https://parko.studio";
 
 const otpRequestURL = serverURL + "/api/user/login/mail";
 const otpVerifyURL = serverURL + "/api/user/verify/mail";
 
 const LoginForm = () => {
   // ---------------------------- FORM VALIDATION ----------------------------
+
+  // useNavigate() hook to navigate to different pages
+  const navigate = useNavigate();
 
   // useState() Hooks to handle form validation
   const [email, setEmail] = useState("");
@@ -111,6 +115,7 @@ const LoginForm = () => {
         if (response.status === 200) {
           console.log("Login successful:", response.data);
           toast.success("Login successful");
+          navigate("/home");
         } else {
           console.error("Login failed:", response.status);
           toast.error("Login failed");
@@ -127,7 +132,6 @@ const LoginForm = () => {
   const input = [styles.input].join("");
   const inputDiv = [styles.inputDiv].join("");
   const button = [styles.button].join("");
-  const forgotPassword = [styles.forgotPassword].join("");
   const errorMessage = [styles.errorMessage].join("");
 
   // ---------------------------- JSX ----------------------------
@@ -151,10 +155,6 @@ const LoginForm = () => {
             )}
           </div>
           <button className={button}>SEND OTP</button>
-          <div className={forgotPassword}>
-            Don't have an account?{" "}
-            <span style={{ color: "#7dabff" }}>Sign Up</span>
-          </div>
         </form>
       ) : (
         <form className={form} onSubmit={handleFormSubmit}>
@@ -196,10 +196,6 @@ const LoginForm = () => {
           </div> */}
 
           <button className={button}>LOGIN</button>
-          <div className={forgotPassword}>
-            Don't have an account?{" "}
-            <span style={{ color: "#7dabff" }}>Sign Up</span>
-          </div>
         </form>
       )}
       <ToastContainer position="top-center" />

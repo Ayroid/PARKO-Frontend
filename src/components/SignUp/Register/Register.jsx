@@ -2,18 +2,20 @@
 import PropTypes from "prop-types";
 
 import FormContent from "./FormContent/FormContent";
-import LoginForm from "./LoginForm/LoginForm";
+import RegisterForm from "./RegisterForm/RegisterForm";
 
-import styles from "./Login.module.css";
+import styles from "./Register.module.css";
 
 const loginPageMainDiv = [styles.loginPageMainDiv].join("");
 const formContentDiv = [styles.formContentDiv].join("");
 const loginFormDiv = [styles.loginFormDiv].join("");
 const forgotPassword = [styles.forgotPassword].join("");
 
+// import { useNavigate } from "react-router-dom";
+
 // import { toast, ToastContainer } from "react-toastify";
 
-const Login = ({ changePage }) => {
+const Register = ({ changePage }) => {
   return (
     <div className={loginPageMainDiv}>
       <div className={formContentDiv}>
@@ -21,11 +23,11 @@ const Login = ({ changePage }) => {
       </div>
 
       <div className={loginFormDiv}>
-        <LoginForm />
+        <RegisterForm />
         <div className={forgotPassword}>
-          Don&rsquo;t have an account?&nbsp;
-          <span style={{ color: "#7dabff" }} onClick={() => changePage(false)}>
-            Sign Up
+          Already have an account?&nbsp;
+          <span style={{ color: "#7dabff" }} onClick={() => changePage(true)}>
+            Login
           </span>
         </div>
       </div>
@@ -34,8 +36,8 @@ const Login = ({ changePage }) => {
   );
 };
 
-Login.propTypes = {
+Register.propTypes = {
   changePage: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default Register;

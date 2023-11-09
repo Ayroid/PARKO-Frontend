@@ -4,8 +4,7 @@ import Navigation from "./components/Navigation";
 import Header from "./components/Header";
 import Map from "./components/home/Map";
 import Parkings from "./components/home/Parking";
-import Login from "./components/SignUp/Login/Login";
-import Register from "./components/SignUp/Register";
+import SignUp from "./components/SignUp/SignUp";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -25,8 +24,7 @@ function App() {
               </div>
             }
           />
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<SignUp />} />
         </Routes>
       </Router>
     </>
