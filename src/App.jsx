@@ -1,9 +1,7 @@
-// import { useState } from 'react'
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp/SignUp";
 import Home from "./components/Home/Home";
-
-import { Route, Routes } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (
