@@ -6,8 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 // import { useTimer } from "react-timer-hook";
 
-// const serverURL = "http://localhost:3000";
-const serverURL = "https://parko.studio";
+const serverURL = "http://localhost:3000";
+// const serverURL = "https://parko.studio";
 
 const otpRequestURL = serverURL + "/api/user/login/mail";
 const otpVerifyURL = serverURL + "/api/user/verify/mail";
@@ -114,6 +114,7 @@ const LoginForm = () => {
 
         if (response.status === 200) {
           console.log("Login successful:", response.data);
+          localStorage.setItem("jwtToken", response.data.token);
           toast.success("Login successful");
           navigate("/home");
         } else {
