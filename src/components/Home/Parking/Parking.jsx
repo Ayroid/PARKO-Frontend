@@ -1,3 +1,5 @@
+import styles from "./Parking.module.css";
+
 const Parkings = () => {
   // dummy data
   const parkingData = [
@@ -10,16 +12,25 @@ const Parkings = () => {
     { parkingNo: 4, parkingBlock: "D", status: "available" },
   ];
 
+  // ---------------------------- CSS ----------------------------
+
+  const mainDiv = [styles.mainDiv].join("");
+  const mainHeader = [styles.mainHeader].join("");
+  const mainHeading = [styles.mainHeading].join("");
+  const filterButton = [styles.filterButton].join("");
+  const parkingDiv = [styles.parkingDiv].join("");
+
+  // ---------------------------- JSX ----------------------------
+
   return (
-    <div className="pt-3 pr-5 pl-5 font-Nunito">
-      <div className="flex justify-between pb-5 items-center  ">
-        <h2 className="text-lg font-bold">Parking Spots</h2>
-        <div className="bg-gray-400 rounded w-1/4 flex justify-center items-center">
-          FILTER
-        </div>
+    <div className={mainDiv}>
+      <div className={mainHeader}>
+        <h2 className={mainHeading}>Parking Spots</h2>
+        <div className={filterButton}>FILTER</div>
       </div>
 
-      <div className="max-h-60 overflow-y-auto pr-4 ">
+      {/* <div className=" max-h-60 overflow-y-auto pr-4 "> */}
+      <div className={parkingDiv}>
         <ul>
           {parkingData.map((parking, index) => (
             <li key={index} className="pb-3">
