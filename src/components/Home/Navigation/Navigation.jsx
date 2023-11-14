@@ -1,10 +1,19 @@
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import styles from "./Navigation.module.css";
 
 const Navigation = () => {
+  // ---------------------------- CSS ----------------------------
+
+  const navigation = [styles.navigation].join("");
+  const navItems = [styles.navItems].join("");
+
+  // ---------------------------- JSX ----------------------------
+
   return (
-    <div className="bg-orange-500 p-5 pb-1 text-white font-Nunito font-bold">
+    // <div className="bg-orange-500 p-5 pb-1 text-white font-Nunito font-bold">
+    <div className={navigation}>
       <nav>
-        <ul className="flex justify-evenly">
+        <ul className={navItems}>
           <li>
             <Link to="/home">Home</Link>
           </li>

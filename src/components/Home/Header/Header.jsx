@@ -1,51 +1,65 @@
 import { useState } from "react";
+import styles from "./Header.module.css";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+    if (isOpen) {
+      closeDropDown();
+    } else {
+      openDropDown();
+    }
   };
 
-  return (
-    <div className="bg-orange-500 flex justify-between items-center pt-2 pl-5 pr-5 font-Nunito ">
-      <h1 className="text-2xl font-bold text-white">Parko</h1>
+  const openDropDown = () => {
+    let dropDown = document.getElementById("dropDown");
+    dropDown.style.display = "flex";
+    dropDown.classList.add(styles.dropDownAnimation);
+    dropDown.classList.remove(styles.dropDownAnimationReverse);
+  };
 
-      <div>
-        <div className="flex justify-end ">
-          <div
-            className="three-dots cursor-pointer  text-xl p-0 5px text-white"
-            onClick={toggleDropdown}
-          >
-            &#x2807;
-          </div>
-          <div
-            className={`dropdown-container focus:outline-none ${
-              isOpen ? "block" : "hidden"
-            }`}
-            tabIndex="-1"
-            onBlur={() => setIsOpen(false)}
-          >
-            <div
-              className="dropdown absolute right-10 bg-blue-600"
-              style={{
-                opacity: isOpen ? 1 : 0,
-                zIndex: isOpen ? 100 : -1,
-                maxHeight: isOpen ? "100vh" : 0,
-              }}
-            >
-              <a href="#" className="text-white">
-                <div className="p-2">dropdown 1</div>
-              </a>
-              <a href="#" className="text-white">
-                <div className="p-2">dropdown 2</div>
-              </a>
-              <a href="#" className="text-white">
-                <div className="p-2">dropdown 3</div>
-              </a>
-            </div>
-          </div>
+  const closeDropDown = () => {
+    let dropDown = document.getElementById("dropDown");
+    dropDown.classList.remove(styles.dropDownAnimation);
+    dropDown.classList.add(styles.dropDownAnimationReverse);
+    setTimeout(() => {
+      dropDown.style.display = "none";
+    }, 300);
+  };
+
+  // ---------------------------- CSS ----------------------------
+
+  const outerDiv = [styles.outerDiv].join("");
+  const mainDiv = [styles.mainDiv].join("");
+  const topHeading = [styles.topHeading].join("");
+  const threeDots = [styles.threeDots].join("");
+  const dropDown = [styles.dropDown].join(" ");
+  const dropDownItems = [styles.dropDownItems].join("");
+  const dropDownItemsText = [styles.dropDownItemsText].join("");
+
+  // ---------------------------- JSX ----------------------------
+
+  return (
+    <div className={outerDiv}>
+      <div className={mainDiv}>
+        <h1 className={topHeading}>Parko</h1>
+        <div className={threeDots} onClick={toggleDropdown}>
+          &#x2807;
         </div>
+      </div>
+
+      <div className={dropDown} id="dropDown">
+        <a href="#" className={dropDownItems}>
+          <div className={dropDownItemsText}>dropdown 1</div>
+        </a>
+        <a href="#" className={dropDownItems}>
+          <div className={dropDownItemsText}>dropdown 2</div>
+        </a>
+        <a href="#" className={dropDownItems}>
+          <div className={dropDownItemsText}>dropdown 3</div>
+        </a>
       </div>
     </div>
   );

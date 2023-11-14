@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Header />
       <Navigation />
-      <Map />
+      {/* <Map /> */}
       <Parkings />
     </>
   );
