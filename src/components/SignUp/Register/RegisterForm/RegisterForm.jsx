@@ -5,10 +5,11 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { useTimer } from "react-timer-hook";
 
-const serverURL = "http://localhost:3000";
-// const serverURL = "https://parko.studio";
+// ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
-const userRegisterURL = serverURL + "/api/user/register";
+const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
+
+const userRegisterURL = SERVER_URL + "/api/user/register";
 
 const RegisterForm = () => {
   // ---------------------------- FORM VALIDATION ----------------------------

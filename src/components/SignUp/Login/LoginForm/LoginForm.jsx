@@ -6,13 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 // import { useTimer } from "react-timer-hook";
 
-const serverURL = "http://localhost:3000";
-// const serverURL = "https://parko.studio";
+// ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
-const otpRequestURL = serverURL + "/api/user/login/mail";
-const otpVerifyURL = serverURL + "/api/user/verify/mail";
+const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
+
+const otpRequestURL = SERVER_URL + "/api/user/login/mail";
+const otpVerifyURL = SERVER_URL + "/api/user/verify/mail";
 
 const LoginForm = () => {
+
   // ---------------------------- FORM VALIDATION ----------------------------
 
   // useNavigate() hook to navigate to different pages
