@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ProtectedRoute = ({ redirectTo, children }) => {
   const isLoggedIn = localStorage.getItem("jwtToken");
-  if (!isLoggedIn) {
+  if (!isLoggedIn && redirectTo === "/") {
     return <Navigate to="/" />;
   } else if (isLoggedIn && redirectTo === "/home") {
     return <Navigate to="/home" />;

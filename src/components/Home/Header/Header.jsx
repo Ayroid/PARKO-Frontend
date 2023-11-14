@@ -50,7 +50,7 @@ const Header = () => {
         </div>
       </div>
 
-      <div className={dropDown} id="dropDown">
+      <ul className={dropDown} id="dropDown">
         <a href="#" className={dropDownItems}>
           <div className={dropDownItemsText}>dropdown 1</div>
         </a>
@@ -58,9 +58,9 @@ const Header = () => {
           <div className={dropDownItemsText}>dropdown 2</div>
         </a>
         <a href="#" className={dropDownItems}>
-          <div className={dropDownItemsText}>dropdown 3</div>
+          <div className={dropDownItemsText}>Settings</div>
         </a>
-      </div>
+      </ul>
     </div>
   );
 };
