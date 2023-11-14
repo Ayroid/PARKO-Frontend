@@ -131,6 +131,7 @@ const RegisterForm = () => {
       }
     } catch (error) {
       console.error("Error sending Registration request:", error);
+      toast.error("Registration failed!");
     }
   };
 
@@ -205,7 +206,7 @@ const RegisterForm = () => {
             <span className={errorMessage}>Invalid Phone Number</span>
           )}
         </div>
-        <button className={button}>SEND OTP</button>
+        <button className={button}>SEND</button>
       </form>
       <ToastContainer position="top-center" />
     </div>

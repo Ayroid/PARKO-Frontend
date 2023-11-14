@@ -14,7 +14,6 @@ const otpRequestURL = SERVER_URL + "/api/user/login/mail";
 const otpVerifyURL = SERVER_URL + "/api/user/verify/mail";
 
 const LoginForm = () => {
-
   // ---------------------------- FORM VALIDATION ----------------------------
 
   // useNavigate() hook to navigate to different pages
@@ -82,21 +81,22 @@ const LoginForm = () => {
       };
 
       if (checkEmailRef()) {
-        console.log("Sending Email request");
         const response = await axios.post(otpRequestURL, data);
+
+        console.log(response);
 
         if (response.status === 200) {
           console.log("Login successful:", response.data);
           setOTPSent(true);
           toast.success("Login OTP sent successfully");
-        } else {
-          console.error("Login failed:", response.status);
+        } else if (response.status === 404) {
           setOTPSent(false);
-          toast.error("Login OTP failed");
+          toast.error("User Not Registered!");
         }
       }
     } catch (error) {
       console.error("Error sending Login request:", error);
+      toast.error("User Not Registered!");
     }
   };
 
@@ -126,6 +126,7 @@ const LoginForm = () => {
       }
     } catch (error) {
       console.error("Error sending Login request:", error);
+      toast.error("Login failed");
     }
   };
 
