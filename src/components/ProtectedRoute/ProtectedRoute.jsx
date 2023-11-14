@@ -2,10 +2,10 @@ import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ProtectedRoute = ({ redirectTo, children }) => {
-  const isLoggedIn = localStorage.getItem("jwtToken");
-  if (!isLoggedIn && redirectTo === "/") {
+  const jwtToken = localStorage.getItem("jwtToken");
+  if (!jwtToken && redirectTo === "/") {
     return <Navigate to="/" />;
-  } else if (isLoggedIn && redirectTo === "/home") {
+  } else if (jwtToken && redirectTo === "/home") {
     return <Navigate to="/home" />;
   }
   return children;

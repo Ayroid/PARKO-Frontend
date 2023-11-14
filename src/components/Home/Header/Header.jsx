@@ -1,9 +1,25 @@
 import { useState } from "react";
 import styles from "./Header.module.css";
+import Logout from "../Logout/Logout";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [logout, setLogout] = useState(false);
 
+  // ---------------------------- FUNCTIONS ----------------------------
+
+  // ---------------------------- LOGOUT ----------------------------
+
+  const updateLogout = (update) => {
+    setLogout(update);
+  };
+
+  const openLogOut = () => {
+    toggleDropdown();
+    setLogout(true);
+  };
+
+  // ---------------------------- TOGGLE DROPDOWN ----------------------------
   const toggleDropdown = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
     if (isOpen) {
@@ -49,7 +65,6 @@ const Header = () => {
           &#x2807;
         </div>
       </div>
-
       <ul className={dropDown} id="dropDown">
         <a href="#" className={dropDownItems}>
           <div className={dropDownItemsText}>dropdown 1</div>
@@ -57,10 +72,11 @@ const Header = () => {
         <a href="#" className={dropDownItems}>
           <div className={dropDownItemsText}>dropdown 2</div>
         </a>
-        <a href="#" className={dropDownItems}>
-          <div className={dropDownItemsText}>Settings</div>
-        </a>
+        <div className={dropDownItems} onClick={openLogOut}>
+          <div className={dropDownItemsText}>Log Out</div>
+        </div>
       </ul>
+      {logout && <Logout updateLogout={updateLogout} />}
     </div>
   );
 };
