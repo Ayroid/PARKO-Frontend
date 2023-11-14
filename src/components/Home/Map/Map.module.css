@@ -5,7 +5,12 @@
   width: 100%;
   height: 100%;
   padding: 1rem;
-  background-color: #3e3e3e;
+  background-color: #fff;
   z-index: 0;
   position: relative;
+}
+
+.mapContainer {
+  width: 100dvw;
+  height: 50dvh;
 }
