@@ -33,11 +33,11 @@
   align-items: center;
   width: min-content;
   height: 100%;
-  padding: 0.1rem 0.5rem;
-  background-color: rgb(104, 104, 104);
+  padding: 0.2rem 1rem;
+  background-color: #cecece;
   z-index: 0;
   color: #000;
-  border-radius: 2px;
+  border-radius: 20px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
