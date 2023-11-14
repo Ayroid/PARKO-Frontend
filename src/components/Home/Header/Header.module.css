@@ -35,7 +35,7 @@ body {
   min-width: 9rem;
   max-width: 12rem;
   background-color: #fddc00;
-  z-index: 0;
+  z-index: 2;
   position: absolute;
   border-radius: 8px;
   padding: 0.3rem 0;
