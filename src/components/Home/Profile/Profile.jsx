@@ -42,7 +42,7 @@ const Profile = () => {
     dropDown.classList.add(styles.dropDownAnimationReverse);
     setTimeout(() => {
       dropDown.style.display = "none";
-    }, 300);
+    }, 250);
   };
 
   // ---------------------------- CSS ----------------------------
@@ -51,13 +51,11 @@ const Profile = () => {
 
   const headerDiv = [styles.headerDiv].join("");
   const backArrow = [styles.backArrow].join("");
-  const threeDots = [styles.threeDots].join("");
+  const editSettings = [styles.editSettings].join("");
 
   const dropDown = [styles.dropDown].join("");
   const dropDownItems = [styles.dropDownItems].join("");
   const dropDownItemsText = [styles.dropDownItemsText].join("");
-
-  const backgroundDiv = [styles.backgroundDiv].join("");
 
   const profileDiv = [styles.profileDiv].join("");
   const profilePic = [styles.profilePic].join("");
@@ -77,6 +75,7 @@ const Profile = () => {
 
   return (
     <div className={mainDiv}>
+
       <div className={headerDiv}>
         <div className={backArrow}>
           <img
@@ -86,16 +85,17 @@ const Profile = () => {
           />
           <h3>Profile</h3>
         </div>
-        <div className={threeDots} onClick={toggleDropdown}>
-          &#x2807;
+        <div className={editSettings} onClick={toggleDropdown}>
+          <img src="public/icons/pencil.png" alt="edit" />
         </div>
       </div>
+
       <ul className={dropDown} id="dropDown">
         <div className={dropDownItems} onClick={openSettings}>
           <div className={dropDownItemsText}>Settings</div>
         </div>
       </ul>
-      <div className={backgroundDiv}></div>
+
       <div className={profileDiv}>
         <div className={profilePic}>
           <img src="public/icons/profileicon.jpg" alt="profile icon" />
@@ -106,6 +106,7 @@ const Profile = () => {
           <div className={profileSAPID}>500095575</div>
         </div>
       </div>
+
       <div className={contentDiv}>
         <div className={carsDiv}>
           <div className={cars}>
