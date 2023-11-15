@@ -1,6 +1,17 @@
 import styles from "./UserProfile.module.css";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+  // ---------------------------- NAVIGATION ----------------------------
+
+  const navigate = useNavigate();
+
+  // ---------------------------- FUNCTIONS ----------------------------
+
+  const goBack = () => {
+    navigate("/");
+  };
+
   // ---------------------------- CSS ----------------------------
 
   const mainDiv = [styles.mainDiv].join("");
@@ -24,7 +35,12 @@ const UserProfile = () => {
   return (
     <div className={mainDiv}>
       <div className={backArrow}>
-        <img src="public/icons/backArrow.png" alt="backArrow" />
+        <img
+          src="public/icons/backArrow.png"
+          alt="backArrow"
+          onClick={goBack}
+        />
+        <h3>Profile</h3>
       </div>
       <div className={backgroundDiv}></div>
       <div className={profileDiv}>

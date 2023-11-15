@@ -78,7 +78,7 @@ const Header = () => {
           <div className={dropDownItemsText}>Profile</div>
         </div>
         <a href="#" className={dropDownItems}>
-          <div className={dropDownItemsText}>dropdown 2</div>
+          <div className={dropDownItemsText}>Dropdown 2</div>
         </a>
         <div className={dropDownItems} onClick={openLogOut}>
           <div className={dropDownItemsText}>Log Out</div>

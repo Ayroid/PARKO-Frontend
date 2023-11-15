@@ -118,7 +118,7 @@ const LoginForm = () => {
           console.log("Login successful:", response.data);
           localStorage.setItem("jwtToken", response.data.token);
           toast.success("Login successful");
-          navigate("/home");
+          navigate("/");
         } else {
           console.error("Login failed:", response.status);
           toast.error("Login failed");

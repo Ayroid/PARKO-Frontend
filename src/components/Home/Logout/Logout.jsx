@@ -42,7 +42,7 @@ const Logout = ({ updateLogout }) => {
         toast.error("Error while Loggin Out!");
       });
     localStorage.removeItem("jwtToken");
-    navigate("/");
+    navigate("/auth");
   };
 
   // ---------------------------- CSS ----------------------------
