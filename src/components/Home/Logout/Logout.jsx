@@ -35,13 +35,13 @@ const Logout = ({ updateLogout }) => {
       )
       .then((res) => {
         console.log(res);
-        localStorage.removeItem("jwtToken");
         toast.success("Logout Successful!");
       })
       .catch((err) => {
         console.log(err);
         toast.error("Error while Loggin Out!");
       });
+    localStorage.removeItem("jwtToken");
     navigate("/");
   };
 
