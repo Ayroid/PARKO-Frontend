@@ -5,12 +5,12 @@ import Navigation from "./Navigation/Navigation";
 
 const Home = () => {
   return (
-    <>
+    <div>
       <Header />
       <Navigation />
       <Map />
       <Parkings />
-    </>
+    </div>
   );
 };
 

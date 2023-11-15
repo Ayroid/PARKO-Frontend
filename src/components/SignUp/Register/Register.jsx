@@ -1,21 +1,23 @@
-// import { useState } from "react";
 import PropTypes from "prop-types";
-
 import FormContent from "./FormContent/FormContent";
 import RegisterForm from "./RegisterForm/RegisterForm";
 
 import styles from "./Register.module.css";
 
-const loginPageMainDiv = [styles.loginPageMainDiv].join("");
-const formContentDiv = [styles.formContentDiv].join("");
-const loginFormDiv = [styles.loginFormDiv].join("");
-const forgotPassword = [styles.forgotPassword].join("");
-
-// import { useNavigate } from "react-router-dom";
-
-// import { toast, ToastContainer } from "react-toastify";
-
 const Register = ({ changePage }) => {
+  const submitForm = (value) => {
+    changePage(value);
+  };
+
+  // ---------------------------- CSS ----------------------------
+
+  const loginPageMainDiv = [styles.loginPageMainDiv].join("");
+  const formContentDiv = [styles.formContentDiv].join("");
+  const loginFormDiv = [styles.loginFormDiv].join("");
+  const forgotPassword = [styles.forgotPassword].join("");
+
+  // ---------------------------- JSX ----------------------------
+
   return (
     <div className={loginPageMainDiv}>
       <div className={formContentDiv}>
@@ -23,7 +25,7 @@ const Register = ({ changePage }) => {
       </div>
 
       <div className={loginFormDiv}>
-        <RegisterForm />
+        <RegisterForm submitForm={submitForm} />
         <div className={forgotPassword}>
           Already have an account?&nbsp;
           <span style={{ color: "#7dabff" }} onClick={() => changePage(true)}>

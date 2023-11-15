@@ -1,21 +1,28 @@
-import React from "react";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
-  Polyline,
+  // Polyline,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import styles from "./Map.module.css";
 
 const Map = () => {
+  // ---------------------------- CSS ----------------------------
+
+  const mainDiv = [styles.mainDiv].join("");
+  const mapContainer = [styles.mapContainer].join("");
+
+  // ---------------------------- JSX ----------------------------
+
   return (
-    <div className="pt-5 pr-5 pl-5">
+    <div className={mainDiv}>
       {/* size of map */}
       <MapContainer
         center={[30.41757, 77.967754]}
         zoom={13}
-        className="w-full h-25 sm:h-30 bg-gray-300"
+        className={mapContainer}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

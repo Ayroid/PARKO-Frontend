@@ -6,11 +6,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 // import { useTimer } from "react-timer-hook";
 
-const serverURL = "http://localhost:3000";
-// const serverURL = "https://parko.studio";
+// ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
-const otpRequestURL = serverURL + "/api/user/login/mail";
-const otpVerifyURL = serverURL + "/api/user/verify/mail";
+const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
+
+const otpRequestURL = SERVER_URL + "/api/user/login/mail";
+const otpVerifyURL = SERVER_URL + "/api/user/verify/mail";
 
 const LoginForm = () => {
   // ---------------------------- FORM VALIDATION ----------------------------
@@ -80,21 +81,22 @@ const LoginForm = () => {
       };
 
       if (checkEmailRef()) {
-        console.log("Sending Email request");
         const response = await axios.post(otpRequestURL, data);
+
+        console.log(response);
 
         if (response.status === 200) {
           console.log("Login successful:", response.data);
           setOTPSent(true);
           toast.success("Login OTP sent successfully");
-        } else {
-          console.error("Login failed:", response.status);
+        } else if (response.status === 404) {
           setOTPSent(false);
-          toast.error("Login OTP failed");
+          toast.error("User Not Registered!");
         }
       }
     } catch (error) {
       console.error("Error sending Login request:", error);
+      toast.error("Error getting OTP!");
     }
   };
 
@@ -116,7 +118,7 @@ const LoginForm = () => {
           console.log("Login successful:", response.data);
           localStorage.setItem("jwtToken", response.data.token);
           toast.success("Login successful");
-          navigate("/home");
+          navigate("/");
         } else {
           console.error("Login failed:", response.status);
           toast.error("Login failed");
@@ -124,6 +126,7 @@ const LoginForm = () => {
       }
     } catch (error) {
       console.error("Error sending Login request:", error);
+      toast.error("Login failed");
     }
   };
 
