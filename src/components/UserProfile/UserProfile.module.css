@@ -10,8 +10,18 @@
   position: relative;
 }
 
-.backArrow {
+.headerDiv {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100dvw;
+  top: 1rem;
+  margin-inline: 0.5rem;
+  z-index: 2;
+}
+
+.backArrow {
   top: 1rem;
   left: 0.5rem;
   display: flex;
@@ -25,11 +35,71 @@
   cursor: pointer;
 }
 
-.backArrow > h3{
+.backArrow > h3 {
   margin-top: 0.1rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #000;
+  color: #3f3f3f;
+}
+
+.threeDots {
+  font-size: 1.5rem;
+  color: #3f3f3f;
+  cursor: pointer;
+  margin: 0.2rem 1rem 0 0;
+}
+
+.dropDown {
+  display: none;
+  flex-direction: column;
+  top: 8.7dvh;
+  right: 1.5dvw;
+  min-width: 9rem;
+  max-width: 12rem;
+  background-color: #fddc00;
+  z-index: 1;
+  position: absolute;
+  border-radius: 8px;
+  padding: 0.3rem 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dropDownAnimation {
+  animation: dropDown 0.5s ease-in-out;
+}
+
+.dropDownAnimationReverse {
+  animation: dropDownReverse 0.5s ease-in-out;
+}
+
+@keyframes dropDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropDownReverse {
+  0% {
+    /* opacity: 0 */
+    transform: translateY(0);
+  }
+  100% {
+    /* opacity: 1; */
+    transform: translateY(-150%);
+  }
+}
+
+.dropDownItems {
+  color: #3f3f3f;
+  font-weight: 600;
+}
+
+.dropDownItemsText {
+  padding: 0.5rem;
+  cursor: pointer;
 }
 
 .backgroundDiv {
@@ -74,7 +144,7 @@
   padding: 10px;
   width: 100dvw;
   margin-top: -3rem;
-  color: #000;
+  color: #3f3f3f;
   font-weight: 600;
 }
 
@@ -86,7 +156,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 10px;
   width: 98dvw;
   height: 60dvh;
