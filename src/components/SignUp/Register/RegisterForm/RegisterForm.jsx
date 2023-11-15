@@ -3,6 +3,7 @@ import styles from "./RegisterForm.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PropTypes from "prop-types";
 // import { useTimer } from "react-timer-hook";
 
 // ---------------------------- SERVER URL CONFIGURATION ----------------------------
@@ -11,7 +12,7 @@ const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
 
 const userRegisterURL = SERVER_URL + "/api/user/register";
 
-const RegisterForm = () => {
+const RegisterForm = ({ submitForm }) => {
   // ---------------------------- FORM VALIDATION ----------------------------
 
   // useState() Hooks to handle form validation
@@ -124,6 +125,7 @@ const RegisterForm = () => {
         if (response.status === 201) {
           console.log("Registration successful!:", response.data);
           toast.success("Registration successful!");
+          submitForm(true);
         } else {
           console.error("Registration failed!:", response.data);
           toast.error("Registration failed!");
@@ -211,6 +213,10 @@ const RegisterForm = () => {
       <ToastContainer position="top-center" />
     </div>
   );
+};
+
+RegisterForm.propTypes = {
+  submitForm: PropTypes.func.isRequired,
 };
 
 export default RegisterForm;
