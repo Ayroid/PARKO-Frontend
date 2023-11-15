@@ -1,0 +1,112 @@
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 10px;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: #fff;
+  position: relative;
+}
+
+.backArrow {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.backArrow > img {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.backgroundDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100dvw;
+  height: 15dvh;
+  background-color: rgba(143, 143, 143, 0.336);
+}
+
+.profileDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  width: 100dvw;
+  height: 40dvh;
+  margin-top: -15dvh;
+}
+
+.profilePic {
+  margin: auto;
+}
+
+.profilePic > img {
+  max-width: 10rem;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid black;
+}
+
+.profileData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100dvw;
+  margin-top: -3rem;
+  color: #000;
+  font-weight: 600;
+}
+
+.profileName {
+  font-size: 1.5rem;
+}
+
+.contentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  width: 100dvw;
+  height: 60dvh;
+  /* background-color: rgba(143, 143, 143); */
+}
+
+.carsDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100dvw;
+  max-height: 60dvh;
+  overflow-y: scroll;
+  /* background-color: rgba(143, 143, 143); */
+}
+
+.cars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100dvw;
+  background-color: rgba(143, 143, 143);
+  margin: 0.1rem 0;
+}
+
+.carImage > img {
+  max-width: 12.5rem;
+}
+
+.carDetails {
+  margin-inline: auto;
+}
