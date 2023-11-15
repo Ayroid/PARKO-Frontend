@@ -16,33 +16,7 @@ const Profile = () => {
   };
 
   const openSettings = () => {
-    toggleDropdown();
     navigate("/settings");
-  };
-
-  const toggleDropdown = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-    if (isOpen) {
-      closeDropDown();
-    } else {
-      openDropDown();
-    }
-  };
-
-  const openDropDown = () => {
-    let dropDown = document.getElementById("dropDown");
-    dropDown.style.display = "flex";
-    dropDown.classList.add(styles.dropDownAnimation);
-    dropDown.classList.remove(styles.dropDownAnimationReverse);
-  };
-
-  const closeDropDown = () => {
-    let dropDown = document.getElementById("dropDown");
-    dropDown.classList.remove(styles.dropDownAnimation);
-    dropDown.classList.add(styles.dropDownAnimationReverse);
-    setTimeout(() => {
-      dropDown.style.display = "none";
-    }, 250);
   };
 
   // ---------------------------- CSS ----------------------------
@@ -52,10 +26,6 @@ const Profile = () => {
   const headerDiv = [styles.headerDiv].join("");
   const backArrow = [styles.backArrow].join("");
   const editSettings = [styles.editSettings].join("");
-
-  const dropDown = [styles.dropDown].join("");
-  const dropDownItems = [styles.dropDownItems].join("");
-  const dropDownItemsText = [styles.dropDownItemsText].join("");
 
   const profileDiv = [styles.profileDiv].join("");
   const profilePic = [styles.profilePic].join("");
@@ -75,7 +45,6 @@ const Profile = () => {
 
   return (
     <div className={mainDiv}>
-
       <div className={headerDiv}>
         <div className={backArrow}>
           <img
@@ -85,16 +54,10 @@ const Profile = () => {
           />
           <h3>Profile</h3>
         </div>
-        <div className={editSettings} onClick={toggleDropdown}>
+        <div className={editSettings} onClick={openSettings}>
           <img src="public/icons/pencil.png" alt="edit" />
         </div>
       </div>
-
-      <ul className={dropDown} id="dropDown">
-        <div className={dropDownItems} onClick={openSettings}>
-          <div className={dropDownItemsText}>Settings</div>
-        </div>
-      </ul>
 
       <div className={profileDiv}>
         <div className={profilePic}>
