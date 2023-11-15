@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./UserProfile.module.css";
+import styles from "./Profile.module.css";
 
-const UserProfile = () => {
+const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   // ---------------------------- NAVIGATION ----------------------------
@@ -141,4 +141,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default Profile;

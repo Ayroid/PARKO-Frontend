@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import SignUp from "./components/SignUp/SignUp";
 import Home from "./components/Home/Home";
-import UserProfile from "./components/UserProfile/UserProfile";
+import Profile from "./components/Home/Profile/Profile";
 import "./App.css";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           path="/profile"
           element={
             <ProtectedRoute redirectTo="/auth">
-              <UserProfile />
+              <Profile />
             </ProtectedRoute>
           }
         />
