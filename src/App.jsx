@@ -3,6 +3,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import SignUp from "./components/SignUp/SignUp";
 import Home from "./components/Home/Home";
 import Profile from "./components/Home/Profile/Profile";
+import Settings from "./components/Home/Settings/Settings";
 import "./App.css";
 
 function App() {
@@ -30,6 +31,14 @@ function App() {
           element={
             <ProtectedRoute redirectTo="/auth">
               <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute redirectTo="/auth">
+              <Settings />
             </ProtectedRoute>
           }
         />
