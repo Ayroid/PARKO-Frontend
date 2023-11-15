@@ -17,8 +17,7 @@
 }
 
 .backArrow > img {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
   cursor: pointer;
 }
 
@@ -30,7 +29,8 @@
   padding: 10px;
   width: 100dvw;
   height: 15dvh;
-  background-color: rgba(143, 143, 143, 0.336);
+  background-color: #fddc00;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .profileDiv {
@@ -52,7 +52,7 @@
   max-width: 10rem;
   height: 100%;
   border-radius: 50%;
-  border: 5px solid black;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.322));
 }
 
 .profileData {
@@ -77,8 +77,9 @@
   align-items: center;
   justify-content: flex-start;
   padding: 10px;
-  width: 100dvw;
+  width: 98dvw;
   height: 60dvh;
+  position: relative;
   /* background-color: rgba(143, 143, 143); */
 }
 
@@ -87,10 +88,14 @@
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
-  width: 100dvw;
-  max-height: 60dvh;
+  width: 100%;
+  max-height: 100%;
   overflow-y: scroll;
-  /* background-color: rgba(143, 143, 143); */
+  border-radius: 5px;
+}
+
+.carsDiv::-webkit-scrollbar {
+  width: 0;
 }
 
 .cars {
@@ -98,15 +103,34 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
-  width: 100dvw;
+  width: 100%;
   background-color: rgba(143, 143, 143);
-  margin: 0.1rem 0;
+  margin: 0.2rem 0;
+  border-radius: 10px;
 }
 
 .carImage > img {
   max-width: 12.5rem;
+  border-radius: 5px;
 }
 
 .carDetails {
   margin-inline: auto;
+}
+
+.addCarDiv {
+  bottom: 0;
+  background-color: #fddc00;
+  width: 93dvw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  margin: 1rem 0;
+}
+
+.addCarDiv > img {
+  width: 3.5rem;
+  cursor: pointer;
+  filter: invert(1) drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.05));
 }

@@ -1,12 +1,20 @@
 import { useState } from "react";
 import styles from "./Header.module.css";
 import Logout from "../Logout/Logout";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [logout, setLogout] = useState(false);
 
+  const navigate = useNavigate();
+
   // ---------------------------- FUNCTIONS ----------------------------
+
+  const openProfile = () => {
+    toggleDropdown();
+    navigate("/profile");
+  };
 
   // ---------------------------- LOGOUT ----------------------------
 
@@ -66,9 +74,9 @@ const Header = () => {
         </div>
       </div>
       <ul className={dropDown} id="dropDown">
-        <a href="#" className={dropDownItems}>
-          <div className={dropDownItemsText}>dropdown 1</div>
-        </a>
+        <div className={dropDownItems} onClick={openProfile}>
+          <div className={dropDownItemsText}>Profile</div>
+        </div>
         <a href="#" className={dropDownItems}>
           <div className={dropDownItemsText}>dropdown 2</div>
         </a>

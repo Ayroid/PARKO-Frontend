@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 const ProtectedRoute = ({ redirectTo, children }) => {
   const jwtToken = localStorage.getItem("jwtToken");
-  if (!jwtToken && redirectTo === "/") {
+  if (!jwtToken && redirectTo === "/auth") {
+    return <Navigate to="/auth" />;
+  } else if (jwtToken && redirectTo === "/") {
     return <Navigate to="/" />;
-  } else if (jwtToken && redirectTo === "/home") {
-    return <Navigate to="/home" />;
   }
   return children;
 };

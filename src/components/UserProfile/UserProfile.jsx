@@ -17,6 +17,7 @@ const UserProfile = () => {
   const cars = [styles.cars].join("");
   const carImage = [styles.carImage].join("");
   const carDetails = [styles.carDetails].join("");
+  const addCarDiv = [styles.addCarDiv].join("");
 
   // ---------------------------- JSX ----------------------------
 
@@ -47,18 +48,6 @@ const UserProfile = () => {
               <br />
               MODEL
               <br />
-              PARKING STATUS
-            </div>
-          </div>
-          <div className={cars}>
-            <div className={carImage}>
-              <img src="public/icons/cars.jpg" alt="car.jpg" />
-            </div>
-            <div className={carDetails}>
-              NUMBER
-              <br />
-              MODEL
-              <br />
               PARKING SLOT
             </div>
           </div>
@@ -86,6 +75,21 @@ const UserProfile = () => {
               PARKING SLOT
             </div>
           </div>
+          <div className={cars}>
+            <div className={carImage}>
+              <img src="public/icons/cars.jpg" alt="car.jpg" />
+            </div>
+            <div className={carDetails}>
+              NUMBER
+              <br />
+              MODEL
+              <br />
+              PARKING SLOT
+            </div>
+          </div>
+        </div>
+        <div className={addCarDiv}>
+          <img src="public/icons/add.png" alt="addCar" />
         </div>
       </div>
     </div>
