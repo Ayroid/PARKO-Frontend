@@ -96,7 +96,7 @@ const LoginForm = () => {
       }
     } catch (error) {
       console.error("Error sending Login request:", error);
-      toast.error("User Not Registered!");
+      toast.error("Error getting OTP!");
     }
   };
 
