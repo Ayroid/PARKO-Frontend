@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
 
 const Profile = () => {
-
   // ---------------------------- NAVIGATION ----------------------------
 
   const navigate = useNavigate();
@@ -28,9 +27,6 @@ const Profile = () => {
   const profileDiv = [styles.profileDiv].join("");
   const profilePic = [styles.profilePic].join("");
   const profileData = [styles.profileData].join("");
-  const profileName = [styles.profileName].join("");
-  const profileEmail = [styles.profileEmail].join("");
-  const profileSAPID = [styles.profileSAPID].join("");
 
   const contentDiv = [styles.contentDiv].join("");
   const carsDiv = [styles.carsDiv].join("");
@@ -62,9 +58,11 @@ const Profile = () => {
           <img src="public/icons/profileicon.jpg" alt="profile icon" />
         </div>
         <div className={profileData}>
-          <div className={profileName}>Ayush Singh Kushwah</div>
-          <div className={profileEmail}>ayushsk0000@gmail.com</div>
-          <div className={profileSAPID}>500095575</div>
+          <div style={{ fontSize: "1.5rem" }} id="username">
+            Ayush Singh Kushwah
+          </div>
+          <div id="useremail">ayushsk0000@gmail.com</div>
+          <div id="sapid">500095575</div>
         </div>
       </div>
 
