@@ -53,6 +53,8 @@ const Logout = ({ updateLogout }) => {
   const buttons = [styles.buttons].join("");
   const button = [styles.button].join("");
 
+  // ---------------------------- JSX ----------------------------
+
   return (
     <div className={mainDiv} onClick={closePopUp}>
       <div className={outerDiv} id="outerDiv">
@@ -73,8 +75,12 @@ const Logout = ({ updateLogout }) => {
   );
 };
 
+// ---------------------------- PROPS ----------------------------
+
 Logout.propTypes = {
   updateLogout: PropTypes.func.isRequired,
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Logout;

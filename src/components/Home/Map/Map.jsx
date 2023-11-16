@@ -9,6 +9,7 @@ import "leaflet/dist/leaflet.css";
 import styles from "./Map.module.css";
 
 const Map = () => {
+
   // ---------------------------- CSS ----------------------------
 
   const mainDiv = [styles.mainDiv].join("");
@@ -18,7 +19,6 @@ const Map = () => {
 
   return (
     <div className={mainDiv}>
-      {/* size of map */}
       <MapContainer
         center={[30.41757, 77.967754]}
         zoom={13}
@@ -43,5 +43,7 @@ const Map = () => {
     </div>
   );
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Map;

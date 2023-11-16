@@ -10,7 +10,6 @@ const Navigation = () => {
   // ---------------------------- JSX ----------------------------
 
   return (
-    // <div className="bg-orange-500 p-5 pb-1 text-white font-Nunito font-bold">
     <div className={navigation}>
       <nav>
         <ul className={navItems}>
@@ -28,5 +27,7 @@ const Navigation = () => {
     </div>
   );
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Navigation;

@@ -10,4 +10,6 @@ const Settings = () => {
   return <div className={mainDiv}>Settings</div>;
 };
 
+// ---------------------------- EXPORT ----------------------------
+
 export default Settings;

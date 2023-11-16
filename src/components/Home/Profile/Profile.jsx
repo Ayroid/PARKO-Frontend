@@ -10,13 +10,16 @@ const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
 const getUserUrl = SERVER_URL + "/api/user/getUser";
 
 const Profile = () => {
-  // const [isLoading, setIsLoading] = useState(true);
+
+  // ---------------------------- STATE ----------------------------
 
   const [userData, setUserData] = useState({
     username: "",
     email: "",
     sapid: "",
   });
+
+  // ---------------------------- SERVER CALLS ----------------------------
 
   useEffect(() => {
     const fetchData = async () => {

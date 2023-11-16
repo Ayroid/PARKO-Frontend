@@ -1,19 +1,20 @@
 // import { useState } from "react";
 import PropTypes from "prop-types";
-
 import FormContent from "./FormContent/FormContent";
 import LoginForm from "./LoginForm/LoginForm";
 
 import styles from "./Login.module.css";
 
-const loginPageMainDiv = [styles.loginPageMainDiv].join("");
-const formContentDiv = [styles.formContentDiv].join("");
-const loginFormDiv = [styles.loginFormDiv].join("");
-const forgotPassword = [styles.forgotPassword].join("");
-
-// import { toast, ToastContainer } from "react-toastify";
-
 const Login = ({ changePage }) => {
+  // ---------------------------- CSS ----------------------------
+
+  const loginPageMainDiv = [styles.loginPageMainDiv].join("");
+  const formContentDiv = [styles.formContentDiv].join("");
+  const loginFormDiv = [styles.loginFormDiv].join("");
+  const forgotPassword = [styles.forgotPassword].join("");
+
+  // ---------------------------- JSX ----------------------------
+
   return (
     <div className={loginPageMainDiv}>
       <div className={formContentDiv}>
@@ -29,13 +30,16 @@ const Login = ({ changePage }) => {
           </span>
         </div>
       </div>
-      {/* <ToastContainer position="top-center" /> */}
     </div>
   );
 };
 
+// ---------------------------- PROPS ----------------------------
+
 Login.propTypes = {
   changePage: PropTypes.func.isRequired,
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Login;

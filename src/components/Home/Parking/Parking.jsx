@@ -29,7 +29,6 @@ const Parkings = () => {
         <div className={filterButton}>FILTER</div>
       </div>
 
-      {/* <div className=" max-h-60 overflow-y-auto pr-4 "> */}
       <div className={parkingDiv}>
         <ul>
           {parkingData.map((parking, index) => (
@@ -56,5 +55,7 @@ const Parkings = () => {
     </div>
   );
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Parkings;

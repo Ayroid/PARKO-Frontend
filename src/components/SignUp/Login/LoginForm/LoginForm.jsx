@@ -14,19 +14,21 @@ const otpRequestURL = SERVER_URL + "/api/user/login/mail";
 const otpVerifyURL = SERVER_URL + "/api/user/verify/mail";
 
 const LoginForm = () => {
-  // ---------------------------- FORM VALIDATION ----------------------------
 
-  // useNavigate() hook to navigate to different pages
+  // ---------------------------- NAVIGATION ----------------------------
+
   const navigate = useNavigate();
 
-  // useState() Hooks to handle form validation
+  // ---------------------------- STATE ----------------------------
+
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [emailValidated, setEmailValidated] = useState(true);
   const [otpValidated, setOTPValidated] = useState(true);
   const [otpSent, setOTPSent] = useState(false);
 
-  // Function to check if email is valid
+  // ---------------------------- FUNCTIONS ----------------------------
+
   const checkEmailRef = () => {
     console.log("EMAIL CALLED");
     const value = email;
@@ -44,7 +46,7 @@ const LoginForm = () => {
     }
   };
 
-  // Function to check if otp is valid
+
   const checkOTP = () => {
     console.log("OTP CALLED");
     const value = otp;
@@ -207,5 +209,7 @@ const LoginForm = () => {
     </div>
   );
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default LoginForm;

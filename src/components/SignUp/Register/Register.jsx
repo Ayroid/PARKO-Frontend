@@ -38,8 +38,12 @@ const Register = ({ changePage }) => {
   );
 };
 
+// ---------------------------- PROPS ----------------------------
+
 Register.propTypes = {
   changePage: PropTypes.func.isRequired,
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Register;

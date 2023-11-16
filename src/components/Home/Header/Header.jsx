@@ -4,8 +4,13 @@ import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+
+  // ---------------------------- STATE ----------------------------
+
   const [isOpen, setIsOpen] = useState(false);
   const [logout, setLogout] = useState(false);
+
+  // ---------------------------- NAVIGATION ----------------------------
 
   const navigate = useNavigate();
 
@@ -28,6 +33,7 @@ const Header = () => {
   };
 
   // ---------------------------- TOGGLE DROPDOWN ----------------------------
+  
   const toggleDropdown = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
     if (isOpen) {
@@ -88,5 +94,7 @@ const Header = () => {
     </div>
   );
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Header;
