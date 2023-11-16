@@ -38,11 +38,11 @@
 }
 
 .dropDownAnimation {
-  animation: dropDown 0.5s ease-in-out;
+  animation: dropDown 0.3s;
 }
 
 .dropDownAnimationReverse {
-  animation: dropDownReverse 0.5s ease-in-out;
+  animation: dropDownReverse 0.3s;
 }
 
 @keyframes dropDown {

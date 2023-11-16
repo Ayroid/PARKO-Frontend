@@ -25,10 +25,11 @@ const Profile = () => {
         const headers = {
           Authorization: token,
         };
-        console.log(token);
         const response = await axios.post(getUserUrl, null, {
           headers,
         });
+
+        console.log(response.data);
 
         setUserData({
           username: response.data.username,
