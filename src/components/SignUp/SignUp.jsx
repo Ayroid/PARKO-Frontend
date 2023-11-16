@@ -1,7 +1,4 @@
 import { useState } from "react";
-// import logo from "../../../assets/parko_logo.png";
-// import { useTimer } from "react-timer-hook";
-// import axios from "axios";
 
 import Login from "./Login/Login";
 import Register from "./Register/Register";

@@ -13,7 +13,7 @@ function App() {
         <Route
           path="/auth"
           element={
-            <ProtectedRoute redirectTo="/">
+            <ProtectedRoute path="/auth">
               <SignUp />
             </ProtectedRoute>
           }
@@ -21,7 +21,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute redirectTo="/auth">
+            <ProtectedRoute path="/">
               <Home />
             </ProtectedRoute>
           }
@@ -29,7 +29,7 @@ function App() {
         <Route
           path="/profile"
           element={
-            <ProtectedRoute redirectTo="/auth">
+            <ProtectedRoute path="/profile">
               <Profile />
             </ProtectedRoute>
           }
@@ -37,7 +37,7 @@ function App() {
         <Route
           path="/settings"
           element={
-            <ProtectedRoute redirectTo="/auth">
+            <ProtectedRoute path="/settings">
               <Settings />
             </ProtectedRoute>
           }
