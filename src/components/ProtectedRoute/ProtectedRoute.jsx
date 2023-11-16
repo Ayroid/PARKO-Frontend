@@ -30,6 +30,11 @@ const ProtectedRoute = ({ path, children }) => {
         // ---------------------------- VERIFY TOKEN ----------------------------
 
         let jwtToken = localStorage.getItem("jwtToken");
+        let jwtRefreshToken = localStorage.getItem("jwtRefreshToken");
+
+        if (!jwtRefreshToken && !jwtToken) {
+          return;
+        }
 
         // REFRESH TOKEN IF TOKEN IS NOT PRESENT
 

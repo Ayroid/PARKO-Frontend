@@ -6,14 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 // import { useTimer } from "react-timer-hook";
 
-// ---------------------------- SERVER URL CONFIGURATION ----------------------------
-
-const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
-
-const otpRequestURL = SERVER_URL + "/api/user/login/mail";
-const otpVerifyURL = SERVER_URL + "/api/user/verify/mail";
-
 const LoginForm = () => {
+  // ---------------------------- SERVER URL CONFIGURATION ----------------------------
+
+  const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
+
+  const otpRequestURL = SERVER_URL + "/api/user/login/mail";
+  const otpVerifyURL = SERVER_URL + "/api/user/verify/mail";
 
   // ---------------------------- NAVIGATION ----------------------------
 
@@ -29,8 +28,7 @@ const LoginForm = () => {
 
   // ---------------------------- FUNCTIONS ----------------------------
 
-  const checkEmailRef = () => {
-    console.log("EMAIL CALLED");
+  const validateEmail = () => {
     const value = email;
     if (
       value !== null &&
@@ -46,9 +44,7 @@ const LoginForm = () => {
     }
   };
 
-
-  const checkOTP = () => {
-    console.log("OTP CALLED");
+  const validateOTP = () => {
     const value = otp;
     if (
       value !== null &&
@@ -82,13 +78,10 @@ const LoginForm = () => {
         email: email,
       };
 
-      if (checkEmailRef()) {
+      if (validateEmail()) {
         const response = await axios.post(otpRequestURL, data);
 
-        console.log(response);
-
         if (response.status === 200) {
-          console.log("Login successful:", response.data);
           setOTPSent(true);
           toast.success("Login OTP sent successfully");
         } else if (response.status === 404) {
@@ -105,19 +98,16 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     try {
       event.preventDefault();
-      const data = {
-        email: email,
-        otpValue: otp,
-      };
 
-      console.log(data);
+      if (validateEmail() && validateOTP()) {
+        const data = {
+          email: email,
+          otpValue: otp,
+        };
 
-      if (checkEmailRef() && checkOTP()) {
-        console.log("Sending Login request");
         const response = await axios.post(otpVerifyURL, data);
 
         if (response.status === 200) {
-          console.log("Login successful:", response.data);
           localStorage.setItem("jwtToken", response.data.token);
           localStorage.setItem("jwtRefreshToken", response.data.refreshToken);
           toast.success("Login successful");

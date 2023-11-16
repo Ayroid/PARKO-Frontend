@@ -10,7 +10,6 @@ const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
 const getUserUrl = SERVER_URL + "/api/user/getUser";
 
 const Profile = () => {
-
   // ---------------------------- STATE ----------------------------
 
   const [userData, setUserData] = useState({

@@ -39,9 +39,10 @@ const Logout = ({ updateLogout }) => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Error while Loggin Out!");
+        // toast.error("Error while Loggin Out!");
       });
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("jwtRefreshToken");
     navigate("/auth");
   };
 

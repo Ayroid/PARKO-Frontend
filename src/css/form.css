@@ -20,13 +20,19 @@
   height: 40px;
   border-radius: 0px;
   border-bottom: 1px solid #ccc;
-  color: #000;
+  color: #3f3f3f;
+  background-color: #fff !important;
   padding: 0 10px;
   font-size: 16px;
   margin-top: 5px;
   box-sizing: border-box;
   outline: none;
   transition: all 0.3s ease-in-out;
+}
+
+.input:autofill {
+  background-color: #fff !important;
+  box-shadow: inset 0 0 0 50px #fff !important;
 }
 
 .input::placeholder {
@@ -47,15 +53,15 @@
   box-sizing: border-box;
   outline: none;
   transition: all 0.3s ease-in-out;
-  background-color: #ffd000;
+  background-color: #ffd000 !important;
   color: #3f3f3f;
   font-weight: 600;
 }
 
 .button:hover {
   background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
+  color: #3f3f3f;
+  border: 1px solid #3f3f3f;
 }
 
 .errorMessage {
