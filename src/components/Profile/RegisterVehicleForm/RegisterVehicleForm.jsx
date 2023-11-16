@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./RegisterVehicleForm.module.css";
-import "../../../../css/form.css";
+import "../../../css/form.css";
 
 const RegisterVehicleForm = ({
   closeVehicleRegistrationForm,
