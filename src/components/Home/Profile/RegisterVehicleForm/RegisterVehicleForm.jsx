@@ -1,11 +1,12 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./RegisterVehicleForm.module.css";
 import "../../../../css/form.css";
 
-const RegisterVehicleForm = () => {
+const RegisterVehicleForm = ({ closeForm }) => {
   // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
   const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
@@ -90,6 +91,7 @@ const RegisterVehicleForm = () => {
   // ---------------------------- CSS ----------------------------
 
   const outerDiv = [styles.outerDiv].join("");
+  const bgDiv = [styles.bgDiv].join("");
   const mainDiv = [styles.mainDiv].join("");
   const headerDiv = [styles.headerDiv].join("");
   const closeButton = [styles.closeButton].join("");
@@ -103,9 +105,20 @@ const RegisterVehicleForm = () => {
 
   return (
     <div className={outerDiv}>
+      <div
+        className={bgDiv}
+        onClick={() => {
+          closeForm(false);
+        }}
+      ></div>
       <div className={mainDiv}>
         <div className={headerDiv}>Register Vehicle</div>
-        <div className={closeButton}>
+        <div
+          className={closeButton}
+          onClick={() => {
+            closeForm(false);
+          }}
+        >
           <img src="public/icons/cross.png" alt="close" />
         </div>
         <form className={form} onSubmit={handleSubmit}>
@@ -159,6 +172,12 @@ const RegisterVehicleForm = () => {
       <ToastContainer position="top-center" />
     </div>
   );
+};
+
+// ---------------------------- PROPS ----------------------------
+
+RegisterVehicleForm.propTypes = {
+  closeForm: PropTypes.func.isRequired,
 };
 
 // ---------------------------- EXPORT ----------------------------

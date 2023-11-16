@@ -56,7 +56,7 @@
   margin-right: 1rem;
 }
 
-.editSettings > img{
+.editSettings > img {
   height: 1.4rem;
   width: auto;
 }
@@ -162,7 +162,6 @@
   width: 98dvw;
   height: 50dvh;
   position: relative;
-  /* background-color: rgba(143, 143, 143); */
 }
 
 .carsDiv {
@@ -183,17 +182,37 @@
 .cars {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px;
   width: 100%;
-  background-color: rgba(143, 143, 143);
+  background-color: #fddb00;
   margin: 0.2rem 0;
   border-radius: 10px;
+  color: #3f3f3f;
+  font-weight: 600;
 }
 
-.carImage > img {
-  max-width: 12rem;
+.carParking {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.carParking > img {
+  max-width: 4rem;
   border-radius: 5px;
+}
+
+.carDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 60%;
+  height: 100%;
+  padding: 0 10px;
 }
 
 .addCarDiv {

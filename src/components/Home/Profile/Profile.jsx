@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Profile.module.css";
 import axios from "axios";
+
+import RegisterVehicleForm from "./RegisterVehicleForm/RegisterVehicleForm";
+
+import styles from "./Profile.module.css";
 
 // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
@@ -17,6 +20,8 @@ const Profile = () => {
     email: "",
     sapid: "",
   });
+
+  const [showRegisterVehicleForm, setShowRegisterVehicleForm] = useState(false);
 
   // ---------------------------- SERVER CALLS ----------------------------
 
@@ -61,6 +66,14 @@ const Profile = () => {
     navigate("/settings");
   };
 
+  const openVehicleRegistrationForm = () => {
+    setShowRegisterVehicleForm(true);
+  };
+
+  const closeVehicleRegistrationForm = () => {
+    setShowRegisterVehicleForm(false);
+  };
+
   // ---------------------------- CSS ----------------------------
 
   const mainDiv = [styles.mainDiv].join("");
@@ -76,7 +89,7 @@ const Profile = () => {
   const contentDiv = [styles.contentDiv].join("");
   const carsDiv = [styles.carsDiv].join("");
   const cars = [styles.cars].join("");
-  const carImage = [styles.carImage].join("");
+  const carParking = [styles.carParking].join("");
   const carDetails = [styles.carDetails].join("");
   const addCarDiv = [styles.addCarDiv].join("");
 
@@ -114,8 +127,9 @@ const Profile = () => {
       <div className={contentDiv}>
         <div className={carsDiv}>
           <div className={cars}>
-            <div className={carImage}>
-              <img src="public/icons/cars.jpg" alt="car.jpg" />
+            <div className={carParking}>
+              <img src="public/icons/cars/greycar.png" alt="car.jpg" />
+              <p>PS 123</p>
             </div>
             <div className={carDetails}>
               NUMBER
@@ -126,8 +140,35 @@ const Profile = () => {
             </div>
           </div>
           <div className={cars}>
-            <div className={carImage}>
-              <img src="public/icons/cars.jpg" alt="car.jpg" />
+            <div className={carParking}>
+              <img src="public/icons/cars/greycar.png" alt="car.jpg" />
+              <p>PS 123</p>
+            </div>
+            <div className={carDetails}>
+              NUMBER
+              <br />
+              MODEL
+              <br />
+              PARKING SLOT
+            </div>
+          </div>
+          <div className={cars}>
+            <div className={carParking}>
+              <img src="public/icons/cars/greycar.png" alt="car.jpg" />
+              <p>PS 123</p>
+            </div>
+            <div className={carDetails}>
+              NUMBER
+              <br />
+              MODEL
+              <br />
+              PARKING SLOT
+            </div>
+          </div>
+          <div className={cars}>
+            <div className={carParking}>
+              <img src="public/icons/cars/greycar.png" alt="car.jpg" />
+              <p>PS 123</p>
             </div>
             <div className={carDetails}>
               NUMBER
@@ -138,10 +179,13 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className={addCarDiv}>
+        <div className={addCarDiv} onClick={openVehicleRegistrationForm}>
           <img src="public/icons/add.png" alt="addCar" />
         </div>
       </div>
+      {showRegisterVehicleForm && (
+        <RegisterVehicleForm closeForm={closeVehicleRegistrationForm} />
+      )}
     </div>
   );
 };
