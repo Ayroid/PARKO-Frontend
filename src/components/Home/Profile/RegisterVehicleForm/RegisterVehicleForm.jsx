@@ -6,7 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from "./RegisterVehicleForm.module.css";
 import "../../../../css/form.css";
 
-const RegisterVehicleForm = ({ closeForm }) => {
+const RegisterVehicleForm = ({
+  closeVehicleRegistrationForm,
+}) => {
   // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
   const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
@@ -108,7 +110,7 @@ const RegisterVehicleForm = ({ closeForm }) => {
       <div
         className={bgDiv}
         onClick={() => {
-          closeForm(false);
+          closeVehicleRegistrationForm(false);
         }}
       ></div>
       <div className={mainDiv}>
@@ -116,7 +118,7 @@ const RegisterVehicleForm = ({ closeForm }) => {
         <div
           className={closeButton}
           onClick={() => {
-            closeForm(false);
+            closeVehicleRegistrationForm(false);
           }}
         >
           <img src="public/icons/cross.png" alt="close" />
@@ -177,7 +179,7 @@ const RegisterVehicleForm = ({ closeForm }) => {
 // ---------------------------- PROPS ----------------------------
 
 RegisterVehicleForm.propTypes = {
-  closeForm: PropTypes.func.isRequired,
+  closeVehicleRegistrationForm: PropTypes.func,
 };
 
 // ---------------------------- EXPORT ----------------------------

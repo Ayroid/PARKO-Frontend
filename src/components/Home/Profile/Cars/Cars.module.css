@@ -1,0 +1,50 @@
+.carsDiv {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+    border-radius: 5px;
+  }
+  
+  .carsDiv::-webkit-scrollbar {
+    width: 0;
+  }
+  
+  .cars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+    background-color: #fddb00;
+    margin: 0.2rem 0;
+    border-radius: 10px;
+    color: #3f3f3f;
+    font-weight: 600;
+  }
+  
+  .carParking {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carParking > img {
+    max-width: 4rem;
+    border-radius: 5px;
+  }
+  
+  .carDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 70%;
+    height: 100%;
+    padding: 0 5px;
+  }

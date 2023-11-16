@@ -118,41 +118,6 @@
 
 /* --------------------------------------------------------------- */
 
-.profileDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  width: 100dvw;
-  height: 40dvh;
-}
-
-.profilePic {
-  margin: 0 auto;
-}
-
-.profilePic > img {
-  max-width: 10rem;
-  height: 100%;
-  border-radius: 50%;
-  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.322));
-}
-
-.profileData {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  width: 100dvw;
-  margin-top: -3rem;
-  color: #3f3f3f;
-  font-weight: 600;
-}
-
-/* --------------------------------------------------------------- */
-
 .contentDiv {
   display: flex;
   flex-direction: column;
@@ -160,59 +125,8 @@
   justify-content: space-between;
   padding: 10px 10px 0 10px;
   width: 98dvw;
-  height: 50dvh;
+  height: 53dvh;
   position: relative;
-}
-
-.carsDiv {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-  max-height: 100%;
-  overflow-y: scroll;
-  border-radius: 5px;
-}
-
-.carsDiv::-webkit-scrollbar {
-  width: 0;
-}
-
-.cars {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  width: 100%;
-  background-color: #fddb00;
-  margin: 0.2rem 0;
-  border-radius: 10px;
-  color: #3f3f3f;
-  font-weight: 600;
-}
-
-.carParking {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.carParking > img {
-  max-width: 4rem;
-  border-radius: 5px;
-}
-
-.carDetails {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  width: 60%;
-  height: 100%;
-  padding: 0 10px;
 }
 
 .addCarDiv {
