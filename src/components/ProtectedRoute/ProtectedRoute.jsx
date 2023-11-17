@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import { refreshToken } from "../../utils/AuthService";
 import { useEffect, useState } from "react";
 
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-
 const ProtectedRoute = ({ path, children }) => {
   // ---------------------------- STATE ----------------------------
 
@@ -21,6 +19,7 @@ const ProtectedRoute = ({ path, children }) => {
 
   useEffect(() => {
     const verifyToken = async () => {
+      console.log("1. Verifying token");
       try {
         // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
@@ -32,17 +31,25 @@ const ProtectedRoute = ({ path, children }) => {
         let jwtToken = localStorage.getItem("jwtToken");
         let jwtRefreshToken = localStorage.getItem("jwtRefreshToken");
 
-        if (!jwtRefreshToken && !jwtToken) {
+        console.log("2. jwtToken: ", jwtToken);
+        console.log("3. jwtRefreshToken: ", jwtRefreshToken);
+
+        if (jwtRefreshToken == null && jwtToken == null) {
+          console.log("4. No token present");
+          setVerified(false);
           return;
         }
 
         // REFRESH TOKEN IF TOKEN IS NOT PRESENT
 
-        if (!jwtToken) {
+        if (jwtToken == null) {
+          console.log("4. Refreshing token");
           jwtToken = await refreshToken().then((ans) => {
             if (!ans) {
+              console.log("4.1 Token refresh failed");
               setVerified(false);
             } else {
+              console.log("4.2 Token refresh successful");
               setVerified(true);
               return;
             }
@@ -51,6 +58,7 @@ const ProtectedRoute = ({ path, children }) => {
 
         // ---------------------------- RECEIVING RESPONSE ----------------------------
 
+        console.log("4. Verifying token with server");
         const response = await axios.post(verifyTokenURL, null, {
           headers: {
             Authorization: jwtToken,
@@ -60,43 +68,43 @@ const ProtectedRoute = ({ path, children }) => {
         // ---------------------------- SETTING VERIFIED ----------------------------
 
         if (response.status === 200) {
+          console.log("5. Token verified successfully with server");
           setVerified(true);
         }
       } catch (error) {
         await refreshToken().then((ans) => {
           if (ans) {
+            console.log("5. Token refresh successful");
             setVerified(true);
           } else {
+            console.log("5. Token refresh failed");
             setVerified(false);
           }
         });
       } finally {
+        console.log("6. Setting loading to false");
         setLoading(false);
       }
     };
     verifyToken();
   }, [runUseEffect]);
 
-  // ---------------------------- LOADING ----------------------------
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
   // ---------------------------- RETURN ----------------------------
 
-  if (signUpPageRequested) {
-    if (verified) {
-      return <Navigate to="/" replace />;
-    } else {
-      return children;
+  if (!loading) {
+    console.log("Sign Up Page Requested: ", signUpPageRequested);
+    console.log("Loading: ", loading);
+    console.log("verified: ", verified);
+    if (signUpPageRequested && verified) {
+      console.log("Redirecting to /");
+      return <Navigate to="/" />;
+    } else if (!signUpPageRequested && !verified) {
+      console.log("Redirecting to /auth");
+      return <Navigate to="/auth" />;
     }
-  } else {
-    if (!verified) {
-      return <Navigate to="/auth" replace />;
-    } else {
-      return children;
-    }
+
+    console.log("Returning children --------------");
+    return children;
   }
 };
 
