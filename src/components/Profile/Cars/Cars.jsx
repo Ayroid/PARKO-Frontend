@@ -1,7 +1,15 @@
-import PropTypes from "prop-types";
 import styles from "./Cars.module.css";
 
-const Cars = ({ data }) => {
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import { useUserData } from "../../../utils/UserDataContext";
+
+const Cars = () => {
+  // ---------------------------- DATA EXTRACTION ----------------------------
+
+  const { vehicleData, isLoading } = useUserData();
+
+  if (isLoading) return <LoadingSpinner />;
+
   // ---------------------------- CSS ----------------------------
 
   const carsDiv = [styles.carsDiv].join("");
@@ -17,7 +25,7 @@ const Cars = ({ data }) => {
       <div className={carsDiv}>
         <h2>Your Vehicles</h2>
         <div className={innerCarDiv}>
-          {data.map((vehicle, index) => (
+          {vehicleData.map((vehicle, index) => (
             <div key={index} className={cars}>
               <div className={carParking}>
                 <img src="/icons/cars/greycar.png" alt="car.jpg" />
@@ -36,10 +44,6 @@ const Cars = ({ data }) => {
   );
 };
 
-// ---------------------------- PROPS ----------------------------
-
-Cars.propTypes = {
-  data: PropTypes.array.isRequired,
-};
+// ---------------------------- EXPORTS ----------------------------
 
 export default Cars;

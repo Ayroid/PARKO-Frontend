@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 
 import BackButton from "../BackButton/BackButton";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { useUserData } from "../../utils/UserDataContext";
 
 import "../../css/form.css";
 import styles from "./Settings.module.css";
-
-import { useUserData } from "../../utils/UserDataContext";
 
 const Settings = () => {
   // ---------------------------- SERVER URL CONFIGURATION ----------------------------
