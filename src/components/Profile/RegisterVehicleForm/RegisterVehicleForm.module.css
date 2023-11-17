@@ -44,6 +44,7 @@
   width: 100dvw;
   min-height: 40dvh;
   z-index: 4;
+  border-radius: 12px 12px 0 0;
 }
 
 .slideUp {
