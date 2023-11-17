@@ -6,6 +6,7 @@ import UserInformation from "./UserInformation/UserInformation";
 import Cars from "./Cars/Cars";
 import RegisterVehicleForm from "./RegisterVehicleForm/RegisterVehicleForm";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import BackButton from "../BackButton/BackButton";
 
 import styles from "./Profile.module.css";
 
@@ -67,10 +68,6 @@ const Profile = () => {
 
   // ---------------------------- FUNCTIONS ----------------------------
 
-  const goBack = () => {
-    navigate("/");
-  };
-
   const openSettings = () => {
     navigate("/settings");
   };
@@ -88,7 +85,6 @@ const Profile = () => {
   const mainDiv = [styles.mainDiv].join("");
 
   const headerDiv = [styles.headerDiv].join("");
-  const backArrow = [styles.backArrow].join("");
   const editSettings = [styles.editSettings].join("");
 
   const contentDiv = [styles.contentDiv].join("");
@@ -103,14 +99,7 @@ const Profile = () => {
       ) : (
         <div className={mainDiv}>
           <div className={headerDiv}>
-            <div className={backArrow}>
-              <img
-                src="public/icons/backArrow.png"
-                alt="backArrow"
-                onClick={goBack}
-              />
-              <h3>Profile</h3>
-            </div>
+            <BackButton pageName={"Settings"} navigateTo={"/"} />
             <div className={editSettings} onClick={openSettings}>
               <img src="public/icons/pencil.png" alt="edit" />
             </div>

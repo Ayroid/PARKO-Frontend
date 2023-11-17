@@ -1,0 +1,13 @@
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #3e3e3e;
+  background-color: #fff;
+  position: relative;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 4;
+  border-radius: 12px 12px 0 0;
+}
