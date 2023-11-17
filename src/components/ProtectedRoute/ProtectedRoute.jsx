@@ -19,7 +19,6 @@ const ProtectedRoute = ({ path, children }) => {
 
   useEffect(() => {
     const verifyToken = async () => {
-      console.log("1. Verifying token");
       try {
         // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
@@ -31,25 +30,18 @@ const ProtectedRoute = ({ path, children }) => {
         let jwtToken = localStorage.getItem("jwtToken");
         let jwtRefreshToken = localStorage.getItem("jwtRefreshToken");
 
-        console.log("2. jwtToken: ", jwtToken);
-        console.log("3. jwtRefreshToken: ", jwtRefreshToken);
-
         if (jwtRefreshToken == null && jwtToken == null) {
-          console.log("4. No token present");
           setVerified(false);
           return;
         }
 
-        // REFRESH TOKEN IF TOKEN IS NOT PRESENT
+        // ---------------------------- REFRESH TOKEN ----------------------------
 
         if (jwtToken == null) {
-          console.log("4. Refreshing token");
           jwtToken = await refreshToken().then((ans) => {
             if (!ans) {
-              console.log("4.1 Token refresh failed");
               setVerified(false);
             } else {
-              console.log("4.2 Token refresh successful");
               setVerified(true);
               return;
             }
@@ -58,7 +50,6 @@ const ProtectedRoute = ({ path, children }) => {
 
         // ---------------------------- RECEIVING RESPONSE ----------------------------
 
-        console.log("4. Verifying token with server");
         const response = await axios.post(verifyTokenURL, null, {
           headers: {
             Authorization: jwtToken,
@@ -68,21 +59,17 @@ const ProtectedRoute = ({ path, children }) => {
         // ---------------------------- SETTING VERIFIED ----------------------------
 
         if (response.status === 200) {
-          console.log("5. Token verified successfully with server");
           setVerified(true);
         }
       } catch (error) {
         await refreshToken().then((ans) => {
           if (ans) {
-            console.log("5. Token refresh successful");
             setVerified(true);
           } else {
-            console.log("5. Token refresh failed");
             setVerified(false);
           }
         });
       } finally {
-        console.log("6. Setting loading to false");
         setLoading(false);
       }
     };
@@ -92,18 +79,12 @@ const ProtectedRoute = ({ path, children }) => {
   // ---------------------------- RETURN ----------------------------
 
   if (!loading) {
-    console.log("Sign Up Page Requested: ", signUpPageRequested);
-    console.log("Loading: ", loading);
-    console.log("verified: ", verified);
     if (signUpPageRequested && verified) {
-      console.log("Redirecting to /");
       return <Navigate to="/" />;
     } else if (!signUpPageRequested && !verified) {
-      console.log("Redirecting to /auth");
       return <Navigate to="/auth" />;
     }
 
-    console.log("Returning children --------------");
     return children;
   }
 };
