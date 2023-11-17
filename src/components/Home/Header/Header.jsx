@@ -61,7 +61,6 @@ const Header = () => {
 
   // ---------------------------- CSS ----------------------------
 
-  const outerDiv = [styles.outerDiv].join("");
   const mainDiv = [styles.mainDiv].join("");
   const topHeading = [styles.topHeading].join("");
   const threeDots = [styles.threeDots].join("");
@@ -72,7 +71,7 @@ const Header = () => {
   // ---------------------------- JSX ----------------------------
 
   return (
-    <div className={outerDiv}>
+    <>
       <div className={mainDiv}>
         <h1 className={topHeading}>Parko</h1>
         <div className={threeDots} onClick={toggleDropdown}>
@@ -91,7 +90,7 @@ const Header = () => {
         </div>
       </ul>
       {logout && <Logout updateLogout={updateLogout} />}
-    </div>
+    </>
   );
 };
 

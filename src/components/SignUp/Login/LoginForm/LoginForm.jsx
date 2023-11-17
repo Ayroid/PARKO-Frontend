@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styles from "./LoginForm.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 // import { useTimer } from "react-timer-hook";
+import "../../../../css/form.css";
 
 const LoginForm = () => {
   // ---------------------------- SERVER URL CONFIGURATION ----------------------------
@@ -125,11 +125,11 @@ const LoginForm = () => {
 
   // ---------------------------- CSS ----------------------------
 
-  const form = [styles.form].join("");
-  const input = [styles.input].join("");
-  const inputDiv = [styles.inputDiv].join("");
-  const button = [styles.button].join("");
-  const errorMessage = [styles.errorMessage].join("");
+  const form = `form`;
+  const input = `input`;
+  const inputDiv = `inputDiv`;
+  const button = `button`;
+  const errorMessage = `errorMessage`;
 
   // ---------------------------- JSX ----------------------------
 
