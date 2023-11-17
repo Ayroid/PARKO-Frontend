@@ -7,8 +7,11 @@ import {
   useMapEvents
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet"; 
 import styles from "./Map.module.css";
 import { useState } from "react";
+
+import greenMarker from '../../../assets/marker/greenlocation.png';
 
 const Map = () => {
   // ---------------------------- CSS ----------------------------
@@ -171,6 +174,15 @@ const Map = () => {
     return null; // This hook doesn't render anything, so return null
   };
 
+
+
+  const customMarker = new L.Icon({
+    iconUrl: '../../../assets/marker/greenlocation.png', // Replace with the path to your custom icon
+    iconSize: [32, 32], // Adjust the size of the icon
+    iconAnchor: [16, 32], // Adjust the anchor point of the icon
+    popupAnchor: [0, -32], // Adjust the popup anchor
+  });
+
   // ---------------------------- JSX ----------------------------
 
   return (
@@ -206,7 +218,7 @@ const Map = () => {
 
         {/* parking markers */}
         {parkingCoordinatesArray.map((coord, index) => (
-          <Marker key={index} position={coord}>
+          <Marker key={index} position={coord} icon={customMarker} >
             <Popup>
               <h2>Parking {index + 1}</h2>
             </Popup>
