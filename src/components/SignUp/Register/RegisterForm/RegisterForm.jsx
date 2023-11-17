@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styles from "./RegisterForm.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
 // import { useTimer } from "react-timer-hook";
+import "../../../../css/form.css";
 
 // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
@@ -13,9 +13,8 @@ const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
 const userRegisterURL = SERVER_URL + "/api/user/register";
 
 const RegisterForm = ({ submitForm }) => {
-  // ---------------------------- FORM VALIDATION ----------------------------
+  // ---------------------------- STATE ----------------------------
 
-  // useState() Hooks to handle form validation
   const [username, setUsername] = useState("");
   const [usernameValidated, setUsernameValidated] = useState(true);
   const [sapid, setSapid] = useState("");
@@ -25,7 +24,8 @@ const RegisterForm = ({ submitForm }) => {
   const [phone, setPhone] = useState("");
   const [phoneValidated, setPhoneValidated] = useState(true);
 
-  // Function to check if usename is valid
+  // ---------------------------- FUNCTIONS ----------------------------
+
   const checkUsernameRef = () => {
     console.log("USERNAME CALLED");
     const value = username;
@@ -38,7 +38,6 @@ const RegisterForm = ({ submitForm }) => {
     }
   };
 
-  // Function to check if email is valid
   const checkEmailRef = () => {
     console.log("EMAIL CALLED");
     const value = email;
@@ -56,7 +55,6 @@ const RegisterForm = ({ submitForm }) => {
     }
   };
 
-  // Function to check if sapid is valid
   const checkSapidRef = () => {
     console.log("SAPID CALLED");
     const value = sapid;
@@ -74,7 +72,6 @@ const RegisterForm = ({ submitForm }) => {
     }
   };
 
-  // Function to check if phone is valid
   const checkPhoneRef = () => {
     console.log("PHONE CALLED");
     const value = phone;
@@ -139,11 +136,11 @@ const RegisterForm = ({ submitForm }) => {
 
   // ---------------------------- CSS ----------------------------
 
-  const form = [styles.form].join("");
-  const input = [styles.input].join("");
-  const inputDiv = [styles.inputDiv].join("");
-  const button = [styles.button].join("");
-  const errorMessage = [styles.errorMessage].join("");
+  const form = `form`;
+  const input = `input`;
+  const inputDiv = `inputDiv`;
+  const button = `button`;
+  const errorMessage = `errorMessage`;
 
   // ---------------------------- JSX ----------------------------
 
@@ -215,8 +212,12 @@ const RegisterForm = ({ submitForm }) => {
   );
 };
 
+// ---------------------------- PROPS ----------------------------
+
 RegisterForm.propTypes = {
   submitForm: PropTypes.func.isRequired,
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default RegisterForm;

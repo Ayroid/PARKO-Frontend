@@ -1,0 +1,20 @@
+.backArrow {
+  top: 1rem;
+  left: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.backArrow > img {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.backArrow > h3 {
+  margin-top: 0.1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #3f3f3f;
+}

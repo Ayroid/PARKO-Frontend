@@ -44,7 +44,7 @@
 }
 
 .parkingDiv{
-    max-height: 30dvh;
+    max-height: 32dvh;
     overflow-y: auto;
     padding: 0 1rem 1rem 1rem;
 }

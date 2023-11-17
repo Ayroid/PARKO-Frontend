@@ -2,7 +2,6 @@ import styles from "./Logout.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Logout = ({ updateLogout }) => {
@@ -21,10 +20,10 @@ const Logout = ({ updateLogout }) => {
   };
 
   const logout = async () => {
-    const jwtToken = localStorage.getItem("jwtToken");
-    const logoutURL = SERVER_URL + "/api/user/logout";
-    await axios
-      .post(
+    try {
+      const jwtToken = localStorage.getItem("jwtToken");
+      const logoutURL = SERVER_URL + "/api/user/logout";
+      const response = await axios.post(
         logoutURL,
         {},
         {
@@ -32,17 +31,15 @@ const Logout = ({ updateLogout }) => {
             Authorization: jwtToken,
           },
         }
-      )
-      .then((res) => {
-        console.log(res);
-        toast.success("Logout Successful!");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Error while Loggin Out!");
-      });
-    localStorage.removeItem("jwtToken");
-    navigate("/auth");
+      );
+      console.log(response);
+
+      localStorage.removeItem("jwtToken");
+      localStorage.removeItem("jwtRefreshToken");
+      navigate("/auth");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // ---------------------------- CSS ----------------------------
@@ -52,6 +49,8 @@ const Logout = ({ updateLogout }) => {
   const heading = [styles.heading].join("");
   const buttons = [styles.buttons].join("");
   const button = [styles.button].join("");
+
+  // ---------------------------- JSX ----------------------------
 
   return (
     <div className={mainDiv} onClick={closePopUp}>
@@ -68,13 +67,16 @@ const Logout = ({ updateLogout }) => {
           </div>
         </div>
       </div>
-      <ToastContainer position="top-center" />
     </div>
   );
 };
 
+// ---------------------------- PROPS ----------------------------
+
 Logout.propTypes = {
   updateLogout: PropTypes.func.isRequired,
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Logout;

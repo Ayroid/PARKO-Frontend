@@ -2,8 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import SignUp from "./components/SignUp/SignUp";
 import Home from "./components/Home/Home";
-import Profile from "./components/Home/Profile/Profile";
-import Settings from "./components/Home/Settings/Settings";
+import Profile from "./components/Profile/Profile";
+import Settings from "./components/Settings/Settings";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import "./App.css";
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
         <Route
           path="/auth"
           element={
-            <ProtectedRoute redirectTo="/">
+            <ProtectedRoute path="/auth">
               <SignUp />
             </ProtectedRoute>
           }
@@ -21,7 +22,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute redirectTo="/auth">
+            <ProtectedRoute path="/">
               <Home />
             </ProtectedRoute>
           }
@@ -29,7 +30,7 @@ function App() {
         <Route
           path="/profile"
           element={
-            <ProtectedRoute redirectTo="/auth">
+            <ProtectedRoute path="/profile">
               <Profile />
             </ProtectedRoute>
           }
@@ -37,11 +38,12 @@ function App() {
         <Route
           path="/settings"
           element={
-            <ProtectedRoute redirectTo="/auth">
+            <ProtectedRoute path="/settings">
               <Settings />
             </ProtectedRoute>
           }
         />
+        <Route path="/loading" element={<LoadingSpinner />} />
       </Routes>
     </>
   );

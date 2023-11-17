@@ -4,8 +4,13 @@ import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+
+  // ---------------------------- STATE ----------------------------
+
   const [isOpen, setIsOpen] = useState(false);
   const [logout, setLogout] = useState(false);
+
+  // ---------------------------- NAVIGATION ----------------------------
 
   const navigate = useNavigate();
 
@@ -28,6 +33,7 @@ const Header = () => {
   };
 
   // ---------------------------- TOGGLE DROPDOWN ----------------------------
+  
   const toggleDropdown = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
     if (isOpen) {
@@ -55,7 +61,6 @@ const Header = () => {
 
   // ---------------------------- CSS ----------------------------
 
-  const outerDiv = [styles.outerDiv].join("");
   const mainDiv = [styles.mainDiv].join("");
   const topHeading = [styles.topHeading].join("");
   const threeDots = [styles.threeDots].join("");
@@ -66,7 +71,7 @@ const Header = () => {
   // ---------------------------- JSX ----------------------------
 
   return (
-    <div className={outerDiv}>
+    <>
       <div className={mainDiv}>
         <h1 className={topHeading}>Parko</h1>
         <div className={threeDots} onClick={toggleDropdown}>
@@ -85,8 +90,10 @@ const Header = () => {
         </div>
       </ul>
       {logout && <Logout updateLogout={updateLogout} />}
-    </div>
+    </>
   );
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default Header;

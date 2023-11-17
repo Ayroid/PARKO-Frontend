@@ -1,34 +1,34 @@
 import { useState } from "react";
-import styles from "./LoginForm.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 // import { useTimer } from "react-timer-hook";
-
-// ---------------------------- SERVER URL CONFIGURATION ----------------------------
-
-const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
-
-const otpRequestURL = SERVER_URL + "/api/user/login/mail";
-const otpVerifyURL = SERVER_URL + "/api/user/verify/mail";
+import "../../../../css/form.css";
 
 const LoginForm = () => {
-  // ---------------------------- FORM VALIDATION ----------------------------
+  // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
-  // useNavigate() hook to navigate to different pages
+  const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
+
+  const otpRequestURL = SERVER_URL + "/api/user/login/mail";
+  const otpVerifyURL = SERVER_URL + "/api/user/verify/mail";
+
+  // ---------------------------- NAVIGATION ----------------------------
+
   const navigate = useNavigate();
 
-  // useState() Hooks to handle form validation
+  // ---------------------------- STATE ----------------------------
+
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [emailValidated, setEmailValidated] = useState(true);
   const [otpValidated, setOTPValidated] = useState(true);
   const [otpSent, setOTPSent] = useState(false);
 
-  // Function to check if email is valid
-  const checkEmailRef = () => {
-    console.log("EMAIL CALLED");
+  // ---------------------------- FUNCTIONS ----------------------------
+
+  const validateEmail = () => {
     const value = email;
     if (
       value !== null &&
@@ -44,9 +44,7 @@ const LoginForm = () => {
     }
   };
 
-  // Function to check if otp is valid
-  const checkOTP = () => {
-    console.log("OTP CALLED");
+  const validateOTP = () => {
     const value = otp;
     if (
       value !== null &&
@@ -80,13 +78,10 @@ const LoginForm = () => {
         email: email,
       };
 
-      if (checkEmailRef()) {
+      if (validateEmail()) {
         const response = await axios.post(otpRequestURL, data);
 
-        console.log(response);
-
         if (response.status === 200) {
-          console.log("Login successful:", response.data);
           setOTPSent(true);
           toast.success("Login OTP sent successfully");
         } else if (response.status === 404) {
@@ -103,20 +98,18 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     try {
       event.preventDefault();
-      const data = {
-        email: email,
-        otpValue: otp,
-      };
 
-      console.log(data);
+      if (validateEmail() && validateOTP()) {
+        const data = {
+          email: email,
+          otpValue: otp,
+        };
 
-      if (checkEmailRef() && checkOTP()) {
-        console.log("Sending Login request");
         const response = await axios.post(otpVerifyURL, data);
 
         if (response.status === 200) {
-          console.log("Login successful:", response.data);
           localStorage.setItem("jwtToken", response.data.token);
+          localStorage.setItem("jwtRefreshToken", response.data.refreshToken);
           toast.success("Login successful");
           navigate("/");
         } else {
@@ -132,11 +125,11 @@ const LoginForm = () => {
 
   // ---------------------------- CSS ----------------------------
 
-  const form = [styles.form].join("");
-  const input = [styles.input].join("");
-  const inputDiv = [styles.inputDiv].join("");
-  const button = [styles.button].join("");
-  const errorMessage = [styles.errorMessage].join("");
+  const form = `form`;
+  const input = `input`;
+  const inputDiv = `inputDiv`;
+  const button = `button`;
+  const errorMessage = `errorMessage`;
 
   // ---------------------------- JSX ----------------------------
 
@@ -206,5 +199,7 @@ const LoginForm = () => {
     </div>
   );
 };
+
+// ---------------------------- EXPORT ----------------------------
 
 export default LoginForm;
