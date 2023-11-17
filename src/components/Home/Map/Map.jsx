@@ -187,7 +187,8 @@ const Map = () => {
         />
 
 
-      <MapClickHandler />
+      {/* enable this to console log coordinates */}
+      {/* <MapClickHandler /> */}
 
 
 
@@ -216,9 +217,9 @@ const Map = () => {
         <Polyline positions={coordinates2} color="blue" />
         <Polyline positions={coordinates3} color="green" />
       </MapContainer>
-      <button onClick={() => console.log("Logged Coordinates:", loggedCoordinates)}>
+      {/* <button onClick={() => console.log("Logged Coordinates:", loggedCoordinates)}>
         Log All Coordinates
-      </button>
+      </button> */}
     </div>
   );
 };
@@ -226,3 +227,4 @@ const Map = () => {
 // ---------------------------- EXPORT ----------------------------
 
 export default Map;
+
