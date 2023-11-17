@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+
 import BackButton from "../BackButton/BackButton";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { useUserData } from "../../utils/UserDataContext";
@@ -8,20 +11,27 @@ import "../../css/form.css";
 import styles from "./Settings.module.css";
 
 const Settings = () => {
-  // ---------------------------- SERVER URL CONFIGURATION ----------------------------
+  // ---------------------------- DATA EXTRACTION ----------------------------
 
   const { userData, isLoading, reFetchUserData } = useUserData();
 
   // ---------------------------- STATE ----------------------------
 
-  const [name, setName] = useState("");
+  const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [sapid, setSapid] = useState("");
   const [phone, setPhone] = useState("");
 
+  const [userNameUpdated, setUserNameUpdated] = useState(false);
+  const [emailUpdated, setEmailUpdated] = useState(false);
+  const [sapidUpdated, setSapidUpdated] = useState(false);
+  const [phoneUpdated, setPhoneUpdated] = useState(false);
+
+  // ---------------------------- USE EFFECT ----------------------------
+
   useEffect(() => {
     if (!isLoading) {
-      setName(userData.username);
+      setUserName(userData.username);
       setEmail(userData.email);
       setSapid(userData.sapid);
       setPhone(userData.phone);
@@ -30,15 +40,98 @@ const Settings = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  // ---------------------------- FUNCTIONS ----------------------------
+  // ---------------------------- HANDLE CHANGE FUNCTIONS ----------------------------
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    console.log("Form Submitted");
+  const handleUserNameChange = (event) => {
+    if (event.target.value.trim() !== userData.username) {
+      setUserNameUpdated(true);
+    } else {
+      setUserNameUpdated(false);
+    }
+    setUserName(event.target.value);
   };
+
+  const handleEmailChange = (event) => {
+    if (event.target.value.trim() !== userData.email) {
+      setEmailUpdated(true);
+    } else {
+      setEmailUpdated(false);
+    }
+    setEmail(event.target.value);
+  };
+
+  const handleSAPIDChange = (event) => {
+    if (event.target.value.trim() !== userData.sapid) {
+      setSapidUpdated(true);
+    } else {
+      setSapidUpdated(false);
+    }
+    setSapid(event.target.value);
+  };
+
+  const handlePhoneChange = (event) => {
+    if (event.target.value.trim() !== userData.phone) {
+      setPhoneUpdated(true);
+    } else {
+      setPhoneUpdated(false);
+    }
+    setPhone(event.target.value);
+  };
+
+  // ---------------------------- HANDLE SUBMIT FUNCTIONS ----------------------------
 
   const handleReFetchUserData = () => {
     reFetchUserData();
+  };
+
+  const handleUpdateData = async (event) => {
+    try {
+      event.preventDefault();
+
+      console.log(userNameUpdated, emailUpdated, sapidUpdated, phoneUpdated);
+
+      if (!(userNameUpdated || emailUpdated || sapidUpdated || phoneUpdated)) {
+        return;
+      } else {
+        const token = localStorage.getItem("jwtToken");
+
+        const userUpdateURL =
+          import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/updateUser";
+
+        const data = {
+          username: username,
+          email: email,
+          sapid: sapid,
+          phone: phone,
+        };
+
+        const response = await axios.post(
+          userUpdateURL,
+          { data },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          handleReFetchUserData();
+          toast.success("User updated successfully");
+          setUserNameUpdated(false);
+          setEmailUpdated(false);
+          setSapidUpdated(false);
+          setPhoneUpdated(false);
+        }
+      }
+    } catch (error) {
+      console.error("Error updating user:", error);
+      toast.error("Error updating user");
+      setUserName(userData.username);
+      setEmail(userData.email);
+      setSapid(userData.sapid);
+      setPhone(userData.phone);
+    }
   };
 
   // ---------------------------- CSS ----------------------------
@@ -54,7 +147,11 @@ const Settings = () => {
   const input = `input`;
   const inputDiv = `inputDiv`;
   const inputFieldName = `inputFieldName`;
-  const button = `button`;
+  const button = `button + ${
+    !userNameUpdated && !emailUpdated && !sapidUpdated && !phoneUpdated
+      ? styles.buttonDisabled
+      : null
+  }`;
   // const errorMessage = `errorMessage`;
 
   // ---------------------------- JSX ----------------------------
@@ -75,7 +172,7 @@ const Settings = () => {
             <img className={addPic} src="/icons/add.png" alt="addProfilePic" />
           </div>
           <div className={userInfo}>
-            <form className={form} onSubmit={handleFormSubmit}>
+            <form className={form} onSubmit={handleUpdateData}>
               <div className={inputDiv}>
                 <p className={inputFieldName}>Name</p>
                 <input
@@ -83,10 +180,13 @@ const Settings = () => {
                   id="name"
                   type="text"
                   placeholder="Name"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
+                  value={username}
+                  onChange={handleUserNameChange}
                   required
                 />
+                {userNameUpdated && (
+                  <img src="public/icons/caution.png" alt="field updated" />
+                )}
               </div>
 
               <div className={inputDiv}>
@@ -97,9 +197,12 @@ const Settings = () => {
                   type="text"
                   placeholder=" Email"
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={handleEmailChange}
                   required
                 />
+                {emailUpdated && (
+                  <img src="public/icons/caution.png" alt="field updated" />
+                )}
               </div>
 
               <div className={inputDiv}>
@@ -110,9 +213,12 @@ const Settings = () => {
                   type="text"
                   placeholder="Sapid"
                   value={sapid}
-                  onChange={(event) => setSapid(event.target.value)}
+                  onChange={handleSAPIDChange}
                   required
                 />
+                {sapidUpdated && (
+                  <img src="public/icons/caution.png" alt="field updated" />
+                )}
               </div>
 
               <div className={inputDiv}>
@@ -123,17 +229,19 @@ const Settings = () => {
                   type="text"
                   placeholder="Phone"
                   value={phone}
-                  onChange={(event) => setPhone(event.target.value)}
+                  onChange={handlePhoneChange}
                   required
                 />
+                {phoneUpdated && (
+                  <img src="public/icons/caution.png" alt="field updated" />
+                )}
               </div>
 
-              <button className={button} onClick={handleReFetchUserData}>
-                UPDATE
-              </button>
+              <button className={button}>UPDATE</button>
             </form>
           </div>
         </div>
+        <ToastContainer position="top-center" />
       </div>
     </>
   );

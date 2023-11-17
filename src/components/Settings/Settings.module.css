@@ -64,3 +64,10 @@
   margin-top: 2rem;
   width: 100%;
 }
+
+.buttonDisabled{
+  background-color: #ccc;
+  color: #fff;
+  border: none;
+  cursor: not-allowed;
+}

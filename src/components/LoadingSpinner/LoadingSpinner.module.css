@@ -33,7 +33,7 @@
   animation: loadingAnimation 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 .loadingInner div:nth-child(1) {
-  border-color: #f8ea00;
+  border-color: #fddc00;
   animation-delay: 0s;
 }
 .loadingInner div:nth-child(2) {

@@ -15,6 +15,14 @@
   justify-content: center;
   padding-inline: 10%;
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.inputDiv > img{
+  position: absolute;
+  bottom: 10%;
+  right: 12%;
+  width: 1.6rem;
 }
 
 .inputFieldName {
@@ -56,15 +64,9 @@
   box-sizing: border-box;
   outline: none;
   transition: all 0.3s ease-in-out;
-  background-color: #ffd000 !important;
+  background-color: #ffd000;
   color: #3f3f3f;
   font-weight: 600;
-}
-
-.button:hover {
-  background-color: #fff;
-  color: #3f3f3f;
-  border: 1px solid #3f3f3f;
 }
 
 .errorMessage {
