@@ -4,9 +4,11 @@ import {
   Marker,
   Popup,
   Polyline,
+  useMapEvents
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import styles from "./Map.module.css";
+import { useState } from "react";
 
 const Map = () => {
   // ---------------------------- CSS ----------------------------
@@ -14,7 +16,11 @@ const Map = () => {
   const mainDiv = [styles.mainDiv].join("");
   const mapContainer = [styles.mapContainer].join("");
 
-  const coordinates = [
+  const [coordinates, setCoordinates] = useState([]);
+  const [loggedCoordinates, setLoggedCoordinates] = useState([]);
+
+
+  const coordinates1 = [
     [30.415797829416945, 77.9663121700287],
     [30.415810797815844, 77.96637225151066],
     [30.415833029352832, 77.96640014648438],
@@ -97,6 +103,74 @@ const Map = () => {
     [30.418407550160545, 77.96965205669406],
   ];
 
+  const parkingCoordinatesArray = [
+    [30.416990006119434, 77.96717848052764],
+    [30.416971481579512, 77.96724827597022],
+    [30.416948325899668, 77.96736639133455],
+    [30.41692053907659, 77.96744692453754],
+    [30.41686496540672, 77.96758114654246],
+    [30.416868824737495, 77.96763684867452],
+    [30.416827144465948, 77.96775496403885],
+    [30.41677620188771, 77.96791066156459],
+    [30.416739152723185, 77.96806635909032],
+    [30.41669747239627, 77.96822742549624],
+    [30.416727574856406, 77.96818290866781],
+    [30.416308455082795, 77.96916496636459],
+    [30.416289930413487, 77.96923476180712],
+    [30.416252881064363, 77.96934750829126],
+    [30.41623435638452, 77.96942267261403],
+    [30.416206569358195, 77.96951394357743],
+    [30.41617878232393, 77.96959447678037],
+    [30.416159678733262, 77.96972422474579],
+    [30.41614115403574, 77.96982086458935],
+    [30.416130154994924, 77.96989200233388],
+    [30.41607458087497, 77.97004233097941],
+    [30.416032900264273, 77.97017655298433],
+    [30.41590322713926, 77.97011212642195],
+    [30.415958801356794, 77.96994032225568],
+    [30.415977326088925, 77.96984905129229],
+    [30.416009744361713, 77.96978999361015],
+    [30.41602363790392, 77.96968261600618],
+    [30.41605142498233, 77.96955376288145],
+    [30.416093105585166, 77.96939269647552],
+    [30.41612552381948, 77.96930679439235],
+    [30.416162573216948, 77.96917794126762],
+    [30.41617183556412, 77.96911888358542],
+    [30.417247023565693, 77.96852627554402],
+    [30.417270179174675, 77.96844037346085],
+    [30.41728870365788, 77.9683329958569],
+    [30.41731185925697, 77.96826320041434],
+    [30.41734890820407, 77.96818803609159],
+    [30.417381326021246, 77.96810750288859],
+    [30.41740448159835, 77.96804307632623],
+    [30.417441530510313, 77.96793032984208],
+    [30.41746931718505, 77.96786590327972],
+    [30.417497103851844, 77.96779610783713],
+    [30.41754341494564, 77.96765114807182],
+    [30.417580463804832, 77.96757598374906],
+  ];
+  
+
+  const handleMapClick = (e) => {
+    const { lat, lng } = e.latlng;
+    const clickedCoordinates = [lat, lng];
+    console.log(clickedCoordinates);
+
+    // Update component state with the new coordinates
+    setCoordinates((prev) => [...prev, clickedCoordinates]);
+
+    // Update logged coordinates
+    setLoggedCoordinates((prev) => [...prev, clickedCoordinates]);
+  };
+
+  const MapClickHandler = () => {
+    const map = useMapEvents({
+      click: handleMapClick,
+    });
+
+    return null; // This hook doesn't render anything, so return null
+  };
+
   // ---------------------------- JSX ----------------------------
 
   return (
@@ -106,10 +180,17 @@ const Map = () => {
         zoom={13}
         className={mapContainer}
       >
+
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+
+      <MapClickHandler />
+
+
+
         <Marker position={[30.416991, 77.966727]}>
           <Popup>
             <h2>Mac</h2>
@@ -122,10 +203,22 @@ const Map = () => {
           </Popup>
         </Marker>
 
-        <Polyline positions={coordinates} color="red" />
+        {/* parking markers */}
+        {parkingCoordinatesArray.map((coord, index) => (
+          <Marker key={index} position={coord}>
+            <Popup>
+              <h2>Parking {index + 1}</h2>
+            </Popup>
+          </Marker>
+        ))}
+
+        <Polyline positions={coordinates1} color="red" />
         <Polyline positions={coordinates2} color="blue" />
         <Polyline positions={coordinates3} color="green" />
       </MapContainer>
+      <button onClick={() => console.log("Logged Coordinates:", loggedCoordinates)}>
+        Log All Coordinates
+      </button>
     </div>
   );
 };
