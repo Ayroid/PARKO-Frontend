@@ -11,13 +11,13 @@
   user-select: none;
 }
 
-.navigation > nav{
-    width: 100dvw;
+.navigation > nav {
+  width: 100dvw;
 }
 
-.navItems{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+.navItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
