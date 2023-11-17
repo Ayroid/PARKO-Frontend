@@ -1,12 +1,22 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
+import { useState } from "react";
+
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import styles from "./RegisterVehicleForm.module.css";
 import "../../../css/form.css";
 
+import { useUserData } from "../../../utils/UserDataContext";
+
+// ---------------------------- COMPONENT ----------------------------
+
 const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
+  // ---------------------------- DATA EXTRACTION ----------------------------
+
+  const { reFetchUserData } = useUserData();
+
   // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
   const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
@@ -22,6 +32,10 @@ const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
   const [vehicleNumberValidated, setVehicleNumberValidated] = useState(true);
 
   // ---------------------------- FUNCTIONS ----------------------------
+
+  const handleReFetchUserData = () => {
+    reFetchUserData();
+  };
 
   const closeForm = () => {
     const outerDiv = document.getElementById("outerDiv");
@@ -90,14 +104,18 @@ const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
         if (response.status === 201) {
           console.log("Vehicle Registered Successfully!");
           toast.success("Vehicle Registered Successfully!");
+          handleReFetchUserData();
+          closeForm();
         }
       } else {
         console.log("Vehicle Registration Failed!");
         toast.error("Vehicle Registration Failed!");
+        closeForm();
       }
     } catch (err) {
       console.log(err);
       toast.error("Vehicle Registration Failed!");
+      closeForm();
     }
   };
 
