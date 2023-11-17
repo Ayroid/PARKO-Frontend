@@ -6,9 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from "./RegisterVehicleForm.module.css";
 import "../../../css/form.css";
 
-const RegisterVehicleForm = ({
-  closeVehicleRegistrationForm,
-}) => {
+const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
   // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
   const SERVER_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
@@ -24,6 +22,19 @@ const RegisterVehicleForm = ({
   const [vehicleNumberValidated, setVehicleNumberValidated] = useState(true);
 
   // ---------------------------- FUNCTIONS ----------------------------
+
+  const closeForm = () => {
+    const outerDiv = document.getElementById("outerDiv");
+    const mainDiv = document.getElementById("mainDiv");
+    mainDiv.classList.remove(`${styles.slideUp}`);
+    mainDiv.classList.add(`${styles.slideDown}`);
+    outerDiv.classList.remove(`${styles.fadeBgColor}`);
+    setTimeout(() => {
+      closeVehicleRegistrationForm(false);
+    }, 300);
+  };
+
+  // ---------------------------- VALIDATION ----------------------------
 
   const validateBrand = () => {
     const value = brand;
@@ -92,9 +103,9 @@ const RegisterVehicleForm = ({
 
   // ---------------------------- CSS ----------------------------
 
-  const outerDiv = [styles.outerDiv].join("");
-  const bgDiv = [styles.bgDiv].join("");
-  const mainDiv = [styles.mainDiv].join("");
+  const outerDiv = `${styles.outerDiv} ${styles.fadeBgColor}`;
+  const bgDiv = `${styles.bgDiv} ${styles.fadeIn}`;
+  const mainDiv = `${styles.mainDiv} ${styles.slideUp}`;
   const headerDiv = [styles.headerDiv].join("");
   const closeButton = [styles.closeButton].join("");
   const errorMessage = `errorMessage`;
@@ -106,19 +117,19 @@ const RegisterVehicleForm = ({
   // ---------------------------- JSX ----------------------------
 
   return (
-    <div className={outerDiv}>
+    <div className={outerDiv} id="outerDiv">
       <div
         className={bgDiv}
         onClick={() => {
-          closeVehicleRegistrationForm(false);
+          closeForm();
         }}
       ></div>
-      <div className={mainDiv}>
+      <div className={mainDiv} id="mainDiv">
         <div className={headerDiv}>Register Vehicle</div>
         <div
           className={closeButton}
           onClick={() => {
-            closeVehicleRegistrationForm(false);
+            closeForm();
           }}
         >
           <img src="public/icons/cross.png" alt="close" />

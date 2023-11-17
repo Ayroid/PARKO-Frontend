@@ -6,12 +6,30 @@
   align-items: center;
   justify-content: flex-end;
   position: absolute;
+  z-index: 3;
+}
+
+.fadeBgColor {
+  background-color: #7c7c7c91;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .bgDiv {
   width: 100%;
   height: 100%;
-  background-color: #7c7c7c83;
   z-index: 3;
 }
 
@@ -26,6 +44,32 @@
   width: 100dvw;
   min-height: 40dvh;
   z-index: 4;
+}
+
+.slideUp {
+  animation: slideUp 0.3s ease-in-out;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.slideDown {
+  animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
 }
 
 .headerDiv {

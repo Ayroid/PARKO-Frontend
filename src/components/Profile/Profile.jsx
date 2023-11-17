@@ -5,6 +5,7 @@ import axios from "axios";
 import UserInformation from "./UserInformation/UserInformation";
 import Cars from "./Cars/Cars";
 import RegisterVehicleForm from "./RegisterVehicleForm/RegisterVehicleForm";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 import styles from "./Profile.module.css";
 
@@ -98,35 +99,41 @@ const Profile = () => {
   // ---------------------------- JSX ----------------------------
 
   return (
-    <div className={mainDiv}>
-      <div className={headerDiv}>
-        <div className={backArrow}>
-          <img
-            src="public/icons/backArrow.png"
-            alt="backArrow"
-            onClick={goBack}
-          />
-          <h3>Profile</h3>
-        </div>
-        <div className={editSettings} onClick={openSettings}>
-          <img src="public/icons/pencil.png" alt="edit" />
-        </div>
-      </div>
+    <>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className={mainDiv}>
+          <div className={headerDiv}>
+            <div className={backArrow}>
+              <img
+                src="public/icons/backArrow.png"
+                alt="backArrow"
+                onClick={goBack}
+              />
+              <h3>Profile</h3>
+            </div>
+            <div className={editSettings} onClick={openSettings}>
+              <img src="public/icons/pencil.png" alt="edit" />
+            </div>
+          </div>
 
-      {!isLoading && <UserInformation data={userData} />}
+          {!isLoading && <UserInformation data={userData} />}
 
-      <div className={contentDiv}>
-        {!isLoading && <Cars data={vehicleData} />}
-        <div className={addCarDiv} onClick={openVehicleRegistrationForm}>
-          <img src="public/icons/add.png" alt="addCar" />
+          <div className={contentDiv}>
+            {!isLoading && <Cars data={vehicleData} />}
+            <div className={addCarDiv} onClick={openVehicleRegistrationForm}>
+              <img src="public/icons/add.png" alt="addCar" />
+            </div>
+          </div>
+          {showRegisterVehicleForm && (
+            <RegisterVehicleForm
+              closeVehicleRegistrationForm={closeVehicleRegistrationForm}
+            />
+          )}
         </div>
-      </div>
-      {showRegisterVehicleForm && (
-        <RegisterVehicleForm
-          closeVehicleRegistrationForm={closeVehicleRegistrationForm}
-        />
       )}
-    </div>
+    </>
   );
 };
 

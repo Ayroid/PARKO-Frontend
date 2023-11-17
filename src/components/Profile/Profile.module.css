@@ -132,7 +132,7 @@
 .addCarDiv {
   bottom: 0;
   background-color: #fddc00;
-  width: 100%;
+  width: 65%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,7 +142,7 @@
 }
 
 .addCarDiv > img {
-  width: 3rem;
+  width: 2.5rem;
   cursor: pointer;
-  filter: invert(1) drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.05));
+  padding: 0.25rem 0;
 }
