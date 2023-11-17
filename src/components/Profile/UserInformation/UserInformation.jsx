@@ -1,8 +1,7 @@
-// import { useState, useEffect } from "react";
-
 import styles from "./UserInformation.module.css";
 
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+
 import { useUserData } from "../../../utils/UserDataContext";
 
 const UserInformation = () => {
