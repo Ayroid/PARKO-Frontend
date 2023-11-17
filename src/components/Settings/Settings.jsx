@@ -157,93 +157,91 @@ const Settings = () => {
   // ---------------------------- JSX ----------------------------
 
   return (
-    <>
-      <div className={mainDiv}>
-        <div className={headerDiv}>
-          <BackButton pageName={"Settings"} navigateTo={"/profile"} />
-        </div>
-        <div className={bodyDiv}>
-          <div className={profilePic}>
-            <img
-              className={profilePicImg}
-              src="/icons/profileicon.jpg"
-              alt="profile pic"
-            />
-            <img className={addPic} src="/icons/add.png" alt="addProfilePic" />
-          </div>
-          <div className={userInfo}>
-            <form className={form} onSubmit={handleUpdateData}>
-              <div className={inputDiv}>
-                <p className={inputFieldName}>Name</p>
-                <input
-                  className={input}
-                  id="name"
-                  type="text"
-                  placeholder="Name"
-                  value={username}
-                  onChange={handleUserNameChange}
-                  required
-                />
-                {userNameUpdated && (
-                  <img src="public/icons/caution.png" alt="field updated" />
-                )}
-              </div>
-
-              <div className={inputDiv}>
-                <p className={inputFieldName}>Email</p>
-                <input
-                  className={input}
-                  id="email"
-                  type="text"
-                  placeholder=" Email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  required
-                />
-                {emailUpdated && (
-                  <img src="public/icons/caution.png" alt="field updated" />
-                )}
-              </div>
-
-              <div className={inputDiv}>
-                <p className={inputFieldName}>SAPID</p>
-                <input
-                  className={input}
-                  id="sapid"
-                  type="text"
-                  placeholder="Sapid"
-                  value={sapid}
-                  onChange={handleSAPIDChange}
-                  required
-                />
-                {sapidUpdated && (
-                  <img src="public/icons/caution.png" alt="field updated" />
-                )}
-              </div>
-
-              <div className={inputDiv}>
-                <p className={inputFieldName}>Phone Number</p>
-                <input
-                  className={input}
-                  id="phone"
-                  type="text"
-                  placeholder="Phone"
-                  value={phone}
-                  onChange={handlePhoneChange}
-                  required
-                />
-                {phoneUpdated && (
-                  <img src="public/icons/caution.png" alt="field updated" />
-                )}
-              </div>
-
-              <button className={button}>UPDATE</button>
-            </form>
-          </div>
-        </div>
-        <ToastContainer position="top-center" />
+    <div className={mainDiv}>
+      <div className={headerDiv}>
+        <BackButton pageName={"Settings"} navigateTo={"/profile"} />
       </div>
-    </>
+      <div className={bodyDiv}>
+        <div className={profilePic}>
+          <img
+            className={profilePicImg}
+            src="/icons/profileicon.jpg"
+            alt="profile pic"
+          />
+          <img className={addPic} src="/icons/add.png" alt="addProfilePic" />
+        </div>
+        <div className={userInfo}>
+          <form className={form} onSubmit={handleUpdateData}>
+            <div className={inputDiv}>
+              <p className={inputFieldName}>Name</p>
+              <input
+                className={input}
+                id="name"
+                type="text"
+                placeholder="Name"
+                value={username}
+                onChange={handleUserNameChange}
+                required
+              />
+              {userNameUpdated && (
+                <img src="public/icons/caution.png" alt="field updated" />
+              )}
+            </div>
+
+            <div className={inputDiv}>
+              <p className={inputFieldName}>Email</p>
+              <input
+                className={input}
+                id="email"
+                type="text"
+                placeholder=" Email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+              {emailUpdated && (
+                <img src="public/icons/caution.png" alt="field updated" />
+              )}
+            </div>
+
+            <div className={inputDiv}>
+              <p className={inputFieldName}>SAPID</p>
+              <input
+                className={input}
+                id="sapid"
+                type="text"
+                placeholder="Sapid"
+                value={sapid}
+                onChange={handleSAPIDChange}
+                required
+              />
+              {sapidUpdated && (
+                <img src="public/icons/caution.png" alt="field updated" />
+              )}
+            </div>
+
+            <div className={inputDiv}>
+              <p className={inputFieldName}>Phone Number</p>
+              <input
+                className={input}
+                id="phone"
+                type="text"
+                placeholder="Phone"
+                value={phone}
+                onChange={handlePhoneChange}
+                required
+              />
+              {phoneUpdated && (
+                <img src="public/icons/caution.png" alt="field updated" />
+              )}
+            </div>
+
+            <button className={button}>UPDATE</button>
+          </form>
+        </div>
+      </div>
+      <ToastContainer position="top-center" />
+    </div>
   );
 };
 
