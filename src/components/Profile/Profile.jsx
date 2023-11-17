@@ -43,8 +43,6 @@ const Profile = () => {
           headers,
         });
 
-        console.log(response.data);
-
         setUserData({
           username: response.data.username,
           email: response.data.email,
