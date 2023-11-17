@@ -17,7 +17,7 @@ const UserInformation = ({ data }) => {
   return (
     <div className={profileDiv}>
       <div className={profilePic}>
-        <img src="public/icons/profileicon.jpg" alt="profile icon" />
+        <img src="/icons/profileicon.jpg" alt="profile pic" />
       </div>
       <div className={profileData}>
         <div style={{ fontSize: "1.5rem" }} id="username">

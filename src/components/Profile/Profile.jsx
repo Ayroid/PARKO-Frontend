@@ -55,11 +55,11 @@ const Profile = () => {
         // setIsLoading(false);
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false);
       }
     };
-    fetchData().then(() => {
-      setIsLoading(false);
-    });
+    fetchData();
   }, []);
 
   // ---------------------------- NAVIGATION ----------------------------
@@ -99,9 +99,9 @@ const Profile = () => {
       ) : (
         <div className={mainDiv}>
           <div className={headerDiv}>
-            <BackButton pageName={"Settings"} navigateTo={"/"} />
+            <BackButton pageName={"Profile"} navigateTo={"/"} />
             <div className={editSettings} onClick={openSettings}>
-              <img src="public/icons/pencil.png" alt="edit" />
+              <img src="/icons/pencil.png" alt="edit" />
             </div>
           </div>
 
@@ -110,7 +110,7 @@ const Profile = () => {
           <div className={contentDiv}>
             {!isLoading && <Cars data={vehicleData} />}
             <div className={addCarDiv} onClick={openVehicleRegistrationForm}>
-              <img src="public/icons/add.png" alt="addCar" />
+              <img src="/icons/add.png" alt="addCar" />
             </div>
           </div>
           {showRegisterVehicleForm && (

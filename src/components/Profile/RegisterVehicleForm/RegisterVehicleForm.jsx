@@ -132,7 +132,7 @@ const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
             closeForm();
           }}
         >
-          <img src="public/icons/cross.png" alt="close" />
+          <img src="/icons/cross.png" alt="close" />
         </div>
         <form className={form} onSubmit={handleSubmit}>
           <div className={inputDiv}>

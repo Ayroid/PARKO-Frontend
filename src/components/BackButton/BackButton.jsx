@@ -19,7 +19,7 @@ const BackButton = ({ pageName, navigateTo }) => {
 
   return (
     <div className={backArrow}>
-      <img src="public/icons/backArrow.png" alt="backArrow" onClick={goBack} />
+      <img src="/icons/backArrow.png" alt="backArrow" onClick={goBack} />
       <h3>{pageName}</h3>
     </div>
   );

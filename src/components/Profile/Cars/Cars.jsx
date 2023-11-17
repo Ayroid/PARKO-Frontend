@@ -20,7 +20,7 @@ const Cars = ({ data }) => {
           {data.map((vehicle, index) => (
             <div key={index} className={cars}>
               <div className={carParking}>
-                <img src="public/icons/cars/greycar.png" alt="car.jpg" />
+                <img src="/icons/cars/greycar.png" alt="car.jpg" />
                 <p>{index}</p>
               </div>
               <div className={carDetails}>
