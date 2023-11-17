@@ -33,12 +33,12 @@ const Logout = ({ updateLogout }) => {
         }
       );
       console.log(response);
-
-      localStorage.removeItem("jwtToken");
-      localStorage.removeItem("jwtRefreshToken");
       navigate("/auth");
     } catch (err) {
       console.log(err);
+    } finally {
+      localStorage.removeItem("jwtToken");
+      localStorage.removeItem("jwtRefreshToken");
     }
   };
 
