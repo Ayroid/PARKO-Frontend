@@ -24,14 +24,21 @@ const UserDataContextProvider = ({ children }) => {
 
   const fetchData = async () => {
     try {
+
+      console.log("FETCHING DATA");
+
       const getUserUrl =
         import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/getUser";
-      const token = localStorage.getItem("jwtToken");
-      const headers = {
-        Authorization: token,
-      };
+      const jwtToken = localStorage.getItem("jwtToken");
+
+      if (jwtToken == null) {
+        setIsLoading(false);
+        return;
+      }
       const response = await axios.post(getUserUrl, null, {
-        headers,
+        headers:{
+          Authorization: jwtToken,
+        },
       });
 
       setUserData({
