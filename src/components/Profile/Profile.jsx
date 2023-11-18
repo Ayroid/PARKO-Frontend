@@ -5,10 +5,17 @@ import UserInformation from "./UserInformation/UserInformation";
 import Cars from "./Cars/Cars";
 import RegisterVehicleForm from "./RegisterVehicleForm/RegisterVehicleForm";
 import BackButton from "../BackButton/BackButton";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 import styles from "./Profile.module.css";
 
+import { useUserData } from "../../utils/UserDataContext";
+
 const Profile = () => {
+  // ---------------------------- DATA EXTRACTION ----------------------------
+
+  const { userData, vehicleData, isLoading } = useUserData();
+
   // ---------------------------- STATE ----------------------------
 
   const [showRegisterVehicleForm, setShowRegisterVehicleForm] = useState(false);
@@ -16,6 +23,8 @@ const Profile = () => {
   // ---------------------------- NAVIGATION ----------------------------
 
   const navigate = useNavigate();
+
+  if (isLoading) return <LoadingSpinner />;
 
   // ---------------------------- FUNCTIONS ----------------------------
 
@@ -52,10 +61,10 @@ const Profile = () => {
         </div>
       </div>
 
-      <UserInformation />
+      <UserInformation data={{ userData, isLoading }} />
 
       <div className={contentDiv}>
-        <Cars />
+        <Cars data={{ vehicleData }} />
         <div className={addCarDiv} onClick={openVehicleRegistrationForm}>
           <img src="/icons/add.png" alt="addCar" />
         </div>

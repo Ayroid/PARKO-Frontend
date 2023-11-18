@@ -1,15 +1,11 @@
+import PropTypes from "prop-types";
+
 import styles from "./UserInformation.module.css";
 
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
-
-import { useUserData } from "../../../utils/UserDataContext";
-
-const UserInformation = () => {
+const UserInformation = ({ data }) => {
   // ---------------------------- DATA EXTRACTION ----------------------------
 
-  const { userData, isLoading } = useUserData();
-
-  if (isLoading) return <LoadingSpinner />;
+  const { userData } = data;
 
   const { username, email, sapid } = userData;
 
@@ -35,6 +31,12 @@ const UserInformation = () => {
       </div>
     </div>
   );
+};
+
+// ---------------------------- PROPS ----------------------------
+
+UserInformation.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 // ---------------------------- EXPORTS ----------------------------

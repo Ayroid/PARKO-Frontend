@@ -1,15 +1,10 @@
+import PropTypes from "prop-types";
 import styles from "./Cars.module.css";
 
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
-
-import { useUserData } from "../../../utils/UserDataContext";
-
-const Cars = () => {
+const Cars = ({ data }) => {
   // ---------------------------- DATA EXTRACTION ----------------------------
 
-  const { vehicleData, isLoading } = useUserData();
-
-  if (isLoading) return <LoadingSpinner />;
+  const { vehicleData } = data;
 
   // ---------------------------- CSS ----------------------------
 
@@ -22,27 +17,31 @@ const Cars = () => {
   // ---------------------------- JSX ----------------------------
 
   return (
-    <>
-      <div className={carsDiv}>
-        <h2>Your Vehicles</h2>
-        <div className={innerCarDiv}>
-          {vehicleData.map((vehicle, index) => (
-            <div key={index} className={cars}>
-              <div className={carParking}>
-                <img src="/icons/cars/greycar.png" alt="car.jpg" />
-                <p>{index}</p>
-              </div>
-              <div className={carDetails}>
-                <p>Vehicle No: {vehicle.vehicleNumber}</p>
-                <p>Brand: {vehicle.brand}</p>
-                <p>Model: {vehicle.model}</p>
-              </div>
+    <div className={carsDiv}>
+      <h2>Your Vehicles</h2>
+      <div className={innerCarDiv}>
+        {vehicleData.map((vehicle, index) => (
+          <div key={index} className={cars}>
+            <div className={carParking}>
+              <img src="/icons/cars/greycar.png" alt="car.jpg" />
+              <p>{index}</p>
             </div>
-          ))}
-        </div>
+            <div className={carDetails}>
+              <p>Vehicle No: {vehicle.vehicleNumber}</p>
+              <p>Brand: {vehicle.brand}</p>
+              <p>Model: {vehicle.model}</p>
+            </div>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
+};
+
+// ---------------------------- PROPS ----------------------------
+
+Cars.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 // ---------------------------- EXPORTS ----------------------------

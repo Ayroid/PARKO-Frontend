@@ -78,7 +78,7 @@
 }
 
 .buttonDisabled {
-  background-color: #ccc;
+  background-color: #ccc !important;
   color: #fff;
   border: none;
   cursor: not-allowed;
