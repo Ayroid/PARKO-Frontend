@@ -18,7 +18,7 @@
   position: relative;
 }
 
-.inputDiv > img{
+.inputDiv > img {
   position: absolute;
   bottom: 10%;
   right: 12%;
@@ -28,6 +28,7 @@
 .inputFieldName {
   font-size: 16px;
   font-weight: 600;
+  color: #3f3f3f;
 }
 
 .input {
@@ -47,7 +48,7 @@
 }
 
 .input::placeholder {
-  color: rgb(37, 37, 37);
+  color: rgb(179, 179, 179);
   font-weight: 500;
   opacity: 1;
 }
@@ -59,12 +60,12 @@
   border: 1px solid #e4e4e4;
   padding: 0 10px;
   font-size: 16px;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
   box-sizing: border-box;
   outline: none;
   transition: all 0.3s ease-in-out;
-  background-color: #ffd000;
+  background-color: #ffd000 !important;
   color: #3f3f3f;
   font-weight: 600;
 }
