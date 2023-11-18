@@ -25,7 +25,9 @@ function App() {
           path="/"
           element={
             <ProtectedRoute path="/">
-              <Home />
+              <UserDataContextProvider>
+                <Home />
+              </UserDataContextProvider>
             </ProtectedRoute>
           }
         />
