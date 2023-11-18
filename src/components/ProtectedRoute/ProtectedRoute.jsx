@@ -50,6 +50,7 @@ const ProtectedRoute = ({ path, children }) => {
 
         // ---------------------------- RECEIVING RESPONSE ----------------------------
 
+        console.log("REQUESTING VERIFICATION");
         const response = await axios.post(verifyTokenURL, null, {
           headers: {
             Authorization: jwtToken,
@@ -62,6 +63,7 @@ const ProtectedRoute = ({ path, children }) => {
           setVerified(true);
         }
       } catch (error) {
+        console.error("Error verifying token:", error);
         await refreshToken().then((ans) => {
           if (ans) {
             setVerified(true);
