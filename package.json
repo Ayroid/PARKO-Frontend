@@ -19,6 +19,7 @@
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
     "react-leaflet": "^4.2.1",
+    "react-leaflet-cluster": "^2.1.0",
     "react-router": "^6.17.0",
     "react-router-dom": "^6.17.0",
     "react-timer-hook": "^3.0.7",

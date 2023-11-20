@@ -7,11 +7,16 @@ import {
   useMapEvents
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet"; 
+import L, { Icon ,divIcon} from "leaflet"; 
 import styles from "./Map.module.css";
 import { useState } from "react";
+import MarkerClusterGroup from "react-leaflet-cluster";
+
 
 import greenMarker from '../../../assets/marker/greenlocation.png';
+import yellowMarker from '../../../assets/marker/yellowlocation.png';
+import blackMarker from '../../../assets/marker/blacklocation.png';
+import redMarker from '../../../assets/marker/redlocation.png';
 
 const Map = () => {
   // ---------------------------- CSS ----------------------------
@@ -176,13 +181,14 @@ const Map = () => {
 
 
 
-  const customMarker = new L.Icon({
-    iconUrl: '../../../assets/marker/greenlocation.png', // Replace with the path to your custom icon
-    iconSize: [32, 32], // Adjust the size of the icon
-    iconAnchor: [16, 32], // Adjust the anchor point of the icon
-    popupAnchor: [0, -32], // Adjust the popup anchor
-  });
 
+
+  const customIcon = new Icon({
+    iconUrl: greenMarker,
+    iconSize:[38,38]
+  })
+
+ 
   // ---------------------------- JSX ----------------------------
 
   return (
@@ -198,12 +204,19 @@ const Map = () => {
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        
+
 
       {/* enable this to console log coordinates */}
       {/* <MapClickHandler /> */}
 
 
-
+      <MarkerClusterGroup
+        chunkedLoading
+        disableClusteringAtZoom={18}
+        animate={true}
+        spiderfyOnMaxZoom={false}
+      >
         <Marker position={[30.416991, 77.966727]}>
           <Popup>
             <h2>Mac</h2>
@@ -218,12 +231,13 @@ const Map = () => {
 
         {/* parking markers */}
         {parkingCoordinatesArray.map((coord, index) => (
-          <Marker key={index} position={coord} icon={customMarker} >
+          <Marker key={index} position={coord} icon={customIcon} >
             <Popup>
               <h2>Parking {index + 1}</h2>
             </Popup>
           </Marker>
         ))}
+        </MarkerClusterGroup>
 
         <Polyline positions={coordinates1} color="red" />
         <Polyline positions={coordinates2} color="blue" />
