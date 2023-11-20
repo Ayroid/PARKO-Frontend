@@ -7,7 +7,7 @@ import {
   useMapEvents
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L, { Icon } from "leaflet"; 
+import L, { Icon ,divIcon} from "leaflet"; 
 import styles from "./Map.module.css";
 import { useState } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
@@ -187,6 +187,8 @@ const Map = () => {
     iconUrl: greenMarker,
     iconSize:[38,38]
   })
+
+ 
   // ---------------------------- JSX ----------------------------
 
   return (
@@ -212,6 +214,8 @@ const Map = () => {
       <MarkerClusterGroup
         chunkedLoading
         disableClusteringAtZoom={18}
+        animate={true}
+        spiderfyOnMaxZoom={false}
       >
         <Marker position={[30.416991, 77.966727]}>
           <Popup>
