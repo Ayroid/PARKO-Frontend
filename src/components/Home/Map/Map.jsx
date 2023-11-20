@@ -10,6 +10,7 @@ import "leaflet/dist/leaflet.css";
 import L, { Icon } from "leaflet"; 
 import styles from "./Map.module.css";
 import { useState } from "react";
+import MarkerClusterGroup from "react-leaflet-cluster";
 
 
 import greenMarker from '../../../assets/marker/greenlocation.png';
@@ -201,12 +202,17 @@ const Map = () => {
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        
+
 
       {/* enable this to console log coordinates */}
       {/* <MapClickHandler /> */}
 
 
-
+      <MarkerClusterGroup
+        chunkedLoading
+        disableClusteringAtZoom={18}
+      >
         <Marker position={[30.416991, 77.966727]}>
           <Popup>
             <h2>Mac</h2>
@@ -227,6 +233,7 @@ const Map = () => {
             </Popup>
           </Marker>
         ))}
+        </MarkerClusterGroup>
 
         <Polyline positions={coordinates1} color="red" />
         <Polyline positions={coordinates2} color="blue" />
