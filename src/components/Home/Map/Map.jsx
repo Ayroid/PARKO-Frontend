@@ -109,7 +109,7 @@ const Map = () => {
     [30.418407550160545, 77.96965205669406],
   ];
 
-  const parkingCoordinatesArray = [
+  const [parkingCoordinatesArray, setParkingCoordinatesArray] = useState([
     [30.416990006119434, 77.96717848052764],
     [30.416971481579512, 77.96724827597022],
     [30.416948325899668, 77.96736639133455],
@@ -154,7 +154,7 @@ const Map = () => {
     [30.417497103851844, 77.96779610783713],
     [30.41754341494564, 77.96765114807182],
     [30.417580463804832, 77.96757598374906],
-  ];
+  ]);
 
   const handleMapClick = (e) => {
     const { lat, lng } = e.latlng;
@@ -166,6 +166,8 @@ const Map = () => {
 
     // Update logged coordinates
     setLoggedCoordinates((prev) => [...prev, clickedCoordinates]);
+
+    setParkingCoordinatesArray((prev) => [...prev, clickedCoordinates]);
   };
 
   const MapClickHandler = () => {
@@ -178,7 +180,7 @@ const Map = () => {
 
   const customIcon = new Icon({
     iconUrl: greenMarker,
-    iconSize: [38, 38],
+    iconSize: [25, 25],
   });
 
   // ---------------------------- JSX ----------------------------
@@ -187,7 +189,7 @@ const Map = () => {
     <div className={mainDiv}>
       <MapContainer
         center={[30.41757, 77.967754]}
-        zoom={13}
+        zoom={16}
         className={mapContainer}
       >
         <TileLayer
@@ -230,11 +232,11 @@ const Map = () => {
         <Polyline positions={coordinates2} color="blue" />
         <Polyline positions={coordinates3} color="green" />
       </MapContainer>
-      <button
+      {/* <button
         onClick={() => console.log("Logged Coordinates:", loggedCoordinates)}
       >
         Log All Coordinates
-      </button>
+      </button> */}
     </div>
   );
 };
