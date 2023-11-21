@@ -208,7 +208,7 @@ const Map = () => {
 
 
       {/* enable this to console log coordinates */}
-      {/* <MapClickHandler /> */}
+      <MapClickHandler />
 
 
       <MarkerClusterGroup
@@ -243,9 +243,9 @@ const Map = () => {
         <Polyline positions={coordinates2} color="blue" />
         <Polyline positions={coordinates3} color="green" />
       </MapContainer>
-      {/* <button onClick={() => console.log("Logged Coordinates:", loggedCoordinates)}>
+      <button onClick={() => console.log("Logged Coordinates:", loggedCoordinates)}>
         Log All Coordinates
-      </button> */}
+      </button>
     </div>
   );
 };

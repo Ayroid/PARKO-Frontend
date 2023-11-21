@@ -25,8 +25,6 @@ const UserDataContextProvider = ({ children }) => {
   const fetchData = async () => {
     try {
 
-      console.log("FETCHING DATA");
-
       const getUserUrl =
         import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/getUser";
       const jwtToken = localStorage.getItem("jwtToken");
