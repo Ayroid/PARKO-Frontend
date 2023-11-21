@@ -4,19 +4,18 @@ import {
   Marker,
   Popup,
   Polyline,
-  useMapEvents
+  useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L, { Icon ,divIcon} from "leaflet"; 
+import L, { Icon, divIcon } from "leaflet";
 import styles from "./Map.module.css";
 import { useState } from "react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
-
-import greenMarker from '../../../assets/marker/greenlocation.png';
-import yellowMarker from '../../../assets/marker/yellowlocation.png';
-import blackMarker from '../../../assets/marker/blacklocation.png';
-import redMarker from '../../../assets/marker/redlocation.png';
+import greenMarker from "../../../assets/marker/greenlocation.png";
+import yellowMarker from "../../../assets/marker/yellowlocation.png";
+import blackMarker from "../../../assets/marker/blacklocation.png";
+import redMarker from "../../../assets/marker/redlocation.png";
 
 const Map = () => {
   // ---------------------------- CSS ----------------------------
@@ -26,7 +25,6 @@ const Map = () => {
 
   const [coordinates, setCoordinates] = useState([]);
   const [loggedCoordinates, setLoggedCoordinates] = useState([]);
-
 
   const coordinates1 = [
     [30.415797829416945, 77.9663121700287],
@@ -157,7 +155,6 @@ const Map = () => {
     [30.41754341494564, 77.96765114807182],
     [30.417580463804832, 77.96757598374906],
   ];
-  
 
   const handleMapClick = (e) => {
     const { lat, lng } = e.latlng;
@@ -179,16 +176,11 @@ const Map = () => {
     return null; // This hook doesn't render anything, so return null
   };
 
-
-
-
-
   const customIcon = new Icon({
     iconUrl: greenMarker,
-    iconSize:[38,38]
-  })
+    iconSize: [38, 38],
+  });
 
- 
   // ---------------------------- JSX ----------------------------
 
   return (
@@ -198,52 +190,49 @@ const Map = () => {
         zoom={13}
         className={mapContainer}
       >
-
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        
+        {/* enable this to console log coordinates */}
+        <MapClickHandler />
 
-
-      {/* enable this to console log coordinates */}
-      <MapClickHandler />
-
-
-      <MarkerClusterGroup
-        chunkedLoading
-        disableClusteringAtZoom={18}
-        animate={true}
-        spiderfyOnMaxZoom={false}
-      >
-        <Marker position={[30.416991, 77.966727]}>
-          <Popup>
-            <h2>Mac</h2>
-          </Popup>
-        </Marker>
-
-        <Marker position={[30.416502, 77.968515]}>
-          <Popup>
-            <h2>Gandhi Chowk</h2>
-          </Popup>
-        </Marker>
-
-        {/* parking markers */}
-        {parkingCoordinatesArray.map((coord, index) => (
-          <Marker key={index} position={coord} icon={customIcon} >
+        <MarkerClusterGroup
+          chunkedLoading
+          disableClusteringAtZoom={18}
+          animate={true}
+          spiderfyOnMaxZoom={false}
+        >
+          <Marker position={[30.416991, 77.966727]}>
             <Popup>
-              <h2>Parking {index + 1}</h2>
+              <h2>Mac</h2>
             </Popup>
           </Marker>
-        ))}
+
+          <Marker position={[30.416502, 77.968515]}>
+            <Popup>
+              <h2>Gandhi Chowk</h2>
+            </Popup>
+          </Marker>
+
+          {/* parking markers */}
+          {parkingCoordinatesArray.map((coord, index) => (
+            <Marker key={index} position={coord} icon={customIcon}>
+              <Popup>
+                <h2>Parking {index + 1}</h2>
+              </Popup>
+            </Marker>
+          ))}
         </MarkerClusterGroup>
 
         <Polyline positions={coordinates1} color="red" />
         <Polyline positions={coordinates2} color="blue" />
         <Polyline positions={coordinates3} color="green" />
       </MapContainer>
-      <button onClick={() => console.log("Logged Coordinates:", loggedCoordinates)}>
+      <button
+        onClick={() => console.log("Logged Coordinates:", loggedCoordinates)}
+      >
         Log All Coordinates
       </button>
     </div>
@@ -253,4 +242,3 @@ const Map = () => {
 // ---------------------------- EXPORT ----------------------------
 
 export default Map;
-
