@@ -2,17 +2,17 @@ import Map from "./Map/Map";
 import Parkings from "./Parking/Parking";
 import Header from "./Header/Header";
 import Navigation from "./Navigation/Navigation";
-// import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 import styles from "./Home.module.css";
 
-// import { useMapData } from "../../utils/MapDataContext";
+import { useMapData } from "../../utils/MapDataContext";
 
 const Home = () => {
   // ---------------------------- DATA EXTRACTION ----------------------------
-  // const { isLoading } = useMapData();
+  const { mapLoading } = useMapData();
 
-  // if (isLoading) return <LoadingSpinner />;
+  if (mapLoading) return <LoadingSpinner />;
 
   // ---------------------------- CSS ----------------------------
 

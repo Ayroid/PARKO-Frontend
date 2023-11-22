@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.mainDiv::-webkit-scrollbar {
+  width: 0;
+}
+
 .topHeading {
   font-size: 1.5rem;
   font-weight: 600;

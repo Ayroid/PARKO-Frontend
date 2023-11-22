@@ -1,4 +1,9 @@
 .mainDiv {
-  max-height: 100dvh;
-  /* overflow-y: hidden; */
+  max-height: 100vh;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
+
+.mainDiv::-webkit-scrollbar {
+  width: 0;
 }

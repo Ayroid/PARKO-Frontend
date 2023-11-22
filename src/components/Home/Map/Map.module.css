@@ -10,7 +10,11 @@
   position: relative;
 }
 
+.mainDiv::-webkit-scrollbar {
+  width: 0;
+}
+
 .mapContainer {
   width: 100dvw;
-  height: 50dvh;
+  height: 50vh;
 }

@@ -5,13 +5,11 @@ import {
   Marker,
   Popup,
   Polyline,
-  // useMapEvents,
+  useMapEvents,
 } from "react-leaflet";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
-
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 
 import styles from "./Map.module.css";
 
@@ -111,40 +109,24 @@ const Map = () => {
     [30.418407550160545, 77.96965205669406],
   ];
 
-  let { parkingCoordinates, mapLoading } = useMapData();
-
-  if (mapLoading) {
-    return <LoadingSpinner />;
-  }
+  let { parkingCoordinates } = useMapData();
 
   // let parkingCoordinates1 = parkingCoordinates.slice(36, 85);
 
-  // const handleMapClick = (e) => {
-  //   const { lat, lng } = e.latlng;
-  //   const clickedCoordinates = [lat, lng];
-  //   const status = "parked";
+  const handleMapClick = (e) => {
+    const { lat, lng } = e.latlng;
+    const clickedCoordinates = [lat, lng];
 
-  //   // Update parkingCoordinatesArray with the new object
-  //   setParkingCoordinatesArray((prev) => [
-  //     ...prev,
-  //     { coordinates: clickedCoordinates, status: status },
-  //   ]);
+    console.log(clickedCoordinates);
+  };
 
-  //   // Log the updated state
-  //   console.log(parkingCoordinatesArray);
-  // };
+  const MapClickHandler = () => {
+    useMapEvents({
+      click: handleMapClick,
+    });
 
-  // const deleteParkingSpot = () => {
-  //   setParkingCoordinatesArray((prev) => prev.slice(0, -1));
-  // };
-
-  // const MapClickHandler = () => {
-  //   const map = useMapEvents({
-  //     click: handleMapClick,
-  //   });
-
-  //   return null; // This hook doesn't render anything, so return null
-  // };
+    return null; // This hook doesn't render anything, so return null
+  };
 
   // ---------------------------- FETCHING DATA ----------------------------
 
@@ -170,6 +152,10 @@ const Map = () => {
     iconSize: [20, 20],
   });
 
+  const handleMarkerClick = (markerId, e) => {
+    console.log(`Marker ${markerId} clicked at:`, e.latlng);
+  };
+
   // ---------------------------- JSX ----------------------------
 
   return (
@@ -184,7 +170,7 @@ const Map = () => {
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* <MapClickHandler /> */}
+        <MapClickHandler />
 
         <MemoizedMarkerClusterGroup
           chunkedLoading={false}
@@ -198,7 +184,11 @@ const Map = () => {
             </Popup>
           </Marker>
 
-          <Marker position={[30.416502, 77.968515]}>
+          <Marker
+            position={[30.416502, 77.968515]}
+            key={"GC"}
+            onclick={(e) => handleMarkerClick("GC", e)}
+          >
             <Popup>
               <h2>Gandhi Chowk</h2>
             </Popup>

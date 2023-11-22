@@ -43,8 +43,9 @@
   cursor: pointer;
 }
 
-.parkingDiv{
-    max-height: 32dvh;
-    overflow-y: auto;
-    padding: 0 1rem 1rem 1rem;
+.parkingDiv {
+  max-height: 40vh;
+  overflow-y: auto;
+  padding: 0 1rem 1rem 1rem;
+  scroll-behavior: smooth;
 }

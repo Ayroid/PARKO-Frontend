@@ -11,6 +11,10 @@
   user-select: none;
 }
 
+.navigation::-webkit-scrollbar {
+  width: 0;
+}
+
 .navigation > nav {
   width: 100dvw;
 }

@@ -1,16 +1,11 @@
 import styles from "./Parking.module.css";
 
+import { useMapData } from "../../../utils/MapDataContext";
+
 const Parkings = () => {
-  // dummy data
-  const parkingData = [
-    { parkingNo: 1, parkingBlock: "A", status: "available" },
-    { parkingNo: 2, parkingBlock: "B", status: "available" },
-    { parkingNo: 3, parkingBlock: "C", status: "available" },
-    { parkingNo: 4, parkingBlock: "D", status: "available" },
-    { parkingNo: 5, parkingBlock: "E", status: "available" },
-    { parkingNo: 4, parkingBlock: "D", status: "available" },
-    { parkingNo: 4, parkingBlock: "D", status: "available" },
-  ];
+  // ---------------------------- USE CONTEXT ----------------------------
+
+  const { parkingCoordinates } = useMapData();
 
   // ---------------------------- CSS ----------------------------
 
@@ -31,20 +26,20 @@ const Parkings = () => {
 
       <div className={parkingDiv}>
         <ul>
-          {parkingData.map((parking, index) => (
+          {parkingCoordinates.map((parking, index) => (
             <li key={index} className="pb-3">
               <div className="flex justify-between items-center group hover:bg-gray-100 rounded">
                 <div>
                   <span className="font-bold">
-                    Parking No: {parking.parkingNo}
+                    Parking No: {parking.parkingNumber}
                   </span>{" "}
                   <br />
-                  <span className="text-sm">Block: {parking.parkingBlock}</span>
+                  <span className="text-sm">NearBy: {parking.nearBy}</span>
                 </div>
 
                 <div className="flex gap-5 items-center">
                   <div className="bg-green-500 h-2 w-2 rounded"></div>
-                  <div className="font-bold">{parking.status}</div>
+                  <div className="font-bold">{parking.parkingStatus}</div>
                 </div>
               </div>
               <div className="bg-gray-200 h-1 w-full"></div>
