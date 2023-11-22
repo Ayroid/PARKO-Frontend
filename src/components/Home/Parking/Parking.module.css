@@ -46,7 +46,7 @@
 .parkingsDiv {
   max-height: 40vh;
   overflow-y: auto;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0 0.5rem 1rem 0.5rem;
   scroll-behavior: smooth;
 }
 
@@ -61,10 +61,12 @@
   border-bottom: 2px solid rgba(128, 128, 128, 0.2);
   padding: 0.3rem 0.5rem;
   border-radius: 10px;
+  transition: 0.2s all;
 }
 
 .parkingDiv:hover{
   background-color: #cecece50;
+  transition: 0.2s all;
 }
 
 .parkingInfo {
