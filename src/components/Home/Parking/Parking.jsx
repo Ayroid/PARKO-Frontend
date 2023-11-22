@@ -13,7 +13,12 @@ const Parkings = () => {
   const mainHeader = [styles.mainHeader].join("");
   const mainHeading = [styles.mainHeading].join("");
   const filterButton = [styles.filterButton].join("");
+  const parkingsDiv = [styles.parkingsDiv].join("");
   const parkingDiv = [styles.parkingDiv].join("");
+  const parkingInfo = [styles.parkingInfo].join("");
+  const parkingStatus = [styles.parkingStatus].join("");
+  const parkingStatusColor = [styles.parkingStatusColor].join("");
+  const parkingStatusText = [styles.parkingStatusText].join("");
 
   // ---------------------------- JSX ----------------------------
 
@@ -24,25 +29,37 @@ const Parkings = () => {
         <div className={filterButton}>FILTER</div>
       </div>
 
-      <div className={parkingDiv}>
+      <div className={parkingsDiv}>
         <ul>
           {parkingCoordinates.map((parking, index) => (
-            <li key={index} className="pb-3">
-              <div className="flex justify-between items-center group hover:bg-gray-100 rounded">
-                <div>
-                  <span className="font-bold">
-                    Parking No: {parking.parkingNumber}
-                  </span>{" "}
-                  <br />
-                  <span className="text-sm">NearBy: {parking.nearBy}</span>
+            <li key={index}>
+              <div className={parkingDiv}>
+                <div className={parkingInfo}>
+                  <span>Parking No - {parking.parkingNumber}</span>
+                  <span>
+                    <strong>Near - </strong> {parking.nearBy}
+                  </span>
                 </div>
 
-                <div className="flex gap-5 items-center">
-                  <div className="bg-green-500 h-2 w-2 rounded"></div>
-                  <div className="font-bold">{parking.parkingStatus}</div>
+                <div className={parkingStatus}>
+                  <div
+                    className={parkingStatusColor}
+                    style={{
+                      backgroundColor:
+                        parking.parkingStatus === "parked"
+                          ? "#00ff00" // green
+                          : parking.parkingStatus === "vacant"
+                          ? "#000000" // black
+                          : parking.parkingStatus === "booked"
+                          ? "#ffff00" // yellow
+                          : "#ff0000", // red
+                    }}
+                  ></div>
+                  <div className={parkingStatusText}>
+                    {parking.parkingStatus}
+                  </div>
                 </div>
               </div>
-              <div className="bg-gray-200 h-1 w-full"></div>
             </li>
           ))}
         </ul>

@@ -26,11 +26,11 @@ function App() {
           path="/"
           element={
             <ProtectedRoute path="/">
-              <MapDataContextProvider>
-                <UserDataContextProvider>
+              <UserDataContextProvider>
+                <MapDataContextProvider>
                   <Home />
-                </UserDataContextProvider>
-              </MapDataContextProvider>
+                </MapDataContextProvider>
+              </UserDataContextProvider>
             </ProtectedRoute>
           }
         />
@@ -39,7 +39,9 @@ function App() {
           element={
             <ProtectedRoute path="/profile">
               <UserDataContextProvider>
-                <Profile />
+                <MapDataContextProvider>
+                  <Profile />
+                </MapDataContextProvider>
               </UserDataContextProvider>
             </ProtectedRoute>
           }
@@ -50,7 +52,9 @@ function App() {
           element={
             <ProtectedRoute path="/settings">
               <UserDataContextProvider>
-                <Settings />
+                <MapDataContextProvider>
+                  <Settings />
+                </MapDataContextProvider>
               </UserDataContextProvider>
             </ProtectedRoute>
           }

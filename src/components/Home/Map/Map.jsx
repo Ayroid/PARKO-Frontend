@@ -15,16 +15,41 @@ import styles from "./Map.module.css";
 
 import { useMapData } from "../../../utils/MapDataContext";
 
-import greenMarker from "../../../assets/marker/greenlocation.png";
-import yellowMarker from "../../../assets/marker/yellowlocation.png";
-import blackMarker from "../../../assets/marker/blacklocation.png";
-import redMarker from "../../../assets/marker/redlocation.png";
+// ---------------------------- MARKER ICONS ----------------------------
+
+const greenIcon = new Icon({
+  iconUrl: "/icons/marker/greenlocation.png",
+  iconSize: [20, 20],
+});
+
+const blackIcon = new Icon({
+  iconUrl: "/icons/marker/blacklocation.png",
+  iconSize: [20, 20],
+});
+
+const yellowIcon = new Icon({
+  iconUrl: "/icons/marker/yellowlocation.png",
+  iconSize: [20, 20],
+});
+
+const redIcon = new Icon({
+  iconUrl: "/icons/marker/redlocation.png",
+  iconSize: [20, 20],
+});
+
+// ---------------------------- COMPONENT ----------------------------
 
 const Map = () => {
+  // ---------------------------- USE CONTEXT ----------------------------
+
+  let { parkingCoordinates } = useMapData();
+
   // ---------------------------- CSS ----------------------------
 
   const mainDiv = [styles.mainDiv].join("");
   const mapContainer = [styles.mapContainer].join("");
+
+  // ---------------------------- POLYLINE COORDINATES ----------------------------
 
   const coordinates1 = [
     [30.415797829416945, 77.9663121700287],
@@ -109,9 +134,7 @@ const Map = () => {
     [30.418407550160545, 77.96965205669406],
   ];
 
-  let { parkingCoordinates } = useMapData();
-
-  // let parkingCoordinates1 = parkingCoordinates.slice(36, 85);
+  // ---------------------------- MAP CLICK HANDLER ----------------------------
 
   const handleMapClick = (e) => {
     const { lat, lng } = e.latlng;
@@ -125,36 +148,12 @@ const Map = () => {
       click: handleMapClick,
     });
 
-    return null; // This hook doesn't render anything, so return null
+    return null;
   };
 
-  // ---------------------------- FETCHING DATA ----------------------------
+  // ---------------------------- MEMOIZING CLUSTER GROUP ----------------------------
 
   const MemoizedMarkerClusterGroup = memo(MarkerClusterGroup);
-
-  const greenIcon = new Icon({
-    iconUrl: greenMarker,
-    iconSize: [20, 20],
-  });
-
-  const blackIcon = new Icon({
-    iconUrl: blackMarker,
-    iconSize: [20, 20],
-  });
-
-  const yellowIcon = new Icon({
-    iconUrl: yellowMarker,
-    iconSize: [20, 20],
-  });
-
-  const redIcon = new Icon({
-    iconUrl: redMarker,
-    iconSize: [20, 20],
-  });
-
-  const handleMarkerClick = (markerId, e) => {
-    console.log(`Marker ${markerId} clicked at:`, e.latlng);
-  };
 
   // ---------------------------- JSX ----------------------------
 
@@ -184,11 +183,7 @@ const Map = () => {
             </Popup>
           </Marker>
 
-          <Marker
-            position={[30.416502, 77.968515]}
-            key={"GC"}
-            onclick={(e) => handleMarkerClick("GC", e)}
-          >
+          <Marker position={[30.416502, 77.968515]} key={"GC"}>
             <Popup>
               <h2>Gandhi Chowk</h2>
             </Popup>
