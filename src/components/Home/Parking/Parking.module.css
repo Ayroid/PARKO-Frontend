@@ -59,7 +59,12 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid rgba(128, 128, 128, 0.2);
-  padding-bottom: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 10px;
+}
+
+.parkingDiv:hover{
+  background-color: #cecece50;
 }
 
 .parkingInfo {
