@@ -14,7 +14,7 @@ import { useUserData } from "../../utils/UserDataContext";
 const Profile = () => {
   // ---------------------------- DATA EXTRACTION ----------------------------
 
-  const { userData, vehicleData, isLoading } = useUserData();
+  const { userData, vehicleData, userLoading } = useUserData();
 
   // ---------------------------- STATE ----------------------------
 
@@ -24,7 +24,7 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  if (isLoading) return <LoadingSpinner />;
+  if (userLoading) return <LoadingSpinner />;
 
   // ---------------------------- FUNCTIONS ----------------------------
 
@@ -61,7 +61,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <UserInformation data={{ userData, isLoading }} />
+      <UserInformation data={{ userData, userLoading }} />
 
       <div className={contentDiv}>
         <Cars data={{ vehicleData }} />

@@ -7,6 +7,7 @@ import Settings from "./components/Settings/Settings";
 import "./App.css";
 
 import { UserDataContextProvider } from "./utils/UserDataContext.jsx";
+import { MapDataContextProvider } from "./utils/MapDataContext.jsx";
 
 function App() {
   return (
@@ -25,9 +26,11 @@ function App() {
           path="/"
           element={
             <ProtectedRoute path="/">
-              <UserDataContextProvider>
-                <Home />
-              </UserDataContextProvider>
+              <MapDataContextProvider>
+                <UserDataContextProvider>
+                  <Home />
+                </UserDataContextProvider>
+              </MapDataContextProvider>
             </ProtectedRoute>
           }
         />

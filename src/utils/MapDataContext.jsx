@@ -4,32 +4,27 @@ import axios from "axios";
 
 // ---------------------------- CONTEXT ----------------------------
 
-const UserDataContext = createContext();
+const MapDataContext = createContext();
 
 // ---------------------------- CONTEXT PROVIDER ----------------------------
 
-const UserDataContextProvider = ({ children }) => {
+const MapDataContextProvider = ({ children }) => {
   // ---------------------------- STATE ----------------------------
 
-  const [userData, setUserData] = useState({
-    username: "",
-    email: "",
-    sapid: "",
-    phone: "",
-  });
-  const [vehicleData, setVehicleData] = useState([]);
-  const [userLoading, setUserLoading] = useState(true);
+  const [parkingCoordinates, setParkingCoordinates] = useState([]);
+  const [mapLoading, setmapLoading] = useState(true);
 
   // ---------------------------- FETCHING DATA ----------------------------
 
   const fetchData = async () => {
     try {
       const getUserUrl =
-        import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/getUser";
+        import.meta.env.VITE_BACKEND_SERVER_URL +
+        "/api/parkingSpot/getParkingSpot";
       const jwtToken = localStorage.getItem("jwtToken");
 
       if (jwtToken == null) {
-        setUserLoading(false);
+        setmapLoading(false);
         return;
       }
       const response = await axios.post(getUserUrl, null, {
@@ -38,18 +33,11 @@ const UserDataContextProvider = ({ children }) => {
         },
       });
 
-      setUserData({
-        username: response.data.username,
-        email: response.data.email,
-        sapid: response.data.sapid,
-        phone: response.data.phone,
-      });
-
-      setVehicleData(response.data.vehicles);
+      setParkingCoordinates(response.data.parkingSpots);
     } catch (err) {
       console.log(err);
     } finally {
-      setUserLoading(false);
+      setmapLoading(false);
     }
   };
 
@@ -61,40 +49,38 @@ const UserDataContextProvider = ({ children }) => {
 
   // ---------------------------- FUNCTIONS ----------------------------
 
-  const reFetchUserData = () => {
+  const reFetchMapData = () => {
     fetchData();
   };
 
   // ---------------------------- JSX ----------------------------
 
   return (
-    <UserDataContext.Provider
-      value={{ userData, vehicleData, userLoading, reFetchUserData }}
+    <MapDataContext.Provider
+      value={{ parkingCoordinates, mapLoading, reFetchMapData }}
     >
       {children}
-    </UserDataContext.Provider>
+    </MapDataContext.Provider>
   );
 };
 
 // ---------------------------- CUSTOM HOOK ----------------------------
 
-const useUserData = () => {
-  const context = useContext(UserDataContext);
+const useMapData = () => {
+  const context = useContext(MapDataContext);
   if (context === undefined) {
-    throw new Error(
-      "useUserData must be used within a UserDataContextProvider"
-    );
+    throw new Error("useMapData must be used within a MapDataContextProvider");
   }
   return context;
 };
 
 // ---------------------------- PROPS ----------------------------
 
-UserDataContextProvider.propTypes = {
+MapDataContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
 // ---------------------------- EXPORT ----------------------------
 
 // eslint-disable-next-line react-refresh/only-export-components
-export { useUserData, UserDataContextProvider };
+export { useMapData, MapDataContextProvider };

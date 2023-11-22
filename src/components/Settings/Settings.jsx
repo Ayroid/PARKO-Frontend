@@ -13,7 +13,7 @@ import styles from "./Settings.module.css";
 const Settings = () => {
   // ---------------------------- DATA EXTRACTION ----------------------------
 
-  const { userData, isLoading, reFetchUserData } = useUserData();
+  const { userData, userLoading, reFetchUserData } = useUserData();
 
   // ---------------------------- STATE ----------------------------
 
@@ -30,15 +30,15 @@ const Settings = () => {
   // ---------------------------- USE EFFECT ----------------------------
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!userLoading) {
       setUserName(userData.username);
       setEmail(userData.email);
       setSapid(userData.sapid);
       setPhone(userData.phone);
     }
-  }, [userData, isLoading]);
+  }, [userData, userLoading]);
 
-  if (isLoading) return <LoadingSpinner />;
+  if (userLoading) return <LoadingSpinner />;
 
   // ---------------------------- HANDLE CHANGE FUNCTIONS ----------------------------
 
