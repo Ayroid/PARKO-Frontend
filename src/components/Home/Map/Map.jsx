@@ -111,11 +111,13 @@ const Map = () => {
     [30.418407550160545, 77.96965205669406],
   ];
 
-  const { parkingCoordinates, mapLoading } = useMapData();
+  let { parkingCoordinates, mapLoading } = useMapData();
 
   if (mapLoading) {
     return <LoadingSpinner />;
   }
+
+  // let parkingCoordinates1 = parkingCoordinates.slice(36, 85);
 
   // const handleMapClick = (e) => {
   //   const { lat, lng } = e.latlng;
@@ -173,7 +175,7 @@ const Map = () => {
   return (
     <div className={mainDiv}>
       <MapContainer
-        center={[30.416502, 77.968515]}
+        center={[30.41620924289172, 77.96954673496886]}
         zoom={18}
         className={mapContainer}
       >
@@ -185,7 +187,7 @@ const Map = () => {
         {/* <MapClickHandler /> */}
 
         <MemoizedMarkerClusterGroup
-          chunkedLoading
+          chunkedLoading={false}
           disableClusteringAtZoom={18}
           animate={true}
           spiderfyOnMaxZoom={false}
@@ -203,27 +205,29 @@ const Map = () => {
           </Marker>
 
           {/* parking markers */}
-          {parkingCoordinates.map(({ coordinates, parkingStatus }, index) => (
-            <Marker
-              key={index}
-              position={coordinates}
-              icon={
-                parkingStatus === "parked"
-                  ? greenIcon
-                  : parkingStatus === "booked"
-                  ? yellowIcon
-                  : parkingStatus === "vacant"
-                  ? blackIcon
-                  : parkingStatus === "unavailable"
-                  ? redIcon
-                  : null
-              }
-            >
-              <Popup>
-                <h2>Parking {index + 1}</h2>
-              </Popup>
-            </Marker>
-          ))}
+          {parkingCoordinates.map(
+            ({ parkingNumber, coordinates, parkingStatus }, index) => (
+              <Marker
+                key={index}
+                position={coordinates}
+                icon={
+                  parkingStatus === "parked"
+                    ? greenIcon
+                    : parkingStatus === "booked"
+                    ? yellowIcon
+                    : parkingStatus === "vacant"
+                    ? blackIcon
+                    : parkingStatus === "unavailable"
+                    ? redIcon
+                    : null
+                }
+              >
+                <Popup>
+                  <h2>Parking {parkingNumber}</h2>
+                </Popup>
+              </Marker>
+            )
+          )}
         </MemoizedMarkerClusterGroup>
 
         <Polyline positions={coordinates1} color="red" />

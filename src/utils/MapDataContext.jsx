@@ -33,7 +33,7 @@ const MapDataContextProvider = ({ children }) => {
         },
       });
 
-      setParkingCoordinates(response.data.parkingSpots);
+      setParkingCoordinates(response.data.parkingSpots.slice(36, 85));
     } catch (err) {
       console.log(err);
     } finally {
