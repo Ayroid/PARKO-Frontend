@@ -1,7 +1,9 @@
 .mainDiv {
-  max-height: 100vh;
+  max-height: 100dvh;
+  height: 100%;
   overflow: scroll;
   scroll-behavior: smooth;
+  background-color: white;
 }
 
 .mainDiv::-webkit-scrollbar {
