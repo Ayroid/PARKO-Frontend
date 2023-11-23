@@ -21,7 +21,7 @@ const Settings = () => {
   const [email, setEmail] = useState("");
   const [sapid, setSapid] = useState("");
   const [phone, setPhone] = useState("");
-  // const [profilePic, setProfilePic] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
 
   const [userNameUpdated, setUserNameUpdated] = useState(false);
   const [emailUpdated, setEmailUpdated] = useState(false);
@@ -81,26 +81,32 @@ const Settings = () => {
     setPhone(event.target.value);
   };
 
-  const handleImageChange = () => {
-    var fileInput = document.getElementById("fileInput");
-    var imagePreview = document.getElementById("imagePreview");
-
-    var file = fileInput.files[0];
-    console.log(file);
-
+  const handleImageChange = async (e) => {
+    let imagePreview = document.getElementById("imagePreview");
+    let file = e.target.files[0];
     if (file) {
-      var reader = new FileReader();
-
+      let reader = new FileReader();
       reader.onload = function (e) {
-        // Update the image preview with the selected image
         imagePreview.src = e.target.result;
-        setProfilePic(file);
-        console.log(file);
-        setProfilePicUpdated(true);
       };
-
-      // Read the selected file as a data URL
       reader.readAsDataURL(file);
+    }
+    const token = localStorage.getItem("jwtToken");
+    const url =
+      import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/updateProfilePic";
+    const data = new FormData();
+    data.append("profilePic", e.target.files[0]);
+
+    const response = await axios.post(url, data, {
+      headers: {
+        Authorization: token,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    if (response.status === 200) {
+      toast.success("Profile picture updated successfully");
+      reFetchUserData();
     }
   };
 
@@ -190,8 +196,9 @@ const Settings = () => {
         <div className={profilePicDiv}>
           <img
             className={profilePicImg}
-            src="/icons/profileicon.jpg"
-            alt="profile pic"
+            src={
+              profilePic == "-" ? "public/icons/profileicon.jpg" : profilePic
+            }
             id="imagePreview"
           />
           <img className={addPic} src="/icons/add.png" alt="addProfilePic" />

@@ -43,6 +43,7 @@ const UserDataContextProvider = ({ children }) => {
         email: response.data.email,
         sapid: response.data.sapid,
         phone: response.data.phone,
+        profilePic: response.data.profilePic,
       });
 
       setVehicleData(response.data.vehicles);
