@@ -197,7 +197,7 @@ const Settings = () => {
           <img
             className={profilePicImg}
             src={
-              profilePic == "-" ? "public/icons/profileicon.jpg" : profilePic
+              profilePic == "" ? "public/icons/profileicon.jpg" : profilePic
             }
             id="imagePreview"
           />
