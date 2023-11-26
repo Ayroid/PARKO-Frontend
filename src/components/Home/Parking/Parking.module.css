@@ -96,9 +96,8 @@
 }
 
 .parkingStatusColor {
-  background-color: red;
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.6rem;
+  height: 0.6rem;
   border-radius: 100%;
   filter: drop-shadow(0 0 0.5px rgb(0, 0, 0));
 }

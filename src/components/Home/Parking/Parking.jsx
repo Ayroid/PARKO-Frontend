@@ -46,13 +46,13 @@ const Parkings = () => {
                     className={parkingStatusColor}
                     style={{
                       backgroundColor:
-                        parking.parkingStatus === "parked"
-                          ? "#00ff00" // green
-                          : parking.parkingStatus === "vacant"
-                          ? "#000000" // black
+                        parking.parkingStatus === "vacant"
+                          ? "#00ff00"
+                          : parking.parkingStatus === "parked"
+                          ? "#000000"
                           : parking.parkingStatus === "booked"
-                          ? "#ffff00" // yellow
-                          : "#ff0000", // red
+                          ? "#ffff00"
+                          : "#ff0000",
                     }}
                   ></div>
                   <div className={parkingStatusText}>

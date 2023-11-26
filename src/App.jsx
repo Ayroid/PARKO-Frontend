@@ -25,38 +25,38 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute path="/">
+            <MapDataContextProvider>
               <UserDataContextProvider>
-                <MapDataContextProvider>
+                <ProtectedRoute path="/">
                   <Home />
-                </MapDataContextProvider>
+                </ProtectedRoute>
               </UserDataContextProvider>
-            </ProtectedRoute>
+            </MapDataContextProvider>
           }
         />
         <Route
           path="/profile"
           element={
-            <ProtectedRoute path="/profile">
+            <MapDataContextProvider>
               <UserDataContextProvider>
-                <MapDataContextProvider>
+                <ProtectedRoute path="/profile">
                   <Profile />
-                </MapDataContextProvider>
+                </ProtectedRoute>
               </UserDataContextProvider>
-            </ProtectedRoute>
+            </MapDataContextProvider>
           }
         />
 
         <Route
           path="/settings"
           element={
-            <ProtectedRoute path="/settings">
+            <MapDataContextProvider>
               <UserDataContextProvider>
-                <MapDataContextProvider>
+                <ProtectedRoute path="/settings">
                   <Settings />
-                </MapDataContextProvider>
+                </ProtectedRoute>
               </UserDataContextProvider>
-            </ProtectedRoute>
+            </MapDataContextProvider>
           }
         />
       </Routes>
