@@ -42,8 +42,6 @@ const redIcon = new Icon({
   iconSize: [20, 20],
 });
 
-// ---------------------------- CUSTOM POPUP ICONS ----------------------------
-
 // ---------------------------- COMPONENT ----------------------------
 
 const Map = () => {
@@ -234,7 +232,7 @@ const Map = () => {
                   key={index}
                   position={coordinates}
                   icon={
-                    parkingStatus === "vacant"
+                    parkingStatus === "available"
                       ? greenIcon
                       : parkingStatus === "booked"
                       ? yellowIcon
@@ -253,7 +251,7 @@ const Map = () => {
                         {parkingStatus.charAt(0).toUpperCase() +
                           parkingStatus.slice(1)}
                       </p>
-                      {parkingStatus === "vacant" && (
+                      {parkingStatus === "available" && (
                         <p onClick={() => bookParkingSpot(parkingNumber)}>
                           Book Now!
                         </p>
