@@ -1,13 +1,28 @@
-import styles from "./Parking.module.css";
 
+import styles from "./Parking.module.css";
+import { useState } from "react";
 import { useMapData } from "../../../utils/MapDataContext";
 
 const Parkings = () => {
-  // ---------------------------- USE CONTEXT ----------------------------
-
   const { parkingCoordinates } = useMapData();
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState('all'); // Default to 'all'
 
-  // ---------------------------- CSS ----------------------------
+  const filterOptions = [
+    { label: 'ALL', value: 'all' },
+    { label: 'Unavailable', value: 'unavailable' },
+    { label: 'Booked', value: 'booked' },
+    { label: 'Parked', value: 'parked' },
+  ];
+
+  const handleFilter = (filterValue) => {
+    setSelectedFilter(filterValue);
+    setIsOpen(false);
+  };
+
+  const filteredParkings = selectedFilter === 'all'
+    ? parkingCoordinates
+    : parkingCoordinates.filter(parking => parking.parkingStatus === selectedFilter);
 
   const mainDiv = [styles.mainDiv].join("");
   const mainHeader = [styles.mainHeader].join("");
@@ -19,19 +34,31 @@ const Parkings = () => {
   const parkingStatus = [styles.parkingStatus].join("");
   const parkingStatusColor = [styles.parkingStatusColor].join("");
   const parkingStatusText = [styles.parkingStatusText].join("");
-
-  // ---------------------------- JSX ----------------------------
+  const dropDown = [styles.dropDown].join(" ");
+  const dropDownItems = [styles.dropDownItems].join("");
 
   return (
     <div className={mainDiv}>
       <div className={mainHeader}>
         <h2 className={mainHeading}>Parking Spots</h2>
-        <div className={filterButton}>FILTER</div>
+        <div className={filterButton} onClick={() => setIsOpen(!isOpen)}>
+          FILTER
+        </div>
+
+        {isOpen && (
+          <ul className={dropDown}>
+            {filterOptions.map((option) => (
+              <li key={option.value} className={dropDownItems} onClick={() => handleFilter(option.value)}>
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <div className={parkingsDiv}>
         <ul>
-          {parkingCoordinates.map((parking, index) => (
+          {filteredParkings.map((parking, index) => (
             <li key={index}>
               <div className={parkingDiv}>
                 <div className={parkingInfo}>
@@ -67,7 +94,5 @@ const Parkings = () => {
     </div>
   );
 };
-
-// ---------------------------- EXPORT ----------------------------
 
 export default Parkings;

@@ -212,7 +212,7 @@ const Map = () => {
           animate={true}
           spiderfyOnMaxZoom={false}
         >
-          <Marker position={[30.416991, 77.966727]}>
+          {/* <Marker position={[30.416991, 77.966727]}>
             <Popup>
               <h2>Mac</h2>
             </Popup>
@@ -222,7 +222,7 @@ const Map = () => {
             <Popup>
               <h2>Gandhi Chowk</h2>
             </Popup>
-          </Marker>
+          </Marker> */}
 
           {/* parking markers */}
           {parkingCoordinates.map(

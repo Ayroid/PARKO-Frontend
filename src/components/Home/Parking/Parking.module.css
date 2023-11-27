@@ -107,3 +107,67 @@
   font-weight: 600;
   text-transform: capitalize;
 }
+
+
+
+.dropDown {
+  display: flex; /* Use flex container to enable flex properties */
+  flex-direction: column;
+  justify-content: center;  /* Align items vertically center */
+  align-items: center;      /* Align items horizontally center */
+  bottom: 15vh;
+  right: 1.5vw;
+  min-width: 9rem;
+  max-width: 12rem;
+  background-color: #fddc00;
+  z-index: 2;
+  gap: 0.5rem;
+  position: absolute;
+  border-radius: 8px;
+  padding: 0.3rem 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dropDownAnimation {
+  animation: dropDown 0.3s;
+}
+
+.dropDownAnimationReverse {
+  animation: dropDownReverse 0.3s;
+}
+
+@keyframes dropDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropDownReverse {
+  0% {
+    /* opacity: 0 */
+    transform: translateY(0);
+  }
+  100% {
+    /* opacity: 1; */
+    transform: translateY(-150%);
+  }
+}
+
+.dropDownItems {
+  color: #000000;
+  font-weight: 600;
+}
+
+.dropDownItems:active {
+  color: #6b6b6b;
+  font-weight: 600;
+}
+
+.dropDownItemsText {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
