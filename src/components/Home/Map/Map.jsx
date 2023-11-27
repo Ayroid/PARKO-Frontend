@@ -11,22 +11,51 @@ import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
 
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import axios from "axios";
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./Map.module.css";
 
 import { useMapData } from "../../../utils/MapDataContext";
 
-import greenMarker from "../../../assets/marker/greenlocation.png";
-import yellowMarker from "../../../assets/marker/yellowlocation.png";
-import blackMarker from "../../../assets/marker/blacklocation.png";
-import redMarker from "../../../assets/marker/redlocation.png";
+// ---------------------------- CUSTOM MARKER ICONS ----------------------------
+
+const greenIcon = new Icon({
+  iconUrl: "/icons/marker/greenlocation.png",
+  iconSize: [20, 20],
+});
+
+const blackIcon = new Icon({
+  iconUrl: "/icons/marker/blacklocation.png",
+  iconSize: [20, 20],
+});
+
+const yellowIcon = new Icon({
+  iconUrl: "/icons/marker/yellowlocation.png",
+  iconSize: [20, 20],
+});
+
+const redIcon = new Icon({
+  iconUrl: "/icons/marker/redlocation.png",
+  iconSize: [20, 20],
+});
+
+// ---------------------------- COMPONENT ----------------------------
 
 const Map = () => {
+  // ---------------------------- USE CONTEXT ----------------------------
+
+  const { parkingCoordinates, reFetchMapData } = useMapData();
+
   // ---------------------------- CSS ----------------------------
 
   const mainDiv = [styles.mainDiv].join("");
   const mapContainer = [styles.mapContainer].join("");
+  const customPopUp = [styles.customPopUp].join("");
+
+  // ---------------------------- POLYLINE COORDINATES ----------------------------
 
   const coordinates1 = [
     [30.415797829416945, 77.9663121700287],
@@ -111,69 +140,62 @@ const Map = () => {
     [30.418407550160545, 77.96965205669406],
   ];
 
-  const { parkingCoordinates, mapLoading } = useMapData();
-
-  if (mapLoading) {
-    return <LoadingSpinner />;
-  }
+  // ---------------------------- MAP CLICK HANDLER ----------------------------
 
   // const handleMapClick = (e) => {
   //   const { lat, lng } = e.latlng;
   //   const clickedCoordinates = [lat, lng];
-  //   const status = "parked";
 
-  //   // Update parkingCoordinatesArray with the new object
-  //   setParkingCoordinatesArray((prev) => [
-  //     ...prev,
-  //     { coordinates: clickedCoordinates, status: status },
-  //   ]);
-
-  //   // Log the updated state
-  //   console.log(parkingCoordinatesArray);
-  // };
-
-  // const deleteParkingSpot = () => {
-  //   setParkingCoordinatesArray((prev) => prev.slice(0, -1));
+  //   console.log(clickedCoordinates);
   // };
 
   // const MapClickHandler = () => {
-  //   const map = useMapEvents({
+  //   useMapEvents({
   //     click: handleMapClick,
   //   });
 
-  //   return null; // This hook doesn't render anything, so return null
+  //   return null;
   // };
 
-  // ---------------------------- FETCHING DATA ----------------------------
+  // ---------------------------- BOOK PARKING SPOT ----------------------------
+
+  const bookParkingSpot = async (parkingNumber) => {
+    try {
+      const bookingURL =
+        import.meta.env.VITE_BACKEND_SERVER_URL +
+        "/api/parkingSpot/bookParkingSpot";
+      const token = localStorage.getItem("jwtToken");
+
+      const response = await axios.post(
+        bookingURL,
+        { parkingNumber },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        reFetchMapData();
+        toast.success("Parking spot booked successfully");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Error booking parking spot");
+    }
+  };
+
+  // ---------------------------- MEMOIZING CLUSTER GROUP ----------------------------
 
   const MemoizedMarkerClusterGroup = memo(MarkerClusterGroup);
-
-  const greenIcon = new Icon({
-    iconUrl: greenMarker,
-    iconSize: [20, 20],
-  });
-
-  const blackIcon = new Icon({
-    iconUrl: blackMarker,
-    iconSize: [20, 20],
-  });
-
-  const yellowIcon = new Icon({
-    iconUrl: yellowMarker,
-    iconSize: [20, 20],
-  });
-
-  const redIcon = new Icon({
-    iconUrl: redMarker,
-    iconSize: [20, 20],
-  });
 
   // ---------------------------- JSX ----------------------------
 
   return (
     <div className={mainDiv}>
       <MapContainer
-        center={[30.416502, 77.968515]}
+        center={[30.41620924289172, 77.96954673496886]}
         zoom={18}
         className={mapContainer}
       >
@@ -185,7 +207,7 @@ const Map = () => {
         {/* <MapClickHandler /> */}
 
         <MemoizedMarkerClusterGroup
-          chunkedLoading
+          chunkedLoading={false}
           disableClusteringAtZoom={18}
           animate={true}
           spiderfyOnMaxZoom={false}
@@ -196,43 +218,66 @@ const Map = () => {
             </Popup>
           </Marker>
 
-          <Marker position={[30.416502, 77.968515]}>
+          <Marker position={[30.416502, 77.968515]} key={"GC"}>
             <Popup>
               <h2>Gandhi Chowk</h2>
             </Popup>
           </Marker>
 
           {/* parking markers */}
-          {parkingCoordinates.map(({ coordinates, parkingStatus }, index) => (
-            <Marker
-              key={index}
-              position={coordinates}
-              icon={
-                parkingStatus === "parked"
-                  ? greenIcon
-                  : parkingStatus === "booked"
-                  ? yellowIcon
-                  : parkingStatus === "vacant"
-                  ? blackIcon
-                  : parkingStatus === "unavailable"
-                  ? redIcon
-                  : null
-              }
-            >
-              <Popup>
-                <h2>Parking {index + 1}</h2>
-              </Popup>
-            </Marker>
-          ))}
+          {parkingCoordinates.map(
+            ({ parkingNumber, coordinates, parkingStatus }, index) => (
+              <div key={index} id={parkingNumber}>
+                <Marker
+                  key={index}
+                  position={coordinates}
+                  icon={
+                    parkingStatus === "available"
+                      ? greenIcon
+                      : parkingStatus === "booked"
+                      ? yellowIcon
+                      : parkingStatus === "parked"
+                      ? blackIcon
+                      : parkingStatus === "unavailable"
+                      ? redIcon
+                      : null
+                  }
+                  riseOnHover={true}
+                >
+                  <Popup>
+                    <div className={customPopUp}>
+                      <h1>Parking {parkingNumber}</h1>
+                      <p>
+                        {parkingStatus.charAt(0).toUpperCase() +
+                          parkingStatus.slice(1)}
+                      </p>
+                      {parkingStatus === "available" && (
+                        <p onClick={() => bookParkingSpot(parkingNumber)}>
+                          Book Now!
+                        </p>
+                      )}
+                    </div>
+                  </Popup>
+                </Marker>
+              </div>
+            )
+          )}
         </MemoizedMarkerClusterGroup>
 
         <Polyline positions={coordinates1} color="red" />
         <Polyline positions={coordinates2} color="blue" />
         <Polyline positions={coordinates3} color="green" />
       </MapContainer>
-      {/* <button onClick={deleteParkingSpot} style={{ backgroundColor: "red" }}>
+      {/* <button
+        onClick={() => {
+          const mark = document.getElementById("PS079");
+          console.log(mark);
+        }}
+        style={{ backgroundColor: "red" }}
+      >
         BUTTON
       </button> */}
+      <ToastContainer position="top-center" />
     </div>
   );
 };

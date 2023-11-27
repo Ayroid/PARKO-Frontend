@@ -13,7 +13,6 @@ const ProtectedRoute = ({ path, children }) => {
   // ---------------------------- VARIABLES ----------------------------
 
   const signUpPageRequested = path === "/auth" ? true : false;
-  const runUseEffect = !signUpPageRequested;
 
   // ---------------------------- USE EFFECT ----------------------------
 
@@ -62,7 +61,7 @@ const ProtectedRoute = ({ path, children }) => {
           setVerified(true);
         }
       } catch (error) {
-        console.error("Error verifying token:", error);
+        console.log("Token Invalid!");
         await refreshToken().then((ans) => {
           if (ans) {
             setVerified(true);
@@ -75,7 +74,7 @@ const ProtectedRoute = ({ path, children }) => {
       }
     };
     verifyToken();
-  }, [runUseEffect]);
+  });
 
   // ---------------------------- RETURN ----------------------------
 
@@ -85,7 +84,6 @@ const ProtectedRoute = ({ path, children }) => {
     } else if (!signUpPageRequested && !verified) {
       return <Navigate to="/auth" />;
     }
-
     return children;
   }
 };

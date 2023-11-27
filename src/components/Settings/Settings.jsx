@@ -21,11 +21,13 @@ const Settings = () => {
   const [email, setEmail] = useState("");
   const [sapid, setSapid] = useState("");
   const [phone, setPhone] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
 
   const [userNameUpdated, setUserNameUpdated] = useState(false);
   const [emailUpdated, setEmailUpdated] = useState(false);
   const [sapidUpdated, setSapidUpdated] = useState(false);
   const [phoneUpdated, setPhoneUpdated] = useState(false);
+  // const [profilePicUpdated, setProfilePicUpdated] = useState(false);
 
   // ---------------------------- USE EFFECT ----------------------------
 
@@ -35,6 +37,7 @@ const Settings = () => {
       setEmail(userData.email);
       setSapid(userData.sapid);
       setPhone(userData.phone);
+      if (userData.profilePic) setProfilePic(userData.profilePic);
     }
   }, [userData, userLoading]);
 
@@ -76,6 +79,35 @@ const Settings = () => {
       setPhoneUpdated(false);
     }
     setPhone(event.target.value);
+  };
+
+  const handleImageChange = async (e) => {
+    let imagePreview = document.getElementById("imagePreview");
+    let file = e.target.files[0];
+    if (file) {
+      let reader = new FileReader();
+      reader.onload = function (e) {
+        imagePreview.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+    const token = localStorage.getItem("jwtToken");
+    const url =
+      import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/updateProfilePic";
+    const data = new FormData();
+    data.append("profilePic", e.target.files[0]);
+
+    const response = await axios.post(url, data, {
+      headers: {
+        Authorization: token,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    if (response.status === 200) {
+      toast.success("Profile picture updated successfully");
+      reFetchUserData();
+    }
   };
 
   // ---------------------------- HANDLE SUBMIT FUNCTIONS ----------------------------
@@ -139,7 +171,7 @@ const Settings = () => {
   const mainDiv = [styles.mainDiv].join("");
   const headerDiv = [styles.headerDiv].join("");
   const bodyDiv = [styles.bodyDiv].join("");
-  const profilePic = [styles.profilePic].join("");
+  const profilePicDiv = [styles.profilePicDiv].join("");
   const profilePicImg = [styles.profilePicImg].join("");
   const addPic = [styles.addPic].join("");
   const userInfo = [styles.userInfo].join("");
@@ -152,7 +184,6 @@ const Settings = () => {
       ? styles.buttonDisabled
       : null
   }`;
-  // const errorMessage = `errorMessage`;
 
   // ---------------------------- JSX ----------------------------
 
@@ -162,13 +193,22 @@ const Settings = () => {
         <BackButton pageName={"Settings"} navigateTo={"/profile"} />
       </div>
       <div className={bodyDiv}>
-        <div className={profilePic}>
+        <div className={profilePicDiv}>
           <img
             className={profilePicImg}
-            src="/icons/profileicon.jpg"
-            alt="profile pic"
+            src={
+              profilePic == "" ? "public/icons/profileicon.jpg" : profilePic
+            }
+            id="imagePreview"
           />
           <img className={addPic} src="/icons/add.png" alt="addProfilePic" />
+          <input
+            type="file"
+            accept="image/*"
+            name="profilePic"
+            id="fileInput"
+            onChange={handleImageChange}
+          />
         </div>
         <div className={userInfo}>
           <form className={form} onSubmit={handleUpdateData}>

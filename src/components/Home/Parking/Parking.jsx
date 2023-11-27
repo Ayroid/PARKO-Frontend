@@ -1,16 +1,11 @@
 import styles from "./Parking.module.css";
 
+import { useMapData } from "../../../utils/MapDataContext";
+
 const Parkings = () => {
-  // dummy data
-  const parkingData = [
-    { parkingNo: 1, parkingBlock: "A", status: "available" },
-    { parkingNo: 2, parkingBlock: "B", status: "available" },
-    { parkingNo: 3, parkingBlock: "C", status: "available" },
-    { parkingNo: 4, parkingBlock: "D", status: "available" },
-    { parkingNo: 5, parkingBlock: "E", status: "available" },
-    { parkingNo: 4, parkingBlock: "D", status: "available" },
-    { parkingNo: 4, parkingBlock: "D", status: "available" },
-  ];
+  // ---------------------------- USE CONTEXT ----------------------------
+
+  const { parkingCoordinates } = useMapData();
 
   // ---------------------------- CSS ----------------------------
 
@@ -18,7 +13,12 @@ const Parkings = () => {
   const mainHeader = [styles.mainHeader].join("");
   const mainHeading = [styles.mainHeading].join("");
   const filterButton = [styles.filterButton].join("");
+  const parkingsDiv = [styles.parkingsDiv].join("");
   const parkingDiv = [styles.parkingDiv].join("");
+  const parkingInfo = [styles.parkingInfo].join("");
+  const parkingStatus = [styles.parkingStatus].join("");
+  const parkingStatusColor = [styles.parkingStatusColor].join("");
+  const parkingStatusText = [styles.parkingStatusText].join("");
 
   // ---------------------------- JSX ----------------------------
 
@@ -29,25 +29,37 @@ const Parkings = () => {
         <div className={filterButton}>FILTER</div>
       </div>
 
-      <div className={parkingDiv}>
+      <div className={parkingsDiv}>
         <ul>
-          {parkingData.map((parking, index) => (
-            <li key={index} className="pb-3">
-              <div className="flex justify-between items-center group hover:bg-gray-100 rounded">
-                <div>
-                  <span className="font-bold">
-                    Parking No: {parking.parkingNo}
-                  </span>{" "}
-                  <br />
-                  <span className="text-sm">Block: {parking.parkingBlock}</span>
+          {parkingCoordinates.map((parking, index) => (
+            <li key={index}>
+              <div className={parkingDiv}>
+                <div className={parkingInfo}>
+                  <span>Parking No - {parking.parkingNumber}</span>
+                  <span>
+                    <strong>Near - </strong> {parking.nearBy}
+                  </span>
                 </div>
 
-                <div className="flex gap-5 items-center">
-                  <div className="bg-green-500 h-2 w-2 rounded"></div>
-                  <div className="font-bold">{parking.status}</div>
+                <div className={parkingStatus}>
+                  <div
+                    className={parkingStatusColor}
+                    style={{
+                      backgroundColor:
+                        parking.parkingStatus === "available"
+                          ? "#00ff00"
+                          : parking.parkingStatus === "parked"
+                          ? "#000000"
+                          : parking.parkingStatus === "booked"
+                          ? "#ffff00"
+                          : "#ff0000",
+                    }}
+                  ></div>
+                  <div className={parkingStatusText}>
+                    {parking.parkingStatus}
+                  </div>
                 </div>
               </div>
-              <div className="bg-gray-200 h-1 w-full"></div>
             </li>
           ))}
         </ul>

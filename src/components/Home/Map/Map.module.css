@@ -10,7 +10,33 @@
   position: relative;
 }
 
+.mainDiv::-webkit-scrollbar {
+  width: 0;
+}
+
 .mapContainer {
   width: 100dvw;
-  height: 50dvh;
+  height: 50vh;
+}
+
+.customPopUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+.customPopUp > h1 {
+  font-size: 0.9rem;
+}
+
+.customPopUp > p {
+  padding: 0;
+  margin: 0;
+}
+
+.customPopUp > p:nth-child(3) {
+  color: blue;
+  font-weight: 600;
 }

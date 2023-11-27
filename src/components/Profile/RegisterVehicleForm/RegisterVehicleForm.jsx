@@ -156,6 +156,20 @@ const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
           <div className={inputDiv}>
             <input
               className={input}
+              id="vehicleNumber"
+              type="text"
+              placeholder="VEHICLE NUMBER"
+              value={vehicleNumber}
+              onChange={(event) => setVehicleNumber(event.target.value)}
+              required
+            />
+            {!vehicleNumberValidated && (
+              <span className={errorMessage}>Invalid Vehicle Number</span>
+            )}
+          </div>
+          <div className={inputDiv}>
+            <input
+              className={input}
               id="brand"
               type="text"
               placeholder="BRAND"
@@ -179,20 +193,6 @@ const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
             />
             {!modelValidated && (
               <span className={errorMessage}>Invalid Model</span>
-            )}
-          </div>
-          <div className={inputDiv}>
-            <input
-              className={input}
-              id="vehicleNumber"
-              type="text"
-              placeholder="VEHICLE NUMBER"
-              value={vehicleNumber}
-              onChange={(event) => setVehicleNumber(event.target.value)}
-              required
-            />
-            {!vehicleNumberValidated && (
-              <span className={errorMessage}>Invalid Vehicle Number</span>
             )}
           </div>
           <button className={button} type="submit">

@@ -43,8 +43,67 @@
   cursor: pointer;
 }
 
-.parkingDiv{
-    max-height: 32dvh;
-    overflow-y: auto;
-    padding: 0 1rem 1rem 1rem;
+.parkingsDiv {
+  min-height: 40dvh;
+  max-height: 45dvh;
+  overflow-y: auto;
+  padding: 0 0.5rem 1rem 0.5rem;
+  scroll-behavior: smooth;
+}
+
+.parkingsDiv li {
+  padding: 0.25rem 0 0.25rem 0;
+}
+
+.parkingDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.2);
+  padding: 0.3rem 0.5rem;
+  border-radius: 10px;
+  transition: 0.2s all;
+}
+
+.parkingDiv:hover{
+  background-color: #cecece50;
+  transition: 0.2s all;
+}
+
+.parkingInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.parkingInfo span:nth-child(1) {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.parkingInfo span:nth-child(2) {
+  font-size: 0.9rem;
+}
+
+.parkingStatus {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 0.5rem;
+}
+
+.parkingStatusColor {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 100%;
+  filter: drop-shadow(0 0 0.5px rgb(0, 0, 0));
+}
+
+.parkingStatusText {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
 }

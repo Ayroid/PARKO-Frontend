@@ -48,15 +48,28 @@
   align-items: space-between;
 }
 
-.profilePic {
+.profilePicDiv {
   margin: 0 auto;
   position: relative;
   width: fit-content;
+  display: inline-block;
+}
+
+.profilePicDiv > input {
+  height: 110%;
+  width: 110%;
+  position: absolute;
+  background-color: red;
+  top: 0;
+  border-radius: 50%;
+  opacity: 0;
 }
 
 .profilePicImg {
   max-width: 10rem;
-  height: 100%;
+  max-height: 10rem;
+  height: 10rem;
+  width: 10rem;
   border-radius: 50%;
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.185));
 }
