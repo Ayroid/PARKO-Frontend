@@ -26,15 +26,20 @@
   cursor: pointer;
 }
 
+.dropDownDiv{
+  position: relative;
+  z-index: 3;
+}
+
 .dropDown {
   display: none;
   flex-direction: column;
-  top: 8.7dvh;
-  right: 1.5dvw;
+  top: 5.0dvh;
+  right: 0dvw;
   min-width: 9rem;
   max-width: 12rem;
   background-color: #fddc00;
-  z-index: 2;
+  z-index: 1;
   position: absolute;
   border-radius: 8px;
   padding: 0.3rem 0;
@@ -42,30 +47,32 @@
 }
 
 .dropDownAnimation {
-  animation: dropDown 0.3s;
+  animation: dropDown 0.2s;
 }
 
 .dropDownAnimationReverse {
-  animation: dropDownReverse 0.3s;
+  animation: dropDownReverse 0.2s;
 }
 
 @keyframes dropDown {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(-30%);
+    opacity: 0;
   }
   100% {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes dropDownReverse {
   0% {
-    /* opacity: 0 */
     transform: translateY(0);
+    opacity: 1;
   }
   100% {
-    /* opacity: 1; */
-    transform: translateY(-150%);
+    transform: translateY(-30%);
+    opacity: 0;
   }
 }
 
