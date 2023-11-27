@@ -50,9 +50,11 @@
 .dropDown {
   display: none;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   min-width: 9rem;
   max-width: 12rem;
+  height: 8rem;
+  overflow-y: scroll;
   top: 5.7dvh;
   right: 0dvw;
   background-color: #fddc00;
