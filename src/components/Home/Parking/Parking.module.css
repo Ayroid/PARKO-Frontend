@@ -53,7 +53,7 @@
   justify-content: flex-start;
   min-width: 9rem;
   max-width: 12rem;
-  height: 8rem;
+  height: 10rem;
   overflow-y: scroll;
   top: 5.7dvh;
   right: 0dvw;
@@ -66,16 +66,17 @@
 }
 
 
+
 .dropDown2 {
   display: none;
   flex-direction: column;
   justify-content: flex-start;
   min-width: 9rem;
   max-width: 12rem;
-  height: 8rem;
+  height: 10rem;
   overflow-y: scroll;
   top: 5.7dvh;
-  right: 36dvw;
+  right: 7dvw;
   background-color: #fddc00;
   z-index: 2;
   position: absolute;
@@ -83,6 +84,40 @@
   padding: 0.3rem 0;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
+
+@media only screen and (max-width: 767px) {
+  .dropDown2 {
+    right: 37dvw;
+  }
+}
+
+.filterDropDown1{
+  position: relative;
+}
+
+.filterDropDown2{
+  position: relative;
+}
+
+.filterHeader1{
+  background-color: #ff0000; 
+  padding: 10px; 
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  font-weight: bolder;
+
+}
+
+.filterHeader2{
+  background-color: #ff0000; 
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  font-weight: bolder;
+}
+
 
 
 .dropDown li {

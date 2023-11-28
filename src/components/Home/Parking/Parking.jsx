@@ -107,6 +107,9 @@ const Parkings = () => {
   const filterEmpty = [styles.filterEmpty].join("");
   const filterDropDown1 = [styles.filterDropDown1].join("");
   const filterDropDown2 = [styles.filterDropDown2].join("");
+  const filterHeader1 = [styles.filterHeader1].join("");
+  const filterHeader2 = [styles.filterHeader2].join("");
+
 
   // ---------------------------- JSX ----------------------------
 
@@ -121,6 +124,7 @@ const Parkings = () => {
           {/* status filter */}
           <div className={filterDropDown1}>
             <ul className={dropDown} id="filterDropDown1">
+            <div className={filterHeader1}>Availability</div>
               {filterOptions1.map((option) => (
                 <li
                   key={option.value}
@@ -139,6 +143,7 @@ const Parkings = () => {
           {/* location filter  */}
           <div className={filterDropDown2}>
             <ul className={dropDown2} id="filterDropDown2">
+            <div className={filterHeader2}>Location</div>
               {filterOptions2.map((option) => (
                 <li
                   key={option.value}
