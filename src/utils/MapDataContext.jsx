@@ -55,7 +55,7 @@ const MapDataContextProvider = ({ children }) => {
 
   setTimeout(() => {
     fetchData();
-  }, 5000);
+  }, 15000);
 
   // ---------------------------- JSX ----------------------------
 
