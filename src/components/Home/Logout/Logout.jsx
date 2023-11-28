@@ -39,6 +39,7 @@ const Logout = ({ updateLogout }) => {
     } finally {
       localStorage.removeItem("jwtToken");
       localStorage.removeItem("jwtRefreshToken");
+      localStorage.removeItem("user");
     }
   };
 

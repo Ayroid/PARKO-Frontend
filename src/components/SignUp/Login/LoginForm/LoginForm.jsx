@@ -108,6 +108,7 @@ const LoginForm = () => {
         if (response.status === 200) {
           localStorage.setItem("jwtToken", response.data.token);
           localStorage.setItem("jwtRefreshToken", response.data.refreshToken);
+          localStorage.setItem("user", response.data.userId);
           toast.success("Login successful");
           navigate("/");
         } else {
