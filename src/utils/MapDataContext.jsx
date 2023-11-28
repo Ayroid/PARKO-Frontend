@@ -45,7 +45,7 @@ const MapDataContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  },[]);
 
   // ---------------------------- FUNCTIONS ----------------------------
 
@@ -54,8 +54,8 @@ const MapDataContextProvider = ({ children }) => {
   };
 
   setTimeout(() => {
-    reFetchMapData();
-  }, 10000);
+    fetchData();
+  }, 15000);
 
   // ---------------------------- JSX ----------------------------
 
