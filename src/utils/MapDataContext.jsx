@@ -34,8 +34,8 @@ const MapDataContextProvider = ({ children }) => {
       });
 
       setParkingCoordinates(response.data.parkingSpots);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     } finally {
       setmapLoading(false);
     }
@@ -52,6 +52,10 @@ const MapDataContextProvider = ({ children }) => {
   const reFetchMapData = () => {
     fetchData();
   };
+
+  setTimeout(() => {
+    reFetchMapData();
+  }, 10000);
 
   // ---------------------------- JSX ----------------------------
 

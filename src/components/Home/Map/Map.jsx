@@ -45,6 +45,10 @@ const redIcon = new Icon({
 // ---------------------------- COMPONENT ----------------------------
 
 const Map = () => {
+  // ---------------------------- VARIABLES ----------------------------
+
+  const user = localStorage.getItem("user");
+
   // ---------------------------- USE CONTEXT ----------------------------
 
   const { parkingCoordinates, reFetchMapData } = useMapData();
@@ -178,11 +182,44 @@ const Map = () => {
 
       if (response.status === 200) {
         reFetchMapData();
-        toast.success("Parking spot booked successfully");
+        toast.success("Parking Spot Booked!");
       }
-    } catch (err) {
-      console.log(err);
-      toast.error("Error booking parking spot");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error Booking Parking Spot!");
+    }
+  };
+
+  // ---------------------------- CANCEL BOOKING ----------------------------
+
+  const cancelBooking = async (parkingNumber) => {
+    try {
+      const cancelBookingURL =
+        import.meta.env.VITE_BACKEND_SERVER_URL +
+        "/api/parkingSpot/cancelParkingSpot";
+      const token = localStorage.getItem("jwtToken");
+
+      const response = await axios.post(
+        cancelBookingURL,
+        { parkingNumber },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        reFetchMapData();
+        toast.success("Parking Spot Booking Cancelled!");
+      }
+
+      if (response.status === 400) {
+        toast.error("Parking Spot Booking Cancellation Failed!");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Error Cancelling Parking Spot Booking!");
     }
   };
 
@@ -195,7 +232,7 @@ const Map = () => {
   return (
     <div className={mainDiv}>
       <MapContainer
-        center={[30.41620924289172, 77.96954673496886]}
+        center={[30.416502, 77.968515]}
         zoom={18}
         className={mapContainer}
       >
@@ -224,9 +261,16 @@ const Map = () => {
             </Popup>
           </Marker>
 
-          {/* parking markers */}
           {parkingCoordinates.map(
-            ({ parkingNumber, coordinates, parkingStatus }, index) => (
+            (
+              {
+                parkingNumber,
+                coordinates,
+                parkingStatus,
+                currentlyParkedUser,
+              },
+              index
+            ) => (
               <div key={index} id={parkingNumber}>
                 <Marker
                   key={index}
@@ -251,9 +295,15 @@ const Map = () => {
                         {parkingStatus.charAt(0).toUpperCase() +
                           parkingStatus.slice(1)}
                       </p>
-                      {parkingStatus === "available" && (
-                        <p onClick={() => bookParkingSpot(parkingNumber)}>
-                          Book Now!
+                      {parkingStatus === "available" &&
+                        user !== currentlyParkedUser && (
+                          <p onClick={() => bookParkingSpot(parkingNumber)}>
+                            Book Now!
+                          </p>
+                        )}
+                      {user === currentlyParkedUser && (
+                        <p onClick={() => cancelBooking(parkingNumber)}>
+                          Cancel Booking
                         </p>
                       )}
                     </div>
