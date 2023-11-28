@@ -513,13 +513,11 @@ const data = [
   },
 ];
 
-const test = (parkingNumber, coordinates, parkingStatus, nearBy) => {
+const test = (query, data) => {
   axios
-    .post("http://localhost:3000/api/parkingspot/createParkingSpot", {
-      parkingNumber: parkingNumber,
-      coordinates: coordinates,
-      nearBy: nearBy,
-      parkingStatus: parkingStatus,
+    .post("http://localhost:3000/api/parkingspot/updateParkingSpot", {
+      query,
+      data,
     })
     .then((response) => {
       console.log(response.data);
@@ -529,15 +527,20 @@ const test = (parkingNumber, coordinates, parkingStatus, nearBy) => {
     });
 };
 
-for (let i = 0; i < 86; i++) {
-  (function (i) {
-    setTimeout(() => {
-      test(
-        data[i].parkingNumber,
-        data[i].coordinates,
-        data[i].parkingStatus,
-        data[i].nearBy
-      );
-    }, 1000 * i);
-  })(i);
+for (let i = 1; i <= 85; i++) {
+  const ps = i < 10 ? `PS00${i}` : `PS0${i}`;
+  setTimeout(() => {
+    test(
+      { parkingNumber: ps },
+      {
+        parkingStatus: "available",
+        currentlyParkedUser: null,
+        currentlyParkedVehicle: null,
+        lastParkedVehicle: null,
+        updatedAt: new Date().toLocaleString("en-US", {
+          timeZone: "Asia/Kolkata",
+        }),
+      }
+    );
+  }, 1000);
 }
