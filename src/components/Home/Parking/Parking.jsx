@@ -51,7 +51,7 @@ const Parkings = () => {
                           : parking.parkingStatus === "parked"
                           ? "#000000"
                           : parking.parkingStatus === "booked"
-                          ? "#ffff00"
+                          ? "#00c8ff"
                           : "#ff0000",
                     }}
                   ></div>

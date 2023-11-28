@@ -32,8 +32,8 @@ const blackIcon = new Icon({
   iconSize: [20, 20],
 });
 
-const yellowIcon = new Icon({
-  iconUrl: "/icons/marker/yellowlocation.png",
+const blueIcon = new Icon({
+  iconUrl: "/icons/marker/bluelocation.png",
   iconSize: [20, 20],
 });
 
@@ -279,7 +279,7 @@ const Map = () => {
                     parkingStatus === "available"
                       ? greenIcon
                       : parkingStatus === "booked"
-                      ? yellowIcon
+                      ? blueIcon
                       : parkingStatus === "parked"
                       ? blackIcon
                       : parkingStatus === "unavailable"
