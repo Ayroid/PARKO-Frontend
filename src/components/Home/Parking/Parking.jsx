@@ -39,8 +39,7 @@ const Parkings = () => {
   const applyFilters = () => {
     const filteredParkings = parkingCoordinates.filter((parking) => {
       const filter1Passed =
-        selectedFilter1 === "none" ||
-        parking.parkingStatus === selectedFilter1;
+        selectedFilter1 === "none" || parking.parkingStatus === selectedFilter1;
 
       const filter2Passed =
         selectedFilter2 === "none" || parking.nearBy === selectedFilter2;
@@ -63,29 +62,18 @@ const Parkings = () => {
   };
 
   const openDropDown = () => {
-    let dropDown1 = document.getElementById("filterDropDown1");
-    dropDown1.style.display = "flex";
-    dropDown1.classList.add(styles.dropDownAnimation);
-
-    let dropDown2 = document.getElementById("filterDropDown2");
-    dropDown2.style.display = "flex";
-    dropDown2.classList.add(styles.dropDownAnimation);
+    let dropDown = document.getElementById("filterDiv");
+    dropDown.style.display = "flex";
+    dropDown.classList.add(styles.dropDownAnimation);
   };
 
   const closeDropDown = () => {
-    let dropDown1 = document.getElementById("filterDropDown1");
-    dropDown1.classList.remove(styles.dropDownAnimation);
+    let dropDown = document.getElementById("filterDiv");
+    dropDown.classList.remove(styles.dropDownAnimation);
     setTimeout(() => {
-      dropDown1.style.display = "none";
-    }, 200);
-
-    let dropDown2 = document.getElementById("filterDropDown2");
-    dropDown2.classList.remove(styles.dropDownAnimation);
-    setTimeout(() => {
-      dropDown2.style.display = "none";
+      dropDown.style.display = "none";
     }, 200);
   };
-
 
   // ---------------------------- CSS ----------------------------
 
@@ -101,15 +89,14 @@ const Parkings = () => {
   const parkingStatusColor = [styles.parkingStatusColor].join("");
   const parkingStatusText = [styles.parkingStatusText].join("");
   const dropDown = [styles.dropDown].join(" ");
-  const dropDown2 = [styles.dropDown2].join(" ");
   const dropDownItems = [styles.dropDownItems].join("");
   const dropDownItemsText = [styles.dropDownItemsText].join("");
   const filterEmpty = [styles.filterEmpty].join("");
-  const filterDropDown1 = [styles.filterDropDown1].join("");
-  const filterDropDown2 = [styles.filterDropDown2].join("");
-  const filterHeader1 = [styles.filterHeader1].join("");
-  const filterHeader2 = [styles.filterHeader2].join("");
-
+  const filterDropDownDiv = [styles.filterDropDown].join("");
+  const filterDiv = [styles.filterDiv].join("");
+  const filterHeader = [styles.filterHeader].join("");
+  const filterInnerDiv = [styles.filterInnerDiv].join("");
+  const middleLine = [styles.middleLine].join("");
 
   // ---------------------------- JSX ----------------------------
 
@@ -122,41 +109,44 @@ const Parkings = () => {
             FILTER
           </button>
           {/* status filter */}
-          <div className={filterDropDown1}>
-            <ul className={dropDown} id="filterDropDown1">
-            <div className={filterHeader1}>Availability</div>
-              {filterOptions1.map((option) => (
-                <li
-                  key={option.value}
-                  className={dropDownItems}
-                  onClick={() => handleFilter1(option.value)}
-                >
-                  <div className={dropDownItemsText}> {option.label}</div>
-                  {selectedFilter1 === option.value && (
-                    <img src="public/icons/tick.png" alt="tickmark" />
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* location filter  */}
-          <div className={filterDropDown2}>
-            <ul className={dropDown2} id="filterDropDown2">
-            <div className={filterHeader2}>Location</div>
-              {filterOptions2.map((option) => (
-                <li
-                  key={option.value}
-                  className={dropDownItems}
-                  onClick={() => handleFilter2(option.value)}
-                >
-                  <div className={dropDownItemsText}> {option.label}</div>
-                  {selectedFilter2 === option.value && (
-                    <img src="public/icons/tick.png" alt="tickmark" />
-                  )}
-                </li>
-              ))}
-            </ul>
+          <div className={filterDropDownDiv}>
+            <div className={filterDiv} id="filterDiv">
+              <div className={filterInnerDiv}>
+                <div className={filterHeader}>Availability</div>
+                <ul className={dropDown}>
+                  {filterOptions1.map((option) => (
+                    <li
+                      key={option.value}
+                      className={dropDownItems}
+                      onClick={() => handleFilter1(option.value)}
+                    >
+                      <div className={dropDownItemsText}> {option.label}</div>
+                      {selectedFilter1 === option.value && (
+                        <img src="/icons/tick.png" alt="tickmark" />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={middleLine}></div>
+              <div className={filterInnerDiv}>
+                <div className={filterHeader}>Location</div>
+                <ul className={dropDown}>
+                  {filterOptions2.map((option) => (
+                    <li
+                      key={option.value}
+                      className={dropDownItems}
+                      onClick={() => handleFilter2(option.value)}
+                    >
+                      <div className={dropDownItemsText}> {option.label}</div>
+                      {selectedFilter2 === option.value && (
+                        <img src="/icons/tick.png" alt="tickmark" />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -287,6 +287,11 @@ const Map = () => {
                       : null
                   }
                   riseOnHover={true}
+                  eventHandlers={{
+                    click: () => {
+                      console.log("clicked");
+                    },
+                  }}
                 >
                   <Popup>
                     <div className={customPopUp}>
