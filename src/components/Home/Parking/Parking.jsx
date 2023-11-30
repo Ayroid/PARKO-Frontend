@@ -77,12 +77,12 @@ const Parkings = () => {
   };
 
   const toggleDropdown = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
     if (isOpen) {
       closeDropDown();
     } else {
       openDropDown();
     }
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   // ---------------------------- CSS ----------------------------

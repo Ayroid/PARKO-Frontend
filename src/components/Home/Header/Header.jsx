@@ -34,12 +34,12 @@ const Header = () => {
   // ---------------------------- TOGGLE DROPDOWN ----------------------------
 
   const toggleDropdown = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
     if (isOpen) {
       closeDropDown();
     } else {
       openDropDown();
     }
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   const openDropDown = () => {
