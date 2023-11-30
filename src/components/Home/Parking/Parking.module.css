@@ -30,39 +30,24 @@
 }
 
 .filterButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: min-content;
-  height: 100%;
   margin: 0.2rem 0.5rem;
-  color: #000;
-  font-size: 1rem;
-  font-weight: 600;
   cursor: pointer;
   height: 1.2rem;
 }
 
 .filterDiv {
+  display: none;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   right: 2dvw;
   top: 4dvh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: none;
-  gap: 0.5rem;
-  background-color: #fddc00;
   z-index: 2;
+  background-color: #fddc00;
   border-radius: 8px;
+  gap: 0.5rem;
   padding: 0.5rem;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-}
-
-.middleLine {
-  height: 8rem;
-  width: 2px;
-  background-color: #3e3e3e;
 }
 
 .filterInnerDiv {
@@ -70,7 +55,6 @@
   flex-direction: column;
   justify-content: center;
   min-width: 9rem;
-  max-width: 12rem;
   height: 10rem;
 }
 
@@ -89,34 +73,24 @@
   overflow-y: scroll;
 }
 
-@media only screen and (max-width: 767px) {
-  .dropDown2 {
-    right: 37dvw;
-  }
-}
-
-.dropDown li {
+.dropDownItems {
+  color: #3f3f3f;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.dropDown2 li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dropDown li img {
+.dropDownItems img {
   width: 1.2rem;
   height: 1.2rem;
   margin-right: 0.5rem;
 }
 
-.dropDown2 li img {
-  width: 1.2rem;
-  height: 1.2rem;
-  margin-right: 0.5rem;
+.dropDownItemsText {
+  padding: 0.4rem;
+  cursor: pointer;
 }
 
 .dropDownAnimation {
@@ -149,20 +123,10 @@
   }
 }
 
-.dropDownItems {
-  color: #3f3f3f;
-  font-weight: 600;
-}
-
-.dropDownItems:active {
-  color: #3f3f3f;
-  font-weight: 600;
-}
-
-.dropDownItemsText {
-  padding: 0.5rem;
-  cursor: pointer;
-  z-index: 5;
+.middleLine {
+  height: 8rem;
+  width: 2px;
+  background-color: #3e3e3e;
 }
 
 .parkingsDiv {

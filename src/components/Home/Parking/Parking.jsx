@@ -3,11 +3,17 @@ import { useState } from "react";
 import { useMapData } from "../../../utils/MapDataContext";
 
 const Parkings = () => {
+  // ---------------------------- USE CONTEXT ----------------------------
+
   const { parkingCoordinates } = useMapData();
+
+  // ---------------------------- STATE ----------------------------
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFilter1, setSelectedFilter1] = useState("none");
   const [selectedFilter2, setSelectedFilter2] = useState("none");
+
+  // ---------------------------- FILTER LOGIC ----------------------------
 
   const filterOptions1 = [
     { label: "None", value: "none" },
@@ -52,14 +58,7 @@ const Parkings = () => {
 
   const filteredParkings = applyFilters();
 
-  const toggleDropdown = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-    if (isOpen) {
-      closeDropDown();
-    } else {
-      openDropDown();
-    }
-  };
+  // ---------------------------- DROPDOWN ----------------------------
 
   const openDropDown = () => {
     let dropDown = document.getElementById("filterDiv");
@@ -75,6 +74,15 @@ const Parkings = () => {
     setTimeout(() => {
       dropDown.style.display = "none";
     }, 200);
+  };
+
+  const toggleDropdown = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+    if (isOpen) {
+      closeDropDown();
+    } else {
+      openDropDown();
+    }
   };
 
   // ---------------------------- CSS ----------------------------
