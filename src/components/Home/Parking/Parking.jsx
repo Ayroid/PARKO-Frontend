@@ -63,8 +63,8 @@ const Parkings = () => {
   const openDropDown = () => {
     let dropDown = document.getElementById("filterDiv");
     dropDown.style.display = "flex";
-    dropDown.classList.add(styles.dropDownAnimation);
     dropDown.classList.remove(styles.dropDownAnimationReverse);
+    dropDown.classList.add(styles.dropDownAnimation);
   };
 
   const closeDropDown = () => {
@@ -82,7 +82,7 @@ const Parkings = () => {
     } else {
       openDropDown();
     }
-    setIsOpen((prevIsOpen) => !prevIsOpen);
+    setIsOpen(!isOpen);
   };
 
   // ---------------------------- CSS ----------------------------

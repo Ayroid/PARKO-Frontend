@@ -33,20 +33,11 @@ const Header = () => {
 
   // ---------------------------- TOGGLE DROPDOWN ----------------------------
 
-  const toggleDropdown = () => {
-    if (isOpen) {
-      closeDropDown();
-    } else {
-      openDropDown();
-    }
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
-
   const openDropDown = () => {
     let dropDown = document.getElementById("dropDown");
     dropDown.style.display = "flex";
-    dropDown.classList.add(styles.dropDownAnimation);
     dropDown.classList.remove(styles.dropDownAnimationReverse);
+    dropDown.classList.add(styles.dropDownAnimation);
   };
 
   const closeDropDown = () => {
@@ -56,6 +47,15 @@ const Header = () => {
     setTimeout(() => {
       dropDown.style.display = "none";
     }, 200);
+  };
+
+  const toggleDropdown = () => {
+    if (isOpen) {
+      closeDropDown();
+    } else {
+      openDropDown();
+    }
+    setIsOpen(!isOpen);
   };
 
   // ---------------------------- CSS ----------------------------
