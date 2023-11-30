@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-.dropDownDiv{
+.dropDownDiv {
   position: relative;
   z-index: 3;
 }
@@ -34,7 +34,7 @@
 .dropDown {
   display: none;
   flex-direction: column;
-  top: 5.0dvh;
+  top: 5dvh;
   right: 0dvw;
   min-width: 9rem;
   max-width: 12rem;
@@ -46,8 +46,6 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-
-
 .dropDownAnimation {
   animation: dropDown 0.2s;
 }
@@ -58,22 +56,22 @@
 
 @keyframes dropDown {
   0% {
-    transform: translateY(-30%);
+    scale: 0.9;
     opacity: 0;
   }
   100% {
-    transform: translateY(0);
+    scale: 1;
     opacity: 1;
   }
 }
 
 @keyframes dropDownReverse {
   0% {
-    transform: translateY(0);
+    scale: 1;
     opacity: 1;
   }
   100% {
-    transform: translateY(-30%);
+    scale: 0.9;
     opacity: 0;
   }
 }
@@ -87,5 +85,3 @@
   padding: 0.5rem;
   cursor: pointer;
 }
-
-

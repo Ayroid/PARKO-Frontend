@@ -65,11 +65,13 @@ const Parkings = () => {
     let dropDown = document.getElementById("filterDiv");
     dropDown.style.display = "flex";
     dropDown.classList.add(styles.dropDownAnimation);
+    dropDown.classList.remove(styles.dropDownAnimationReverse);
   };
 
   const closeDropDown = () => {
     let dropDown = document.getElementById("filterDiv");
     dropDown.classList.remove(styles.dropDownAnimation);
+    dropDown.classList.add(styles.dropDownAnimationReverse);
     setTimeout(() => {
       dropDown.style.display = "none";
     }, 200);
@@ -105,32 +107,16 @@ const Parkings = () => {
       <div className={mainHeader}>
         <h2 className={mainHeading}>Parking Spots</h2>
         <div className={filterSection}>
-          <button className={filterButton} onClick={toggleDropdown}>
-            FILTER
-          </button>
-          {/* status filter */}
+          <img
+            className={filterButton}
+            onClick={toggleDropdown}
+            src="/icons/filter.png"
+            alt="Filter"
+          />
           <div className={filterDropDownDiv}>
             <div className={filterDiv} id="filterDiv">
               <div className={filterInnerDiv}>
-                <div className={filterHeader}>Availability</div>
-                <ul className={dropDown}>
-                  {filterOptions1.map((option) => (
-                    <li
-                      key={option.value}
-                      className={dropDownItems}
-                      onClick={() => handleFilter1(option.value)}
-                    >
-                      <div className={dropDownItemsText}> {option.label}</div>
-                      {selectedFilter1 === option.value && (
-                        <img src="/icons/tick.png" alt="tickmark" />
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className={middleLine}></div>
-              <div className={filterInnerDiv}>
-                <div className={filterHeader}>Location</div>
+                <h2 className={filterHeader}>Location</h2>
                 <ul className={dropDown}>
                   {filterOptions2.map((option) => (
                     <li
@@ -140,6 +126,26 @@ const Parkings = () => {
                     >
                       <div className={dropDownItemsText}> {option.label}</div>
                       {selectedFilter2 === option.value && (
+                        <img src="/icons/tick.png" alt="tickmark" />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className={middleLine}></div>
+
+              <div className={filterInnerDiv}>
+                <h2 className={filterHeader}>Availability</h2>
+                <ul className={dropDown}>
+                  {filterOptions1.map((option) => (
+                    <li
+                      key={option.value}
+                      className={dropDownItems}
+                      onClick={() => handleFilter1(option.value)}
+                    >
+                      <div className={dropDownItemsText}> {option.label}</div>
+                      {selectedFilter1 === option.value && (
                         <img src="/icons/tick.png" alt="tickmark" />
                       )}
                     </li>

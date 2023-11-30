@@ -35,24 +35,18 @@
   align-items: center;
   width: min-content;
   height: 100%;
-  padding: 0.2rem 1rem;
-  background-color: #cecece;
+  margin: 0.2rem 0.5rem;
   color: #000;
-  border-radius: 20px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-}
-
-.filterDropDown1 {
-  position: relative;
-  background-color: red;
+  height: 1.2rem;
 }
 
 .filterDiv {
   position: absolute;
-  right: 0;
-  top: 5.7dvh;
+  right: 2dvw;
+  top: 4dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,10 +59,10 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-.middleLine{
-  height: 10rem;
+.middleLine {
+  height: 8rem;
   width: 2px;
-  background-color: #000;
+  background-color: #3e3e3e;
 }
 
 .filterInnerDiv {
@@ -85,15 +79,13 @@
   font-weight: 600;
   margin-inline: auto;
   text-decoration: underline;
+  color: #3e3e3e;
 }
 
 .dropDown {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-width: 9rem;
-  max-width: 12rem;
-  height: 10rem;
   overflow-y: scroll;
 }
 
@@ -137,22 +129,22 @@
 
 @keyframes dropDown {
   0% {
-    transform: translateY(-30%);
+    scale: 0.9;
     opacity: 0;
   }
   100% {
-    transform: translateY(0);
+    scale: 1;
     opacity: 1;
   }
 }
 
 @keyframes dropDownReverse {
   0% {
-    transform: translateY(0);
+    scale: 1;
     opacity: 1;
   }
   100% {
-    transform: translateY(-30%);
+    scale: 0.9;
     opacity: 0;
   }
 }
