@@ -55,7 +55,7 @@ const Header = () => {
     } else {
       openDropDown();
     }
-    setIsOpen(!isOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   // ---------------------------- CSS ----------------------------

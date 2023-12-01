@@ -9,8 +9,10 @@ import "../../../../css/form.css";
 const LoginForm = () => {
   // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
-  const otpRequestURL = import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/login/mail";
-  const otpVerifyURL = import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/verify/mail";
+  const otpRequestURL =
+    import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/login/mail";
+  const otpVerifyURL =
+    import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/verify/mail";
 
   // ---------------------------- NAVIGATION ----------------------------
 
