@@ -45,7 +45,7 @@ const MapDataContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   // ---------------------------- FUNCTIONS ----------------------------
 
