@@ -2,6 +2,8 @@ import styles from "./Parking.module.css";
 import { useState } from "react";
 import { useMapData } from "../../../utils/MapDataContext";
 
+// import ConfirmParkingButton from "./ConfirmParkingButton/ConfirmParkingButton";
+
 const Parkings = () => {
   // ---------------------------- USE CONTEXT ----------------------------
 

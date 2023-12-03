@@ -3,10 +3,11 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1.2rem 1rem 0.5rem 1rem;
+  padding: 1rem;
   background-color: #fddc00;
   z-index: 3;
   position: relative;
+  height: 10dvh;
 }
 
 .mainDiv::-webkit-scrollbar {

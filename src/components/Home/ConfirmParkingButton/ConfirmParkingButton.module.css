@@ -1,0 +1,82 @@
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  border-radius: 12px;
+  position: relative;
+  z-index: 10;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.parkingInfoDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+.parkingNumberHeading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #3f3f3f;
+}
+
+.parkingInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.parkingSubInfoDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.parkingSubInfoDiv > img {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.availabilityStatusColor {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 100%;
+  filter: drop-shadow(0 0 0.5px rgb(0, 0, 0));
+  z-index: 0;
+  background-color: red;
+  margin-inline: 0.1rem;
+}
+
+.parkingSubInfoText {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #3f3f3f;
+  width: 6.5rem;
+}
+
+.locationDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookingButton {
+  width: 80%;
+  height: 100%;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background-color: #fddc00;
+  color: #3f3f3f;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
