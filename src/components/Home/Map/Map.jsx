@@ -19,6 +19,7 @@ import styles from "./Map.module.css";
 
 import ConfirmParkingButton from "../ConfirmParkingButton/ConfirmParkingButton";
 import LandMarkMarkers from "../LandMarkMarkers/LandMarkMarkers";
+import Parking from "./Parking/Parking";
 
 import { useMapData } from "../../../utils/MapDataContext";
 
@@ -80,6 +81,7 @@ const Map = () => {
   const mainDiv = [styles.mainDiv].join("");
   const mapContainer = [styles.mapContainer].join("");
   const confirmParkingContainer = [styles.confirmParkingContainer].join("");
+  const parkingListDiv = [styles.parkingListDiv].join("");
 
   // ---------------------------- POLYLINE COORDINATES ----------------------------
 
@@ -227,12 +229,16 @@ const Map = () => {
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        {/* MARKER CLUSTER GROUP */}
+
         <MemoizedMarkerClusterGroup
           chunkedLoading={true}
           disableClusteringAtZoom={18}
           animate={true}
           spiderfyOnMaxZoom={false}
         >
+          {/* LAND MARK MARKERS */}
+
           <LandMarkMarkers />
 
           {parkingCoordinates.map(
@@ -274,6 +280,9 @@ const Map = () => {
           )}
         </MemoizedMarkerClusterGroup>
       </MapContainer>
+
+      {/* CONFIRM PARKING BUTTON */}
+
       {parkingSelected && (
         <div className={confirmParkingContainer} id="confirmParkingContainer">
           <ConfirmParkingButton
@@ -288,6 +297,15 @@ const Map = () => {
           />
         </div>
       )}
+
+      {/* PARKING DETAILS */}
+
+      {/* <div className={parkingListDiv}>
+        <Parking />
+      </div> */}
+
+      {/* TOAST CONTAINER */}
+
       <ToastContainer position="top-center" />
     </div>
   );

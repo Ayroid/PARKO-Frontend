@@ -1,6 +1,7 @@
 import styles from "./Parking.module.css";
 import { useState } from "react";
-import { useMapData } from "../../../utils/MapDataContext";
+import { useMapData } from "../../../../utils/MapDataContext";
+import { set } from "react-hook-form";
 
 // import ConfirmParkingButton from "./ConfirmParkingButton/ConfirmParkingButton";
 
@@ -87,10 +88,29 @@ const Parkings = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
+  // ---------------------------- SHOW PARKINGS ----------------------------
+
+  const displayParkings = () => {
+    let mainHeaderBody = document.getElementById("mainHeaderBody");
+    let parkingsDiv = document.getElementById("parkingsDiv");
+    let mainDiv = document.getElementById("mainDiv");
+    let fadeBg = document.getElementById("fadeBg");
+    mainDiv.classList.add(styles.showParkingsAnimation);
+    mainHeaderBody.style.display = "flex";
+    parkingsDiv.style.display = "block";
+    setTimeout(() => {
+      fadeBg.style.display = "block";
+      mainDiv.style.height = "90dvh";
+    }, 300);
+  };
+
   // ---------------------------- CSS ----------------------------
 
   const mainDiv = [styles.mainDiv].join("");
+  const fadedBg = [styles.fadedBg].join("");
+  const showParkings = [styles.showParkings].join("");
   const mainHeader = [styles.mainHeader].join("");
+  const mainHeaderBody = [styles.mainHeaderBody].join("");
   const mainHeading = [styles.mainHeading].join("");
   const filterSection = [styles.filterSection].join("");
   const filterButton = [styles.filterButton].join("");
@@ -113,61 +133,70 @@ const Parkings = () => {
   // ---------------------------- JSX ----------------------------
 
   return (
-    <div className={mainDiv}>
+    <div className={mainDiv} id="mainDiv">
+      <div className={fadedBg} id="fadeBg"></div>
       <div className={mainHeader}>
-        <h2 className={mainHeading}>Parking Spots</h2>
-        <div className={filterSection}>
-          <img
-            className={filterButton}
-            onClick={toggleDropdown}
-            src="/icons/filter.png"
-            alt="Filter"
-          />
-          <div className={filterDropDownDiv}>
-            <div className={filterDiv} id="filterDiv">
-              <div className={filterInnerDiv}>
-                <h2 className={filterHeader}>Location</h2>
-                <ul className={dropDown}>
-                  {filterOptions2.map((option) => (
-                    <li
-                      key={option.value}
-                      className={dropDownItems}
-                      onClick={() => handleFilter2(option.value)}
-                    >
-                      <div className={dropDownItemsText}> {option.label}</div>
-                      {selectedFilter2 === option.value && (
-                        <img src="/icons/tick.png" alt="tickmark" />
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        <img
+          src="/icons/upArrow.png"
+          alt="ShowParkings"
+          className={showParkings}
+          onClick={() => displayParkings()}
+        />
+        <div className={mainHeaderBody} id="mainHeaderBody">
+          <h2 className={mainHeading}>Parking Spots</h2>
+          <div className={filterSection}>
+            <img
+              className={filterButton}
+              onClick={toggleDropdown}
+              src="/icons/filter.png"
+              alt="Filter"
+            />
+            <div className={filterDropDownDiv}>
+              <div className={filterDiv} id="filterDiv">
+                <div className={filterInnerDiv}>
+                  <h2 className={filterHeader}>Location</h2>
+                  <ul className={dropDown}>
+                    {filterOptions2.map((option) => (
+                      <li
+                        key={option.value}
+                        className={dropDownItems}
+                        onClick={() => handleFilter2(option.value)}
+                      >
+                        <div className={dropDownItemsText}> {option.label}</div>
+                        {selectedFilter2 === option.value && (
+                          <img src="/icons/tick.png" alt="tickmark" />
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              <div className={middleLine}></div>
+                <div className={middleLine}></div>
 
-              <div className={filterInnerDiv}>
-                <h2 className={filterHeader}>Availability</h2>
-                <ul className={dropDown}>
-                  {filterOptions1.map((option) => (
-                    <li
-                      key={option.value}
-                      className={dropDownItems}
-                      onClick={() => handleFilter1(option.value)}
-                    >
-                      <div className={dropDownItemsText}> {option.label}</div>
-                      {selectedFilter1 === option.value && (
-                        <img src="/icons/tick.png" alt="tickmark" />
-                      )}
-                    </li>
-                  ))}
-                </ul>
+                <div className={filterInnerDiv}>
+                  <h2 className={filterHeader}>Availability</h2>
+                  <ul className={dropDown}>
+                    {filterOptions1.map((option) => (
+                      <li
+                        key={option.value}
+                        className={dropDownItems}
+                        onClick={() => handleFilter1(option.value)}
+                      >
+                        <div className={dropDownItemsText}> {option.label}</div>
+                        {selectedFilter1 === option.value && (
+                          <img src="/icons/tick.png" alt="tickmark" />
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className={parkingsDiv}>
+      <div className={parkingsDiv} id="parkingsDiv">
         <ul>
           {filteredParkings.length === 0 && (
             <h2 className={filterEmpty}>No Parkings Found</h2>
