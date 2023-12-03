@@ -1,5 +1,5 @@
 import Map from "./Map/Map";
-// import Parkings from "./Parking/Parking";
+import Parkings from "./Parking/Parking";
 import Header from "./Header/Header";
 // import Navigation from "./Navigation/Navigation";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
@@ -24,7 +24,7 @@ const Home = () => {
     <div className={mainDiv}>
       <Header />
       <Map />
-      {/* <Parkings /> */}
+      <Parkings />
       {/* <Navigation /> */}
     </div>
   );

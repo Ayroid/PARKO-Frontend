@@ -4,7 +4,6 @@
   flex-direction: column;
   width: 100dvw;
   height: 100%;
-  padding-top: 0.5rem;
   background-color: #fff;
   color: #000;
 }
@@ -15,7 +14,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 0 1rem 1rem 1rem;
+  padding: 1rem;
   background-color: #fff;
   color: #000;
 }
@@ -130,8 +129,7 @@
 }
 
 .parkingsDiv {
-  min-height: 0dvh;
-  max-height: 5dvh;
+  height: 50dvh;
   overflow-y: auto;
   padding: 0 0.5rem 1rem 0.5rem;
   scroll-behavior: smooth;
