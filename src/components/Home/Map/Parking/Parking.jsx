@@ -1,7 +1,6 @@
 import styles from "./Parking.module.css";
 import { useState } from "react";
 import { useMapData } from "../../../../utils/MapDataContext";
-import { set } from "react-hook-form";
 
 // import ConfirmParkingButton from "./ConfirmParkingButton/ConfirmParkingButton";
 
@@ -13,6 +12,7 @@ const Parkings = () => {
   // ---------------------------- STATE ----------------------------
 
   const [isOpen, setIsOpen] = useState(false);
+  const [parkingsOpen, setParkingsOpen] = useState(false);
   const [selectedFilter1, setSelectedFilter1] = useState("none");
   const [selectedFilter2, setSelectedFilter2] = useState("none");
 
@@ -90,17 +90,43 @@ const Parkings = () => {
 
   // ---------------------------- SHOW PARKINGS ----------------------------
 
+  const toggleParkings = () => {
+    if (parkingsOpen) {
+      hideParkings();
+    } else {
+      displayParkings();
+    }
+  };
+
   const displayParkings = () => {
     let mainHeaderBody = document.getElementById("mainHeaderBody");
     let parkingsDiv = document.getElementById("parkingsDiv");
     let mainDiv = document.getElementById("mainDiv");
     let fadeBg = document.getElementById("fadeBg");
+    mainDiv.classList.remove(styles.hideParkingAnimation);
     mainDiv.classList.add(styles.showParkingsAnimation);
     mainHeaderBody.style.display = "flex";
     parkingsDiv.style.display = "block";
+    setParkingsOpen((prevParkingsOpen) => !prevParkingsOpen);
     setTimeout(() => {
       fadeBg.style.display = "block";
       mainDiv.style.height = "90dvh";
+    }, 300);
+  };
+
+  const hideParkings = () => {
+    let mainHeaderBody = document.getElementById("mainHeaderBody");
+    let parkingsDiv = document.getElementById("parkingsDiv");
+    let mainDiv = document.getElementById("mainDiv");
+    let fadeBg = document.getElementById("fadeBg");
+    mainDiv.classList.remove(styles.showParkingsAnimation);
+    mainDiv.classList.add(styles.hideParkingAnimation);
+    mainDiv.style.height = "10dvh";
+    setParkingsOpen((prevParkingsOpen) => !prevParkingsOpen);
+    setTimeout(() => {
+      fadeBg.style.display = "none";
+      mainHeaderBody.style.display = "none";
+      parkingsDiv.style.display = "none";
     }, 300);
   };
 
@@ -140,7 +166,7 @@ const Parkings = () => {
           src="/icons/upArrow.png"
           alt="ShowParkings"
           className={showParkings}
-          onClick={() => displayParkings()}
+          onClick={() => toggleParkings()}
         />
         <div className={mainHeaderBody} id="mainHeaderBody">
           <h2 className={mainHeading}>Parking Spots</h2>

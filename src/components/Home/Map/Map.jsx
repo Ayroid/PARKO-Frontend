@@ -141,9 +141,7 @@ const Map = () => {
 
       if (response.status === 200) {
         reFetchMapData();
-        setTimeout(() => {
-          handleMapClick();
-        }, 1000);
+        handleMapClick();
         toast.success("Parking Spot Booked!");
       }
     } catch (error) {
@@ -173,6 +171,7 @@ const Map = () => {
 
       if (response.status === 200) {
         reFetchMapData();
+        handleMapClick();
         toast.success("Parking Spot Booking Cancelled!");
       }
 
@@ -188,14 +187,14 @@ const Map = () => {
   // ---------------------------- GET MARKER ICON ----------------------------
 
   const getMarkerIcon = (parkingStatus, index, currentlyParkedUser) => {
+    if (index === clicked) {
+      return selectedMarker;
+    }
     if (
       parkingStatus === "booked" &&
       currentlyParkedUser === localStorage.getItem("user")
     ) {
       return yourBookedMarker;
-    }
-    if (index === clicked) {
-      return selectedMarker;
     } else {
       // Return the icon based on the parkingStatus
       return parkingStatus === "available"
@@ -300,9 +299,9 @@ const Map = () => {
 
       {/* PARKING DETAILS */}
 
-      {/* <div className={parkingListDiv}>
+      <div className={parkingListDiv}>
         <Parking />
-      </div> */}
+      </div>
 
       {/* TOAST CONTAINER */}
 

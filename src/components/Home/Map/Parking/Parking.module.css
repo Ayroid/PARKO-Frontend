@@ -48,6 +48,19 @@
   }
 }
 
+.hideParkingAnimation {
+  animation: hideParkingAnimation 0.3s;
+}
+
+@keyframes hideParkingAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
 .mainHeader {
   position: relative;
   background-color: #fff;
