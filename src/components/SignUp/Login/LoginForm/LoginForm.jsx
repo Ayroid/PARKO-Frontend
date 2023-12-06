@@ -9,8 +9,10 @@ import "../../../../css/form.css";
 const LoginForm = () => {
   // ---------------------------- SERVER URL CONFIGURATION ----------------------------
 
-  const otpRequestURL = import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/login/mail";
-  const otpVerifyURL = import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/verify/mail";
+  const otpRequestURL =
+    import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/login/mail";
+  const otpVerifyURL =
+    import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/verify/mail";
 
   // ---------------------------- NAVIGATION ----------------------------
 
@@ -108,6 +110,7 @@ const LoginForm = () => {
         if (response.status === 200) {
           localStorage.setItem("jwtToken", response.data.token);
           localStorage.setItem("jwtRefreshToken", response.data.refreshToken);
+          localStorage.setItem("user", response.data.userId);
           toast.success("Login successful");
           navigate("/");
         } else {

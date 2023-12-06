@@ -1,7 +1,6 @@
 import Map from "./Map/Map";
-import Parkings from "./Parking/Parking";
 import Header from "./Header/Header";
-import Navigation from "./Navigation/Navigation";
+// import Navigation from "./Navigation/Navigation";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 import styles from "./Home.module.css";
@@ -23,9 +22,8 @@ const Home = () => {
   return (
     <div className={mainDiv}>
       <Header />
-      <Navigation />
       <Map />
-      <Parkings />
+      {/* <Navigation /> */}
     </div>
   );
 };

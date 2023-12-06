@@ -47,8 +47,8 @@ const UserDataContextProvider = ({ children }) => {
       });
 
       setVehicleData(response.data.vehicles);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     } finally {
       setUserLoading(false);
     }

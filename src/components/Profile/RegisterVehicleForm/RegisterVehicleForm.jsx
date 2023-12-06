@@ -112,8 +112,8 @@ const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
         toast.error("Vehicle Registration Failed!");
         closeForm();
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
       toast.error("Vehicle Registration Failed!");
       closeForm();
     }

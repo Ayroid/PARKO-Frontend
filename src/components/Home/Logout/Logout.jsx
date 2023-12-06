@@ -23,7 +23,7 @@ const Logout = ({ updateLogout }) => {
     try {
       const jwtToken = localStorage.getItem("jwtToken");
       const logoutURL = SERVER_URL + "/api/user/logout";
-      const response = await axios.post(
+      await axios.post(
         logoutURL,
         {},
         {
@@ -32,13 +32,13 @@ const Logout = ({ updateLogout }) => {
           },
         }
       );
-      console.log(response);
       navigate("/auth");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     } finally {
       localStorage.removeItem("jwtToken");
       localStorage.removeItem("jwtRefreshToken");
+      localStorage.removeItem("user");
     }
   };
 

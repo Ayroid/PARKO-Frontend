@@ -34,8 +34,8 @@ const MapDataContextProvider = ({ children }) => {
       });
 
       setParkingCoordinates(response.data.parkingSpots);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     } finally {
       setmapLoading(false);
     }
@@ -45,7 +45,7 @@ const MapDataContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   // ---------------------------- FUNCTIONS ----------------------------
 
