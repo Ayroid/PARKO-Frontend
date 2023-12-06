@@ -91,7 +91,8 @@ const LoginForm = () => {
       }
     } catch (error) {
       console.error("Error sending Login request:", error);
-      toast.error("Error getting OTP!");
+      setOTPSent(false);
+      toast.error(error.response.data);
     }
   };
 

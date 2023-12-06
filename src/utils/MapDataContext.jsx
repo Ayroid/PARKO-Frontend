@@ -6,6 +6,10 @@ import axios from "axios";
 
 const MapDataContext = createContext();
 
+// ---------------------------- VARIABLES ----------------------------
+
+const user = localStorage.getItem("user");
+
 // ---------------------------- CONTEXT PROVIDER ----------------------------
 
 const MapDataContextProvider = ({ children }) => {
@@ -13,6 +17,7 @@ const MapDataContextProvider = ({ children }) => {
 
   const [parkingCoordinates, setParkingCoordinates] = useState([]);
   const [mapLoading, setmapLoading] = useState(true);
+  const [userAlreadyBooked, setUserAlreadyBooked] = useState(false);
 
   // ---------------------------- FETCHING DATA ----------------------------
 
@@ -33,6 +38,17 @@ const MapDataContextProvider = ({ children }) => {
         },
       });
 
+      for (let i = 0; i < response.data.parkingSpots.length; i++) {
+        if (
+          response.data.parkingSpots[i].parkingStatus === "booked" &&
+          response.data.parkingSpots[i].currentlyParkedUser === user
+        ) {
+          setUserAlreadyBooked(true);
+          break;
+        } else {
+          setUserAlreadyBooked(false);
+        }
+      }
       setParkingCoordinates(response.data.parkingSpots);
     } catch (error) {
       console.log(error);
@@ -47,21 +63,35 @@ const MapDataContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 15000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
   // ---------------------------- FUNCTIONS ----------------------------
 
   const reFetchMapData = () => {
     fetchData();
   };
 
-  setTimeout(() => {
-    fetchData();
-  }, 15000);
+  // setTimeout(() => {
+  //   fetchData();
+  // }, 15000);
 
   // ---------------------------- JSX ----------------------------
 
   return (
     <MapDataContext.Provider
-      value={{ parkingCoordinates, mapLoading, reFetchMapData }}
+      value={{
+        parkingCoordinates,
+        mapLoading,
+        userAlreadyBooked,
+        reFetchMapData,
+      }}
     >
       {children}
     </MapDataContext.Provider>
