@@ -5,6 +5,7 @@
   height: 60dvh;
   width: 100dvw;
   color: #000;
+  z-index: 0;
 }
 
 .fadedBg {

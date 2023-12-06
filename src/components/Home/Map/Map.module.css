@@ -78,7 +78,7 @@
   position: absolute;
   z-index: 10;
   bottom: 0;
-  height: 90dvh;
+  height: 5dvh;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;

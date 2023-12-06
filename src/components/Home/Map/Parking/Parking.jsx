@@ -104,6 +104,7 @@ const Parkings = () => {
     let mainDiv = document.getElementById("mainDiv");
     let fadeBg = document.getElementById("fadeBg");
     mainDiv.classList.remove(styles.hideParkingAnimation);
+    mainDiv.style.zIndex = 10;
     mainDiv.classList.add(styles.showParkingsAnimation);
     mainHeaderBody.style.display = "flex";
     parkingsDiv.style.display = "block";
@@ -127,6 +128,7 @@ const Parkings = () => {
       fadeBg.style.display = "none";
       mainHeaderBody.style.display = "none";
       parkingsDiv.style.display = "none";
+      mainDiv.style.zIndex = 0;
     }, 300);
   };
 
