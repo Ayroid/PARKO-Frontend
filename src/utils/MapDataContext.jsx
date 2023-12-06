@@ -23,6 +23,7 @@ const MapDataContextProvider = ({ children }) => {
 
   const fetchData = async () => {
     try {
+      console.log("FETCHING DATA");
       const getUserUrl =
         import.meta.env.VITE_BACKEND_SERVER_URL +
         "/api/parkingSpot/getParkingSpot";
@@ -49,7 +50,6 @@ const MapDataContextProvider = ({ children }) => {
           setUserAlreadyBooked(false);
         }
       }
-
       setParkingCoordinates(response.data.parkingSpots);
     } catch (error) {
       console.log(error);
@@ -64,15 +64,24 @@ const MapDataContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 15000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
   // ---------------------------- FUNCTIONS ----------------------------
 
   const reFetchMapData = () => {
     fetchData();
   };
 
-  setTimeout(() => {
-    fetchData();
-  }, 15000);
+  // setTimeout(() => {
+  //   fetchData();
+  // }, 15000);
 
   // ---------------------------- JSX ----------------------------
 
