@@ -23,7 +23,6 @@ const MapDataContextProvider = ({ children }) => {
 
   const fetchData = async () => {
     try {
-      console.log("FETCHING DATA");
       const getUserUrl =
         import.meta.env.VITE_BACKEND_SERVER_URL +
         "/api/parkingSpot/getParkingSpot";
