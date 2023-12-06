@@ -36,9 +36,7 @@ const Logout = ({ updateLogout }) => {
     } catch (error) {
       console.log(error);
     } finally {
-      localStorage.removeItem("jwtToken");
-      localStorage.removeItem("jwtRefreshToken");
-      localStorage.removeItem("user");
+      localStorage.clear();
     }
   };
 
