@@ -8,6 +8,7 @@ const ConfirmParkingButton = ({ parkingData, bookSpot, cancelSpot }) => {
   const { parkingNumber, parkingStatus, nearBy, currentlyParkedUser } =
     parkingData;
   const user = localStorage.getItem("user");
+  const bookedParkingSpot = localStorage.getItem("bookedParkingSpot");
 
   // ---------------------------- STATE ----------------------------
   //   const [isOpen, setIsOpen] = useState(false);
@@ -58,14 +59,16 @@ const ConfirmParkingButton = ({ parkingData, bookSpot, cancelSpot }) => {
           </div>
         </div>
       </div>
-      {parkingStatus === "available" && user !== currentlyParkedUser && (
-        <button
-          className={bookingButton}
-          onClick={() => bookSpot(parkingNumber)}
-        >
-          Book Now
-        </button>
-      )}
+      {parkingStatus === "available" &&
+        user !== currentlyParkedUser &&
+        bookedParkingSpot == null && (
+          <button
+            className={bookingButton}
+            onClick={() => bookSpot(parkingNumber)}
+          >
+            Book Now
+          </button>
+        )}
       {parkingStatus === "booked" && user === currentlyParkedUser && (
         <button
           className={bookingButton}

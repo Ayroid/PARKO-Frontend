@@ -143,6 +143,7 @@ const Map = () => {
         reFetchMapData();
         handleMapClick();
         toast.success("Parking Spot Booked!");
+        localStorage.setItem("bookedParkingSpot", parkingNumber);
       }
     } catch (error) {
       console.log(error);
@@ -173,6 +174,7 @@ const Map = () => {
         reFetchMapData();
         handleMapClick();
         toast.success("Parking Spot Booking Cancelled!");
+        localStorage.removeItem("bookedParkingSpot");
       }
 
       if (response.status === 400) {
