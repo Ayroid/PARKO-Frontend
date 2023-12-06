@@ -74,7 +74,8 @@ const Map = () => {
 
   // ---------------------------- USE CONTEXT ----------------------------
 
-  const { parkingCoordinates, reFetchMapData } = useMapData();
+  const { parkingCoordinates, reFetchMapData, userAlreadyBooked } =
+    useMapData();
 
   // ---------------------------- CSS ----------------------------
 
@@ -295,6 +296,7 @@ const Map = () => {
             }}
             bookSpot={bookParkingSpot}
             cancelSpot={cancelBooking}
+            userAlreadyBooked={userAlreadyBooked}
           />
         </div>
       )}

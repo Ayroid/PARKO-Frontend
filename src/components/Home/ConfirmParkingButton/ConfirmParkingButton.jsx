@@ -2,13 +2,17 @@
 import PropTypes from "prop-types";
 import styles from "./ConfirmParkingButton.module.css";
 
-const ConfirmParkingButton = ({ parkingData, bookSpot, cancelSpot }) => {
+const ConfirmParkingButton = ({
+  parkingData,
+  bookSpot,
+  cancelSpot,
+  userAlreadyBooked,
+}) => {
   // ---------------------------- DATA EXTRACTION ----------------------------
 
   const { parkingNumber, parkingStatus, nearBy, currentlyParkedUser } =
     parkingData;
   const user = localStorage.getItem("user");
-  const bookedParkingSpot = localStorage.getItem("bookedParkingSpot");
 
   // ---------------------------- STATE ----------------------------
   //   const [isOpen, setIsOpen] = useState(false);
@@ -59,16 +63,14 @@ const ConfirmParkingButton = ({ parkingData, bookSpot, cancelSpot }) => {
           </div>
         </div>
       </div>
-      {parkingStatus === "available" &&
-        user !== currentlyParkedUser &&
-        bookedParkingSpot == null && (
-          <button
-            className={bookingButton}
-            onClick={() => bookSpot(parkingNumber)}
-          >
-            Book Now
-          </button>
-        )}
+      {!userAlreadyBooked && (
+        <button
+          className={bookingButton}
+          onClick={() => bookSpot(parkingNumber)}
+        >
+          Book Now
+        </button>
+      )}
       {parkingStatus === "booked" && user === currentlyParkedUser && (
         <button
           className={bookingButton}
@@ -87,6 +89,7 @@ ConfirmParkingButton.propTypes = {
   parkingData: PropTypes.object.isRequired,
   bookSpot: PropTypes.func.isRequired,
   cancelSpot: PropTypes.func.isRequired,
+  userAlreadyBooked: PropTypes.bool.isRequired,
 };
 
 // ---------------------------- EXPORTS ----------------------------

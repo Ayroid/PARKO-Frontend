@@ -6,6 +6,10 @@ import axios from "axios";
 
 const MapDataContext = createContext();
 
+// ---------------------------- VARIABLES ----------------------------
+
+const user = localStorage.getItem("user");
+
 // ---------------------------- CONTEXT PROVIDER ----------------------------
 
 const MapDataContextProvider = ({ children }) => {
@@ -13,6 +17,7 @@ const MapDataContextProvider = ({ children }) => {
 
   const [parkingCoordinates, setParkingCoordinates] = useState([]);
   const [mapLoading, setmapLoading] = useState(true);
+  const [userAlreadyBooked, setUserAlreadyBooked] = useState(false);
 
   // ---------------------------- FETCHING DATA ----------------------------
 
@@ -32,6 +37,18 @@ const MapDataContextProvider = ({ children }) => {
           Authorization: jwtToken,
         },
       });
+
+      for (let i = 0; i < response.data.parkingSpots.length; i++) {
+        if (
+          response.data.parkingSpots[i].parkingStatus === "booked" &&
+          response.data.parkingSpots[i].currentlyParkedUser === user
+        ) {
+          setUserAlreadyBooked(true);
+          break;
+        } else {
+          setUserAlreadyBooked(false);
+        }
+      }
 
       setParkingCoordinates(response.data.parkingSpots);
     } catch (error) {
@@ -61,7 +78,12 @@ const MapDataContextProvider = ({ children }) => {
 
   return (
     <MapDataContext.Provider
-      value={{ parkingCoordinates, mapLoading, reFetchMapData }}
+      value={{
+        parkingCoordinates,
+        mapLoading,
+        userAlreadyBooked,
+        reFetchMapData,
+      }}
     >
       {children}
     </MapDataContext.Provider>
