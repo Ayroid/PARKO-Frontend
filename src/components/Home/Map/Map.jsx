@@ -91,7 +91,6 @@ const Map = () => {
   const handleMapClick = () => {
     setParkingSelected(false);
     setClicked(-1);
-    console.log("MAP CLICKED");
   };
 
   const MapClickHandler = () => {
@@ -117,7 +116,6 @@ const Map = () => {
       nearBy,
       currentlyParkedUser,
     });
-    console.log("MARKER CLICKED");
     setClicked(index);
   };
 
