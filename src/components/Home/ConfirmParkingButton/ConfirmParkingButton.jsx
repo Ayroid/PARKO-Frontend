@@ -63,7 +63,7 @@ const ConfirmParkingButton = ({
           </div>
         </div>
       </div>
-      {!userAlreadyBooked && (
+      {!userAlreadyBooked && currentlyParkedUser == null && (
         <button
           className={bookingButton}
           onClick={() => bookSpot(parkingNumber)}
