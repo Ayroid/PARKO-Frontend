@@ -145,8 +145,7 @@ const Map = () => {
         localStorage.setItem("bookedParkingSpot", parkingNumber);
       }
     } catch (error) {
-      console.log(error);
-      toast.error("Error Booking Parking Spot!");
+      toast.error(error.response.data);
     }
   };
 
