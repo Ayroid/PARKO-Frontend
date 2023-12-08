@@ -63,14 +63,14 @@ const MapDataContextProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      fetchData();
-    }, 15000);
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     fetchData();
+  //   }, 15000);
 
-    // Clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
+  //   // Clear the interval when the component unmounts
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
   // ---------------------------- FUNCTIONS ----------------------------
 
