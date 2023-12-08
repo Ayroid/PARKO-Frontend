@@ -5,6 +5,7 @@ import {
   Marker,
   // Polyline,
   useMapEvents,
+  Popup,
 } from "react-leaflet";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
@@ -20,6 +21,7 @@ import styles from "./Map.module.css";
 import ConfirmParkingButton from "../ConfirmParkingButton/ConfirmParkingButton";
 import LandMarkMarkers from "../LandMarkMarkers/LandMarkMarkers";
 import Parking from "./Parking/Parking";
+import RoutingMachine from "./RoutingMachine";
 
 import { useMapData } from "../../../utils/MapDataContext";
 
@@ -56,10 +58,13 @@ const selectedMarker = new Icon({
   iconAnchor: [13, 25],
 });
 
+
+
 const Map = () => {
   // ---------------------------- STATES ----------------------------
 
   const [parkingSelected, setParkingSelected] = useState(false);
+  const [endCoordinates, setEndCoordinates] = useState(null); // State for end coordinates
   const [parkingData, setParkingData] = useState({
     parkingNumber: "PS001",
     parkingStatus: "Available",
@@ -107,7 +112,8 @@ const Map = () => {
     parkingStatus,
     nearBy,
     currentlyParkedUser,
-    index
+    index,
+    coordinates,
   ) => {
     setParkingSelected(true);
     setParkingData({
@@ -117,6 +123,7 @@ const Map = () => {
       currentlyParkedUser,
     });
     setClicked(index);
+    setEndCoordinates(coordinates);
   };
 
   // ---------------------------- BOOK PARKING SPOT ----------------------------
@@ -208,6 +215,11 @@ const Map = () => {
         : null;
     }
   };
+  // ---------------------------- DIJISTRA ----------------------------
+  const gateCoordinates = [30.41578351906404,77.96630144119264];
+
+
+
 
   // ---------------------------- MEMOIZING CLUSTER GROUP ----------------------------
 
@@ -240,6 +252,10 @@ const Map = () => {
 
           <LandMarkMarkers />
 
+          <Marker position={gateCoordinates}>
+            <Popup>UPES GATE</Popup>
+          </Marker>
+
           {parkingCoordinates.map(
             (
               {
@@ -269,7 +285,8 @@ const Map = () => {
                         parkingStatus,
                         nearBy,
                         currentlyParkedUser,
-                        index
+                        index,
+                        coordinates
                       );
                     },
                   }}
@@ -277,6 +294,10 @@ const Map = () => {
               </div>
             )
           )}
+
+
+          <RoutingMachine start={gateCoordinates} end={endCoordinates}/>
+
         </MemoizedMarkerClusterGroup>
       </MapContainer>
 
