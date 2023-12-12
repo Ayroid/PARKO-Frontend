@@ -63,22 +63,25 @@ const ConfirmParkingButton = ({
           </div>
         </div>
       </div>
-      {!userAlreadyBooked && currentlyParkedUser == null && (
-        <button
-          className={bookingButton}
-          onClick={() => bookSpot(parkingNumber)}
-        >
-          Book Now
-        </button>
-      )}
-      {parkingStatus === "booked" && user === currentlyParkedUser && (
-        <button
-          className={bookingButton}
-          onClick={() => cancelSpot(parkingNumber)}
-        >
-          Cancel Booking
-        </button>
-      )}
+      {!userAlreadyBooked &&
+        currentlyParkedUser == null &&
+        parkingStatus == "available" && (
+          <button
+            className={bookingButton}
+            onClick={() => bookSpot(parkingNumber)}
+          >
+            Book Now
+          </button>
+        )}
+      {(parkingStatus === "booked" || parkingStatus === "parked") &&
+        user === currentlyParkedUser && (
+          <button
+            className={bookingButton}
+            onClick={() => cancelSpot(parkingNumber)}
+          >
+            Cancel Booking
+          </button>
+        )}
     </div>
   );
 };
