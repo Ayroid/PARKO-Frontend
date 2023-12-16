@@ -20,7 +20,7 @@ import styles from "./Map.module.css";
 import ConfirmParkingButton from "../ConfirmParkingButton/ConfirmParkingButton";
 import LandMarkMarkers from "../LandMarkMarkers/LandMarkMarkers";
 import Parking from "./Parking/Parking";
-import Timer from "./Timer/Timer";
+// import Timer from "./Timer/Timer";
 
 import { useMapData } from "../../../utils/MapDataContext";
 
@@ -218,7 +218,7 @@ const Map = () => {
 
   return (
     <div className={mainDiv}>
-      <Timer />
+      {/* <Timer /> */}
       <MapContainer
         center={[30.416502, 77.968515]}
         zoom={18}

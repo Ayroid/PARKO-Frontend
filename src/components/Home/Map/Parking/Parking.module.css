@@ -36,6 +36,20 @@
   z-index: 10;
 }
 
+.arrowAnimation {
+  animation: arrowAnimation infinite ease-in-out 2s;
+}
+
+@keyframes arrowAnimation {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .showParkingsAnimation {
   animation: showParkingsAnimation 0.3s;
 }
