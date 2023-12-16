@@ -20,6 +20,7 @@ import styles from "./Map.module.css";
 import ConfirmParkingButton from "../ConfirmParkingButton/ConfirmParkingButton";
 import LandMarkMarkers from "../LandMarkMarkers/LandMarkMarkers";
 import Parking from "./Parking/Parking";
+// import Timer from "./Timer/Timer";
 
 import { useMapData } from "../../../utils/MapDataContext";
 
@@ -217,6 +218,7 @@ const Map = () => {
 
   return (
     <div className={mainDiv}>
+      {/* <Timer /> */}
       <MapContainer
         center={[30.416502, 77.968515]}
         zoom={18}
@@ -279,9 +281,7 @@ const Map = () => {
           )}
         </MemoizedMarkerClusterGroup>
       </MapContainer>
-
       {/* CONFIRM PARKING BUTTON */}
-
       {parkingSelected && (
         <div className={confirmParkingContainer} id="confirmParkingContainer">
           <ConfirmParkingButton
@@ -297,15 +297,11 @@ const Map = () => {
           />
         </div>
       )}
-
       {/* PARKING DETAILS */}
-
       <div className={parkingListDiv}>
         <Parking />
       </div>
-
       {/* TOAST CONTAINER */}
-
       <ToastContainer position="top-center" />
     </div>
   );

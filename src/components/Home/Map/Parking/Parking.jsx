@@ -65,6 +65,9 @@ const Parkings = () => {
 
   const openDropDown = () => {
     let dropDown = document.getElementById("filterDiv");
+    let showParkingsArrow = document.getElementById("showParkings");
+    showParkingsArrow.style.transform = "rotate(180deg)";
+    showParkingsArrow.classList.remove(styles.arrowAnimation);
     dropDown.style.display = "flex";
     dropDown.classList.remove(styles.dropDownAnimationReverse);
     dropDown.classList.add(styles.dropDownAnimation);
@@ -72,8 +75,11 @@ const Parkings = () => {
 
   const closeDropDown = () => {
     let dropDown = document.getElementById("filterDiv");
+    let showParkingsArrow = document.getElementById("showParkings");
     dropDown.classList.remove(styles.dropDownAnimation);
     dropDown.classList.add(styles.dropDownAnimationReverse);
+    showParkingsArrow.style.transform = "rotate(0deg)";
+    showParkingsArrow.classList.add(styles.arrowAnimation);
     setTimeout(() => {
       dropDown.style.display = "none";
     }, 200);
@@ -136,7 +142,7 @@ const Parkings = () => {
 
   const mainDiv = [styles.mainDiv].join("");
   const fadedBg = [styles.fadedBg].join("");
-  const showParkings = [styles.showParkings].join("");
+  const showParkings = `${styles.showParkings} ${styles.arrowAnimation}`;
   const mainHeader = [styles.mainHeader].join("");
   const mainHeaderBody = [styles.mainHeaderBody].join("");
   const mainHeading = [styles.mainHeading].join("");
@@ -167,6 +173,7 @@ const Parkings = () => {
         <img
           src="/icons/upArrow.png"
           alt="ShowParkings"
+          id="showParkings"
           className={showParkings}
           onClick={() => toggleParkings()}
         />

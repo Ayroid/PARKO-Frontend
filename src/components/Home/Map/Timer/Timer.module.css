@@ -1,0 +1,7 @@
+.outerTimer {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  background-color: red;
+  border: 0.5rem solid black;
+}
