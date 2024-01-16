@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import axios from "axios";
 
 // ---------------------------- CONTEXT ----------------------------
@@ -16,7 +16,7 @@ const MapDataContextProvider = ({ children }) => {
   // ---------------------------- STATE ----------------------------
 
   const [parkingCoordinates, setParkingCoordinates] = useState([]);
-  const [mapLoading, setmapLoading] = useState(true);
+  const [mapLoading, setMapLoading] = useState(true);
   const [userAlreadyBooked, setUserAlreadyBooked] = useState(false);
 
   // ---------------------------- FETCHING DATA ----------------------------
@@ -29,7 +29,7 @@ const MapDataContextProvider = ({ children }) => {
       const jwtToken = localStorage.getItem("jwtToken");
 
       if (jwtToken == null) {
-        setmapLoading(false);
+        setMapLoading(false);
         return;
       }
       const response = await axios.post(getUserUrl, null, {
@@ -38,10 +38,10 @@ const MapDataContextProvider = ({ children }) => {
         },
       });
 
-      for (let i = 0; i < response.data.parkingSpots.length; i++) {
+      for (const parkingSpot of response.data.parkingSpots) {
         if (
-          response.data.parkingSpots[i].parkingStatus === "booked" &&
-          response.data.parkingSpots[i].currentlyParkedUser === user
+          parkingSpot.parkingStatus === "booked" &&
+          parkingSpot.currentlyParkedUser === user
         ) {
           setUserAlreadyBooked(true);
           break;
@@ -53,7 +53,7 @@ const MapDataContextProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     } finally {
-      setmapLoading(false);
+      setMapLoading(false);
     }
   };
 
@@ -74,9 +74,11 @@ const MapDataContextProvider = ({ children }) => {
 
   // ---------------------------- FUNCTIONS ----------------------------
 
-  const reFetchMapData = () => {
-    fetchData();
-  };
+  const reFetchMapData = useMemo(() => {
+    return () => {
+      fetchData();
+    };
+  }, []);
 
   // setTimeout(() => {
   //   fetchData();
@@ -84,15 +86,18 @@ const MapDataContextProvider = ({ children }) => {
 
   // ---------------------------- JSX ----------------------------
 
+  const contextValue = useMemo(
+    () => ({
+      parkingCoordinates,
+      mapLoading,
+      userAlreadyBooked,
+      reFetchMapData,
+    }),
+    [parkingCoordinates, mapLoading, userAlreadyBooked, reFetchMapData]
+  );
+
   return (
-    <MapDataContext.Provider
-      value={{
-        parkingCoordinates,
-        mapLoading,
-        userAlreadyBooked,
-        reFetchMapData,
-      }}
-    >
+    <MapDataContext.Provider value={contextValue}>
       {children}
     </MapDataContext.Provider>
   );

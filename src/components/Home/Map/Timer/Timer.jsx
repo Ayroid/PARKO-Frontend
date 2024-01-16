@@ -10,11 +10,13 @@ const Timer = () => {
   // useEffect to update the remaining time when the interval updates
   useEffect(() => {
     const intervalId = setInterval(() => {
-      reFetchMapData(); // Replace this with your logic
+      // Replace this with your logic
+      reFetchMapData();
       setRemainingTime((prevRemainingTime) => {
         // Update the remaining time based on your interval duration
         const newRemainingTime = prevRemainingTime - 1;
-        return newRemainingTime < 0 ? 15 : newRemainingTime; // Reset to 5 when it reaches 0
+        // Reset to 5 when it reaches 0
+        return newRemainingTime < 0 ? 15 : newRemainingTime;
       });
     }, 15000);
 
@@ -44,10 +46,7 @@ const Timer = () => {
     >
       <CountdownCircleTimer
         {...timerProps}
-        onComplete={() => {
-          // do your stuff here
-          return { shouldRepeat: true }; // repeat animation in 1.5 seconds
-        }}
+        onComplete={() => ({ shouldRepeat: true })}
       >
         {({ remainingTime }) => <div>{remainingTime}</div>}
       </CountdownCircleTimer>

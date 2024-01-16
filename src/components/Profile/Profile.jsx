@@ -24,7 +24,9 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  if (userLoading) return <LoadingSpinner />;
+  if (userLoading) {
+    return <LoadingSpinner />;
+  }
 
   // ---------------------------- FUNCTIONS ----------------------------
 

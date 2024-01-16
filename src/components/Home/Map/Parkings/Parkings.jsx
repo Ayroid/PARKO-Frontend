@@ -1,4 +1,4 @@
-import styles from "./Parking.module.css";
+import styles from "./Parkings.module.css";
 import { useState } from "react";
 import { useMapData } from "../../../../utils/MapDataContext";
 
@@ -46,7 +46,7 @@ const Parkings = () => {
   };
 
   const applyFilters = () => {
-    const filteredParkings = parkingCoordinates.filter((parking) => {
+    return parkingCoordinates.filter((parking) => {
       const filter1Passed =
         selectedFilter1 === "none" || parking.parkingStatus === selectedFilter1;
 
@@ -55,8 +55,6 @@ const Parkings = () => {
 
       return filter1Passed && filter2Passed;
     });
-
-    return filteredParkings;
   };
 
   const filteredParkings = applyFilters();
@@ -64,8 +62,8 @@ const Parkings = () => {
   // ---------------------------- DROPDOWN ----------------------------
 
   const openDropDown = () => {
-    let dropDown = document.getElementById("filterDiv");
-    let showParkingsArrow = document.getElementById("showParkings");
+    const dropDown = document.getElementById("filterDiv");
+    const showParkingsArrow = document.getElementById("showParkings");
     showParkingsArrow.style.transform = "rotate(180deg)";
     showParkingsArrow.classList.remove(styles.arrowAnimation);
     dropDown.style.display = "flex";
@@ -74,8 +72,8 @@ const Parkings = () => {
   };
 
   const closeDropDown = () => {
-    let dropDown = document.getElementById("filterDiv");
-    let showParkingsArrow = document.getElementById("showParkings");
+    const dropDown = document.getElementById("filterDiv");
+    const showParkingsArrow = document.getElementById("showParkings");
     dropDown.classList.remove(styles.dropDownAnimation);
     dropDown.classList.add(styles.dropDownAnimationReverse);
     showParkingsArrow.style.transform = "rotate(0deg)";
@@ -105,10 +103,10 @@ const Parkings = () => {
   };
 
   const displayParkings = () => {
-    let mainHeaderBody = document.getElementById("mainHeaderBody");
-    let parkingsDiv = document.getElementById("parkingsDiv");
-    let mainDiv = document.getElementById("mainDiv");
-    let fadeBg = document.getElementById("fadeBg");
+    const mainHeaderBody = document.getElementById("mainHeaderBody");
+    const parkingsDiv = document.getElementById("parkingsDiv");
+    const mainDiv = document.getElementById("mainDiv");
+    const fadeBg = document.getElementById("fadeBg");
     mainDiv.classList.remove(styles.hideParkingAnimation);
     mainDiv.style.zIndex = 10;
     mainDiv.classList.add(styles.showParkingsAnimation);
@@ -122,10 +120,10 @@ const Parkings = () => {
   };
 
   const hideParkings = () => {
-    let mainHeaderBody = document.getElementById("mainHeaderBody");
-    let parkingsDiv = document.getElementById("parkingsDiv");
-    let mainDiv = document.getElementById("mainDiv");
-    let fadeBg = document.getElementById("fadeBg");
+    const mainHeaderBody = document.getElementById("mainHeaderBody");
+    const parkingsDiv = document.getElementById("parkingsDiv");
+    const mainDiv = document.getElementById("mainDiv");
+    const fadeBg = document.getElementById("fadeBg");
     mainDiv.classList.remove(styles.showParkingsAnimation);
     mainDiv.classList.add(styles.hideParkingAnimation);
     mainDiv.style.height = "10dvh";

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useMemo } from "react";
 import axios from "axios";
 
 // ---------------------------- CONTEXT ----------------------------
@@ -56,22 +56,28 @@ const UserDataContextProvider = ({ children }) => {
 
   // ---------------------------- USE EFFECT ----------------------------
 
-  useEffect(() => {
+  // ---------------------------- FUNCTIONS ----------------------------
+
+  const reFetchUserData = useMemo(() => {
     fetchData();
   }, []);
 
-  // ---------------------------- FUNCTIONS ----------------------------
-
-  const reFetchUserData = () => {
-    fetchData();
-  };
-
   // ---------------------------- JSX ----------------------------
 
+  // ...
+
+  const contextValue = useMemo(
+    () => ({
+      userData,
+      vehicleData,
+      userLoading,
+      reFetchUserData,
+    }),
+    [userData, vehicleData, userLoading, reFetchUserData]
+  );
+
   return (
-    <UserDataContext.Provider
-      value={{ userData, vehicleData, userLoading, reFetchUserData }}
-    >
+    <UserDataContext.Provider value={contextValue}>
       {children}
     </UserDataContext.Provider>
   );

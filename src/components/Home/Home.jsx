@@ -1,4 +1,4 @@
-import Map from "./Map/Map";
+import MapComponent from "./Map/Map";
 import Header from "./Header/Header";
 // import Navigation from "./Navigation/Navigation";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
@@ -11,7 +11,9 @@ const Home = () => {
   // ---------------------------- DATA EXTRACTION ----------------------------
   const { mapLoading } = useMapData();
 
-  if (mapLoading) return <LoadingSpinner />;
+  if (mapLoading) {
+    return <LoadingSpinner />;
+  }
 
   // ---------------------------- CSS ----------------------------
 
@@ -22,7 +24,7 @@ const Home = () => {
   return (
     <div className={mainDiv}>
       <Header />
-      <Map />
+      <MapComponent />
       {/* <Navigation /> */}
     </div>
   );

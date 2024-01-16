@@ -19,6 +19,40 @@ const ConfirmParkingButton = ({
 
   // ---------------------------- FUNCTIONS ----------------------------
 
+  const getBackgroundColor = () => {
+    switch (parkingStatus) {
+      case "available":
+        return "#00ff00";
+      case "booked":
+        return "#00c8ff";
+      case "parked":
+        return "#000000";
+      default:
+        return "#ff0000";
+    }
+  };
+
+  const getStatusText = () => {
+    switch (parkingStatus) {
+      case "available":
+        return "Available";
+      case "booked":
+        if (user === currentlyParkedUser) {
+          return "Your Booking";
+        } else {
+          return "Booked";
+        }
+      case "parked":
+        if (user === currentlyParkedUser) {
+          return "Your Parking";
+        } else {
+          return "Parked";
+        }
+      default:
+        return "Unavailable";
+    }
+  };
+
   // ---------------------------- CSS ----------------------------
 
   const mainDiv = [styles.mainDiv].join("");
@@ -41,21 +75,10 @@ const ConfirmParkingButton = ({
             <div
               className={availabilityStatusColor}
               style={{
-                backgroundColor:
-                  parkingStatus === "available"
-                    ? "#00ff00"
-                    : parkingStatus === "parked"
-                    ? "#000000"
-                    : parkingStatus === "booked"
-                    ? "#00c8ff"
-                    : "#ff0000",
+                backgroundColor: getBackgroundColor(),
               }}
             ></div>
-            <h3 className={parkingSubInfoText}>
-              {parkingStatus === "booked" && user === currentlyParkedUser
-                ? `${parkingStatus} (You)`
-                : parkingStatus}
-            </h3>
+            <h3 className={parkingSubInfoText}>{getStatusText()}</h3>
           </div>
           <div className={parkingSubInfoDiv}>
             <img src="/icons/location.png" alt="location" />

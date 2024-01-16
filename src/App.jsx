@@ -11,56 +11,54 @@ import { MapDataContextProvider } from "./utils/MapDataContext.jsx";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route
-          path="/auth"
-          element={
-            <ProtectedRoute path="/auth">
-              <SignUp />
-            </ProtectedRoute>
-          }
-        />
+    <Routes>
+      <Route
+        path="/auth"
+        element={
+          <ProtectedRoute path="/auth">
+            <SignUp />
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/"
-          element={
-            <MapDataContextProvider>
-              <UserDataContextProvider>
-                <ProtectedRoute path="/">
-                  <Home />
-                </ProtectedRoute>
-              </UserDataContextProvider>
-            </MapDataContextProvider>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <MapDataContextProvider>
-              <UserDataContextProvider>
-                <ProtectedRoute path="/profile">
-                  <Profile />
-                </ProtectedRoute>
-              </UserDataContextProvider>
-            </MapDataContextProvider>
-          }
-        />
+      <Route
+        path="/"
+        element={
+          <MapDataContextProvider>
+            <UserDataContextProvider>
+              <ProtectedRoute path="/">
+                <Home />
+              </ProtectedRoute>
+            </UserDataContextProvider>
+          </MapDataContextProvider>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <MapDataContextProvider>
+            <UserDataContextProvider>
+              <ProtectedRoute path="/profile">
+                <Profile />
+              </ProtectedRoute>
+            </UserDataContextProvider>
+          </MapDataContextProvider>
+        }
+      />
 
-        <Route
-          path="/settings"
-          element={
-            <MapDataContextProvider>
-              <UserDataContextProvider>
-                <ProtectedRoute path="/settings">
-                  <Settings />
-                </ProtectedRoute>
-              </UserDataContextProvider>
-            </MapDataContextProvider>
-          }
-        />
-      </Routes>
-    </>
+      <Route
+        path="/settings"
+        element={
+          <MapDataContextProvider>
+            <UserDataContextProvider>
+              <ProtectedRoute path="/settings">
+                <Settings />
+              </ProtectedRoute>
+            </UserDataContextProvider>
+          </MapDataContextProvider>
+        }
+      />
+    </Routes>
   );
 }
 

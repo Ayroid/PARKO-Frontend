@@ -12,7 +12,7 @@ const ProtectedRoute = ({ path, children }) => {
 
   // ---------------------------- VARIABLES ----------------------------
 
-  const signUpPageRequested = path === "/auth" ? true : false;
+  const signUpPageRequested = path === "/auth";
 
   // ---------------------------- USE EFFECT ----------------------------
 
@@ -27,7 +27,7 @@ const ProtectedRoute = ({ path, children }) => {
         // ---------------------------- VERIFY TOKEN ----------------------------
 
         let jwtToken = localStorage.getItem("jwtToken");
-        let jwtRefreshToken = localStorage.getItem("jwtRefreshToken");
+        const jwtRefreshToken = localStorage.getItem("jwtRefreshToken");
 
         if (jwtRefreshToken == null && jwtToken == null) {
           setVerified(false);
@@ -83,8 +83,9 @@ const ProtectedRoute = ({ path, children }) => {
       return <Navigate to="/" />;
     } else if (!signUpPageRequested && !verified) {
       return <Navigate to="/auth" />;
+    } else {
+      return children;
     }
-    return children;
   }
 };
 

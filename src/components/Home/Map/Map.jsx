@@ -19,7 +19,7 @@ import styles from "./Map.module.css";
 
 import ConfirmParkingButton from "../ConfirmParkingButton/ConfirmParkingButton";
 import LandMarkMarkers from "../LandMarkMarkers/LandMarkMarkers";
-import Parking from "./Parking/Parking";
+import Parking from "./Parkings/Parkings";
 // import Timer from "./Timer/Timer";
 
 import { useMapData } from "../../../utils/MapDataContext";
@@ -57,7 +57,7 @@ const selectedMarker = new Icon({
   iconAnchor: [13, 25],
 });
 
-const Map = () => {
+const MapComponent = () => {
   // ---------------------------- STATES ----------------------------
 
   const [parkingSelected, setParkingSelected] = useState(false);
@@ -309,4 +309,4 @@ const Map = () => {
 
 // ---------------------------- EXPORT ----------------------------
 
-export default Map;
+export default MapComponent;

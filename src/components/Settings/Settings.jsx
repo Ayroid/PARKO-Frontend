@@ -17,7 +17,7 @@ const Settings = () => {
 
   // ---------------------------- STATE ----------------------------
 
-  const [username, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [sapid, setSapid] = useState("");
   const [phone, setPhone] = useState("");
@@ -33,15 +33,19 @@ const Settings = () => {
 
   useEffect(() => {
     if (!userLoading) {
-      setUserName(userData.username);
+      setUsername(userData.username);
       setEmail(userData.email);
       setSapid(userData.sapid);
       setPhone(userData.phone);
-      if (userData.profilePic) setProfilePic(userData.profilePic);
+      if (userData.profilePic) {
+        setProfilePic(userData.profilePic);
+      }
     }
   }, [userData, userLoading]);
 
-  if (userLoading) return <LoadingSpinner />;
+  if (userLoading) {
+    return <LoadingSpinner />;
+  }
 
   // ---------------------------- HANDLE CHANGE FUNCTIONS ----------------------------
 
@@ -51,7 +55,7 @@ const Settings = () => {
     } else {
       setUserNameUpdated(false);
     }
-    setUserName(event.target.value);
+    setUsername(event.target.value);
   };
 
   const handleEmailChange = (event) => {
@@ -82,10 +86,10 @@ const Settings = () => {
   };
 
   const handleImageChange = async (e) => {
-    let imagePreview = document.getElementById("imagePreview");
-    let file = e.target.files[0];
+    const imagePreview = document.getElementById("imagePreview");
+    const file = e.target.files[0];
     if (file) {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = function (e) {
         imagePreview.src = e.target.result;
       };
@@ -131,10 +135,10 @@ const Settings = () => {
           import.meta.env.VITE_BACKEND_SERVER_URL + "/api/user/updateUser";
 
         const data = {
-          username: username,
-          email: email,
-          sapid: sapid,
-          phone: phone,
+          username,
+          email,
+          sapid,
+          phone,
         };
 
         const response = await axios.post(
@@ -159,7 +163,7 @@ const Settings = () => {
     } catch (error) {
       console.error("Error updating user:", error);
       toast.error("Error updating user");
-      setUserName(userData.username);
+      setUsername(userData.username);
       setEmail(userData.email);
       setSapid(userData.sapid);
       setPhone(userData.phone);
@@ -179,11 +183,9 @@ const Settings = () => {
   const input = `input`;
   const inputDiv = `inputDiv`;
   const inputFieldName = `inputFieldName`;
-  const button = `button + ${
-    !userNameUpdated && !emailUpdated && !sapidUpdated && !phoneUpdated
-      ? styles.buttonDisabled
-      : null
-  }`;
+  const isButtonDisabled =
+    !userNameUpdated && !emailUpdated && !sapidUpdated && !phoneUpdated;
+  const button = `button + ${isButtonDisabled ? styles.buttonDisabled : ""}`;
 
   // ---------------------------- JSX ----------------------------
 
@@ -197,9 +199,10 @@ const Settings = () => {
           <img
             className={profilePicImg}
             src={
-              profilePic == "" ? "public/icons/profileicon.jpg" : profilePic
+              profilePic === "" ? "public/icons/profileicon.jpg" : profilePic
             }
             id="imagePreview"
+            alt="profile pic"
           />
           <img className={addPic} src="/icons/add.png" alt="addProfilePic" />
           <input

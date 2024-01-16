@@ -22,7 +22,7 @@ const UserInformation = ({ data }) => {
       <div className={profilePic}>
         <img
           src={
-            userData.profilePic == ""
+            userData.profilePic === ""
               ? "public/icons/profileicon.jpg"
               : userData.profilePic
           }

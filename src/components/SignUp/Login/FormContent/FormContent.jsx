@@ -12,7 +12,7 @@ const FormContent = () => {
   const welcomeDiv = [styles.welcomeDiv].join("");
   // const welcomeText = [styles.welcomeText].join("");
 
-  // ---------------------------- JSX ---------------------------- 
+  // ---------------------------- JSX ----------------------------
 
   return (
     <div className={outerDiv}>

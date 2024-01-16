@@ -34,18 +34,18 @@ const Header = () => {
   // ---------------------------- TOGGLE DROPDOWN ----------------------------
 
   const openDropDown = () => {
-    let dropDown = document.getElementById("dropDown");
-    dropDown.style.display = "flex";
-    dropDown.classList.remove(styles.dropDownAnimationReverse);
-    dropDown.classList.add(styles.dropDownAnimation);
+    const dropdown = document.getElementById("dropDown");
+    dropdown.style.display = "flex";
+    dropdown.classList.remove(styles.dropDownAnimationReverse);
+    dropdown.classList.add(styles.dropDownAnimation);
   };
 
   const closeDropDown = () => {
-    let dropDown = document.getElementById("dropDown");
-    dropDown.classList.remove(styles.dropDownAnimation);
-    dropDown.classList.add(styles.dropDownAnimationReverse);
+    const dropdown = document.getElementById("dropDown");
+    dropdown.classList.remove(styles.dropDownAnimation);
+    dropdown.classList.add(styles.dropDownAnimationReverse);
     setTimeout(() => {
-      dropDown.style.display = "none";
+      dropdown.style.display = "none";
     }, 200);
   };
 
@@ -82,9 +82,6 @@ const Header = () => {
             <div className={dropDownItems} onClick={openProfile}>
               <div className={dropDownItemsText}>Profile</div>
             </div>
-            <a href="#" className={dropDownItems}>
-              <div className={dropDownItemsText}>Dropdown 2</div>
-            </a>
             <div className={dropDownItems} onClick={openLogOut}>
               <div className={dropDownItemsText}>Log Out</div>
             </div>

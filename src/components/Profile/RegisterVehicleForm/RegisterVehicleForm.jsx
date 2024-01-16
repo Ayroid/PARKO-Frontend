@@ -88,9 +88,9 @@ const RegisterVehicleForm = ({ closeVehicleRegistrationForm }) => {
       event.preventDefault();
       if (validateBrand() && validateModel() && validateVehicleNumber()) {
         const data = {
-          brand: brand,
-          model: model,
-          vehicleNumber: vehicleNumber,
+          brand,
+          model,
+          vehicleNumber,
         };
 
         const jwtToken = localStorage.getItem("jwtToken");

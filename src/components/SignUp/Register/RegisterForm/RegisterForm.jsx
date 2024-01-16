@@ -104,10 +104,10 @@ const RegisterForm = ({ submitForm }) => {
     try {
       event.preventDefault();
       const data = {
-        username: username,
-        sapid: sapid,
-        email: email,
-        phone: phone,
+        username,
+        sapid,
+        email,
+        phone,
       };
 
       if (

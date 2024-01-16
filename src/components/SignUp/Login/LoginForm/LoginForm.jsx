@@ -75,7 +75,7 @@ const LoginForm = () => {
     try {
       event.preventDefault();
       const data = {
-        email: email,
+        email,
       };
 
       if (validateEmail()) {
@@ -87,6 +87,9 @@ const LoginForm = () => {
         } else if (response.status === 404) {
           setOTPSent(false);
           toast.error("User Not Registered!");
+        } else {
+          setOTPSent(false);
+          toast.error("Login OTP sending failed");
         }
       }
     } catch (error) {
@@ -102,7 +105,7 @@ const LoginForm = () => {
 
       if (validateEmail() && validateOTP()) {
         const data = {
-          email: email,
+          email,
           otpValue: otp,
         };
 
