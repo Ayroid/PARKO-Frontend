@@ -81,7 +81,7 @@ const ProtectedRoute = ({ path, children }) => {
   if (!loading) {
     if (signUpPageRequested && verified) {
       return <Navigate to="/" />;
-    } else if (!signUpPageRequested && !verified) {
+    } else if (!verified) {
       return <Navigate to="/auth" />;
     } else {
       return children;
